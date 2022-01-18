@@ -3,7 +3,7 @@
 Frontend apllication for SLIIT 2nd year 2nd semeter IT Projetct<br>
 Read further to know how **you** can start contributing to this project.
 
-**[How to contribute]
+##[How to contribute]
 
 1. Fork the repo on Github :octocat:.
 2. Clone the project to your own machine. <br>
