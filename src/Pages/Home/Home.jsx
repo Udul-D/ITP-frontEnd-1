@@ -13,7 +13,6 @@ const Home = () => {
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
-            <h1 className="text-red-500 text-8xl">Home</h1>
         </>
     );
 };
