@@ -4,10 +4,10 @@ import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
 import "./header.css";
 
-const Nav = styled.nav`
+export const Nav = styled.nav`
   background-color: #000;
   height: 80px;
-  /* margin-top: -80px; */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,20 +17,20 @@ const Nav = styled.nav`
   border-bottom: 2px solid #009a4c;
 
   @media screen and (max-width: 960px) {
-    transition: 0ms.8s all ease;
+    transition: 0ms .8s all ease;
   }
 `;
 
-const NavbarContainer = styled.div`
+export const NavbarContainer = styled.div`
   display: flex;
+  width: 100%;
   justify-content: space-between;
   height: 80px;
   z-index: 1;
-  width: 100%;
   padding: 0 24px;
 `;
 
-const NavLogo = styled(LinkR)`
+export const NavLogo = styled(LinkR)`
   color: #fff;
   justify-self: self-start;
   cursor: pointer;
@@ -41,8 +41,9 @@ const NavLogo = styled(LinkR)`
   text-decoration: none;
 `;
 
-const MobileIcon = styled.div`
+export const MobileIcon = styled.div`
   display: none;
+
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
@@ -55,7 +56,7 @@ const MobileIcon = styled.div`
   }
 `;
 
-const NavMenu = styled.ul`
+export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
@@ -67,11 +68,11 @@ const NavMenu = styled.ul`
   }
 `;
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   height: 80px;
 `;
 
-const NavLinks = styled(LinkScroll)`
+export const NavLinks = styled(LinkScroll)`
   color: #fff;
   display: flex;
   align-items: center;
@@ -91,16 +92,16 @@ const NavLinks = styled(LinkScroll)`
   }
 `;
 
-const NavButton = styled.nav`
+export const NavButton = styled.nav`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 `;
 
-const NavBtnLink = styled(LinkR)`
+export const NavBtnLink = styled(LinkR)`
   border-radius: 50px;
   background: #009a4c;
   white-space: nowrap;
@@ -123,7 +124,7 @@ const NavBtnLink = styled(LinkR)`
 const Header = ({ toggle }) => {
   return (
     <>
-      <Nav>
+      <Nav style={{width: "100%"}}>
         <NavbarContainer>
           <NavLogo to="/">BRAINFUSE INSTITUTE</NavLogo>
           <MobileIcon onClick={toggle}>
