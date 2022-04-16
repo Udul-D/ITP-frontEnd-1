@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TeacherCard from "../../../components/Teacher/TeacherCard/TeacherList";
+import TeacherCard from "../../../components/TeacherCard/TeacherList";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 
