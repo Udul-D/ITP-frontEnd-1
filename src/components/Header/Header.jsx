@@ -96,9 +96,9 @@ export const NavButton = styled.nav`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const NavBtnLink = styled(LinkR)`
