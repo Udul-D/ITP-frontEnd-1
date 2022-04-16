@@ -7,6 +7,7 @@ import "./header.css";
 export const Nav = styled.nav`
   background-color: #000;
   height: 80px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
