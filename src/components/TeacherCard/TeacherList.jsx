@@ -8,28 +8,28 @@ export default function TeacherList() {
                     alt=""
                 />
                 <div className="p-2">
-                    <h2 className="font-bold text-lg mb-2">
-                        Teacher 1
+                    <h2 className="font-bold text-xl mb-2">
+                        Mr. Rathnayaka
                     </h2>
                     <p className="text-sm text-justify text-gray-600">
-                        Simple Yet Beautiful Card Design with TaiwlindCss.
-                        Subscribe to our Youtube channel for more ...
+                    BSc Special(Hons) in Information Technology.
+                    University of Colombo
                     </p>
                 </div>
                 <div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            Thursday, April 12
+                            Subject : Information Technology 
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            7:00 PM - 9:00 PM
+                            Class Type : Theory
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            Duration : 2 hrs
+                            Grade : A/L
                         </span>
                     </div>
                 </div>
