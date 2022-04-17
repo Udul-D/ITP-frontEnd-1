@@ -3,5 +3,13 @@ import EventList from "./Events/List";
 import Home from "./Home/Home";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
+import LoginForm from "./Inventory/List";
 
-export { ExamList, Home, StudentList, InventoryList, EventList };
+export {
+    ExamList,
+    Home,
+    StudentList,
+    InventoryList,
+    EventList,
+    LoginForm,
+};
