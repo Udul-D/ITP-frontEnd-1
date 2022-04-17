@@ -1,6 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ExamList, Home ,TeacherList } from "../Pages";
+import {
+    ExamList,
+    Home,
+    StudentList,
+    EventList,
+    InventoryList,
+    TeacherList,
+} from "../Pages";
+import LoginPage from "../Pages/Login";
+
 export const PageRoute = () => {
     return (
         <div>
@@ -9,7 +18,17 @@ export const PageRoute = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
-                        <Route path="/teacher" element={<TeacherList/>}/>
+                        <Route path="/teachers" element={<TeacherList/>}/>
+                        <Route
+                            path="/studentlist"
+                            element={<StudentList />}
+                        />
+                        <Route path="/events" element={<EventList />} />
+                        <Route
+                            path="/inventory"
+                            element={<InventoryList />}
+                        />
+                        <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </div>
             </BrowserRouter>
