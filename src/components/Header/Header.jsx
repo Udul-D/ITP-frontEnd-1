@@ -152,7 +152,7 @@ const Header = ({ toggle }) => {
                         </NavItem>
                     </NavMenu>
                     <NavButton>
-                        <NavBtnLink to="/signin">Sign In</NavBtnLink>
+                        <NavBtnLink to="/login">Sign In</NavBtnLink>
                     </NavButton>
                 </NavbarContainer>
             </Nav>

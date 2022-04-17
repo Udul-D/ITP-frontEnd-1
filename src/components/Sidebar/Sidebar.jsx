@@ -104,7 +104,7 @@ export default function Sidebar({ isOpen, toggle }) {
                     <SidebarLink to="sign Up">Sign Up</SidebarLink>
                 </SidebarMenu>
                 <SideBarButtonWrap>
-                    <SidebarRoute to="/signin">Sign In</SidebarRoute>
+                    <SidebarRoute to="/login">Sign In</SidebarRoute>
                 </SideBarButtonWrap>
             </SidebarWrapper>
         </SidebarContainer>
