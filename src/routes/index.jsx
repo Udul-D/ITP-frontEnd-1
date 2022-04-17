@@ -7,6 +7,7 @@ import {
     EventList,
     InventoryList,
 } from "../Pages";
+import LoginPage from "../Pages/Login";
 
 export const PageRoute = () => {
     return (
@@ -25,6 +26,7 @@ export const PageRoute = () => {
                             path="/inventory"
                             element={<InventoryList />}
                         />
+                        <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </div>
             </BrowserRouter>
