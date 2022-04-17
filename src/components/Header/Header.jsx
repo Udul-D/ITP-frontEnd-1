@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
+import Onlylogo from "../../Assets/Images/OnlyLogoColored.svg";
+import "./header.css";
 
 export const Nav = styled.nav`
     background-color: #000;
@@ -125,7 +127,12 @@ const Header = ({ toggle }) => {
         <>
             <Nav>
                 <NavbarContainer>
-                    <NavLogo to="/">BRAINFUSE INSTITUTE</NavLogo>
+                    <NavLogo to="/">
+                        <img src={Onlylogo} className="logo" alt="logo" />
+                        <p className="text-green-600">
+                            BrainTech Institute
+                        </p>
+                    </NavLogo>
                     <MobileIcon onClick={toggle}>
                         <FaBars />
                     </MobileIcon>
