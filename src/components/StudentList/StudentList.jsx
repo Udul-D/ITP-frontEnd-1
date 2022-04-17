@@ -39,25 +39,19 @@ export default function StudentList() {
                                 <tbody>
                                     <tr className="bg-green-100 lg:text-black">
                                         <td className="p-3">
-                                            <a
-                                                href="#"
-                                                className="text-gray-500 mr-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EyeOutlined className="hover:text-gray-800" />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-yellow-400 mx-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EditOutlined className="hover:text-yellow-500" />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-red-400 ml-2">
+                                            <a href="/">
                                                 <i className="material-icons-round text-base">
-                                                    <DeleteOutlined className="hover:text-red-500" />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -78,25 +72,19 @@ export default function StudentList() {
 
                                     <tr className="bg-green-100 lg:text-black">
                                         <td className="p-3">
-                                            <a
-                                                href="#"
-                                                className="text-gray-500 mr-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EyeOutlined className="hover:text-gray-800" />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-yellow-400 mx-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EditOutlined className="hover:text-yellow-500" />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-red-400 ml-2">
+                                            <a href="/">
                                                 <i className="material-icons-round text-base">
-                                                    <DeleteOutlined className="hover:text-red-500" />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -117,25 +105,19 @@ export default function StudentList() {
 
                                     <tr className="bg-green-100 lg:text-black">
                                         <td className="p-3">
-                                            <a
-                                                href="#"
-                                                className="text-gray-500 mr-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EyeOutlined className="hover:text-gray-800" />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-yellow-400 mx-2">
+                                            <a href="/">
                                                 <i className="material-icons-outlined text-base">
-                                                    <EditOutlined className="hover:text-yellow-500" />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                className="text-red-400 ml-2">
+                                            <a href="/">
                                                 <i className="material-icons-round text-base">
-                                                    <DeleteOutlined className="hover:text-red-500" />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
