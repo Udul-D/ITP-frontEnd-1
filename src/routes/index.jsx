@@ -8,7 +8,8 @@ import {
     InventoryList,
     TeacherList,
     Requests,
-   
+    ResultList,
+    StudentResult,
 } from "../Pages";
 import LoginPage from "../Pages/Login";
 
@@ -20,7 +21,10 @@ export const PageRoute = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
-                        <Route path="/teachers" element={<TeacherList/>}/>
+                        <Route
+                            path="/teachers"
+                            element={<TeacherList />}
+                        />
                         <Route
                             path="/studentlist"
                             element={<StudentList />}
@@ -31,9 +35,16 @@ export const PageRoute = () => {
                             element={<InventoryList />}
                         />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/requests" element={< Requests/>} />
+                        <Route path="/requests" element={<Requests />} />
+                        <Route
+                            path="/teacher/results"
+                            element={<ResultList />}
+                        />
+                        <Route
+                            path="/student/results"
+                            element={<StudentResult />}
+                        />
                     </Routes>
-                    
                 </div>
             </BrowserRouter>
         </div>
