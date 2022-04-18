@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import RequestTable from "../../../components/RequestTable";
-import Header from "../../../components/Header/Header";
-import Sidebar from "../../../components/Sidebar/Sidebar";
+import RequestList from "../../../../components/RequestTable/index";
+import Header from "../../../../components/Header/Header";
+import Sidebar from "../../../../components/Sidebar/Sidebar";
 
 
-const RequestList = () => {
+const Requests = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -17,13 +17,13 @@ const RequestList = () => {
             <Header toggle={toggle} />
             <div>
             <h1 className="text-black font-bold px-10 pt-5 mt-4 mb-6 text-5xl">
-                Inventory
+                Requests
             </h1>
-                <RequestTable/>
+                <RequestList/>
             </div>
             
         </>
     );
 };
 
-export default RequestList;
+export default Requests;
