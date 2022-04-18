@@ -4,22 +4,6 @@ import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
 import "./header.css";
 
-const Nav = styled.nav`
-  background-color: #000;
-  height: 80px;
-  /* margin-top: -80px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 2px solid #009a4c;
-
-  @media screen and (max-width: 960px) {
-    transition: 0ms.8s all ease;
-  }
-`;
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -123,7 +107,7 @@ const NavBtnLink = styled(LinkR)`
 const Header = ({ toggle }) => {
   return (
     <>
-      <Nav>
+      <nav className="w-screen bg-black">
         <NavbarContainer>
           <NavLogo to="/">BRAINFUSE INSTITUTE</NavLogo>
           <MobileIcon onClick={toggle}>
@@ -148,7 +132,7 @@ const Header = ({ toggle }) => {
             <NavBtnLink to="/signin">Sign In</NavBtnLink>
           </NavButton>
         </NavbarContainer>
-      </Nav>
+      </nav>
     </>
   );
 };
