@@ -3,7 +3,7 @@ import EventList from "./Events/List";
 import Home from "./Home/Home";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
-import LoginForm from "./Inventory/List";
+import LoginForm from "./Login/index";
 
 export {
     ExamList,
