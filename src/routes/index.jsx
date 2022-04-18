@@ -8,6 +8,7 @@ import {
     InventoryList,
     TeacherList,
     Requests,
+    HallList,
     ResultList,
     StudentResult,
 } from "../Pages";
@@ -35,6 +36,8 @@ export const PageRoute = () => {
                             element={<InventoryList />}
                         />
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/requests" element={< Requests/>} />
+                        <Route path="/hall" element={< HallList/>} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
                             path="/teacher/results"

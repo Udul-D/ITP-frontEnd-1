@@ -6,6 +6,7 @@ import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
 import LoginForm from "./Login/index";
 import Requests from "./Teachers/Request/List";
+import HallList from "./Hall/List";
 import ResultList from "./Result/TeacherList/index";
 import StudentResult from "./Result/StudentList/index";
 
@@ -20,4 +21,6 @@ export {
     Requests,
     ResultList,
     StudentResult,
+    HallList,
 };
+
