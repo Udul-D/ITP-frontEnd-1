@@ -4,7 +4,7 @@ export default function EventCard() {
             <div className=" pt-2 px-2 bg-gray-100">
                 <img
                     className="h-40 w-full object-cover rounded-lg"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wk4x2MS5IwwYFijpcXzrSnwZI-eYc07CiA&usqp=CAU"
+                    src="https://21mbu63kam0h2kj3iy24qk18-wpengine.netdna-ssl.com/wp-content/uploads/2017/02/Lecture-Hall.jpg"
                     alt=""
                 />
                 <div className="p-2">
@@ -24,7 +24,7 @@ export default function EventCard() {
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            7:00 PM - 9:00 PM
+                            7:00 AM - 9:00 AM
                         </span>
                     </div>
                     <div>
