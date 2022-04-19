@@ -5,23 +5,6 @@ import { Link as LinkScroll } from "react-scroll";
 import Onlylogo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./header.css";
 
-export const Nav = styled.nav`
-    background-color: #000;
-    height: 80px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 2px solid #009a4c;
-
-    @media screen and (max-width: 960px) {
-        transition: 0ms 0.8s all ease;
-    }
-`;
-
 export const NavbarContainer = styled.div`
     display: flex;
     width: 100%;
@@ -125,7 +108,7 @@ export const NavBtnLink = styled(LinkR)`
 const Header = ({ toggle }) => {
     return (
         <>
-            <Nav>
+            <nav className="lg:w-screen bg-black">
                 <NavbarContainer>
                     <NavLogo to="/">
                         <img src={Onlylogo} className="logo" alt="logo" />
@@ -155,7 +138,7 @@ const Header = ({ toggle }) => {
                         <NavBtnLink to="/login">Sign In</NavBtnLink>
                     </NavButton>
                 </NavbarContainer>
-            </Nav>
+            </nav>
         </>
     );
 };
