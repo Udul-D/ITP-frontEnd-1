@@ -85,9 +85,9 @@ return (
                 <i class="material-icons-round text-base"><DeleteOutlined /></i>
             </a>
             </td>
-            <td class="p-3 font-medium capitalize">Mr Lakmal</td>
-            <td class="p-3 font-medium capitalize">2018 A/L Bio Revision</td>
-            <td class="p-3 font-medium capitalize">22/05/01</td>
+            <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
+            <td class="p-3 font-medium capitalize">A/L ICT Revision</td>
+            <td class="p-3 font-medium capitalize">22/05/07</td>
             <td class="p-3 font-medium capitalize">8.30 AM</td>
             <td class="p-3 font-medium capitalizee"> I want a projector</td>
         </tr>
@@ -107,11 +107,11 @@ return (
                 <i class="material-icons-round text-base"><DeleteOutlined /></i>
             </a>
             </td>
-            <td class="p-3 font-medium capitalize">Mr Premathilaka</td>
+            <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
             <td class="p-3 font-medium capitalize">Practical</td>
             <td class="p-3 font-medium capitalize">22/05/01</td>
             <td class="p-3 font-medium capitalize">8.30 AM</td>
-            <td class="p-3 font-medium capitalizee">This is only for O/L Science</td>
+            <td class="p-3 font-medium capitalizee">This is only for A/L ICT students</td>
         </tr>
 
         </tbody>
