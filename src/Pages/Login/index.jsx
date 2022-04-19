@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import LoginForm from "../../components/Login/LoginForm";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
-const Home = () => {
+const LoginPage = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -15,11 +15,9 @@ const Home = () => {
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
 
-            
-            <Footer />
-
+            <LoginForm />
         </>
     );
 };
 
-export default Home;
+export default LoginPage;

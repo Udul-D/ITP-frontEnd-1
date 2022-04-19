@@ -1,4 +1,4 @@
-export default function ExamCard() {
+export default function EventCard() {
     return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
             <div className=" pt-2 px-2 bg-gray-100">
@@ -9,7 +9,7 @@ export default function ExamCard() {
                 />
                 <div className="p-2">
                     <h2 className="font-bold text-lg mb-2">
-                        Online Exam 1
+                        Science Seminar - O/L
                     </h2>
                     <p className="text-sm text-justify text-gray-600">
                         Simple Yet Beautiful Card Design with TaiwlindCss.
@@ -29,14 +29,14 @@ export default function ExamCard() {
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            Duration : 2 hrs
+                            Venue : B501
                         </span>
                     </div>
                 </div>
             </div>
             <a href="#">
-                <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg hover:bg-green-800">
-                    Download
+                <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg">
+                    View
                 </button>
             </a>
         </div>

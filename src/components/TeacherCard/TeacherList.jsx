@@ -1,4 +1,4 @@
-export default function ExamCard() {
+export default function TeacherList() {
     return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
             <div className=" pt-2 px-2 bg-gray-100">
@@ -8,37 +8,33 @@ export default function ExamCard() {
                     alt=""
                 />
                 <div className="p-2">
-                    <h2 className="font-bold text-lg mb-2">
-                        Online Exam 1
+                    <h2 className="font-bold text-xl mb-2">
+                        Mr. Rathnayaka
                     </h2>
                     <p className="text-sm text-justify text-gray-600">
-                        Simple Yet Beautiful Card Design with TaiwlindCss.
-                        Subscribe to our Youtube channel for more ...
+                    BSc Special(Hons) in Information Technology.
+                    University of Colombo
                     </p>
                 </div>
                 <div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            Thursday, April 12
+                            Subject : Information Technology 
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            7:00 PM - 9:00 PM
+                            Class Type : Theory
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            Duration : 2 hrs
+                            Grade : A/L
                         </span>
                     </div>
                 </div>
             </div>
-            <a href="#">
-                <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg hover:bg-green-800">
-                    Download
-                </button>
-            </a>
+            
         </div>
     );
 }
