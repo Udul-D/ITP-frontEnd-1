@@ -6,7 +6,7 @@ import "./LoginForm.css";
 export default function LoginForm() {
     return (
         <>
-            {/*
+            {/* 
         This example requires updating your template:
 
         ```
