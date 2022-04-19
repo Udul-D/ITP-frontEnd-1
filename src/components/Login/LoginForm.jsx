@@ -1,12 +1,12 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
-import logo from "../../Assets/Images/Braintech.svg";
+import logo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./LoginForm.css";
 
 export default function LoginForm() {
     return (
         <>
-            {/*
+            {/* 
         This example requires updating your template:
 
         ```
