@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
-import Onlylogo from "../../assets/Images/OnlyLogoColored.svg";
+import Onlylogo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./header.css";
 
 export const NavbarContainer = styled.div`
