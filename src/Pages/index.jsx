@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import TeacherList from "./Teachers/TeacherList/Index";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
+import TimetableList from "./Timetable/List";
 import LoginPage from "./Login/index";
 import EventAdminViewList from "./EventAdmin/List";
 import LoginForm from "./Login/index";
@@ -24,7 +25,6 @@ export {
     LoginPage,
     TeacherList,
     StudentList,
-    LoginForm,
     Requests,
     ResultList,
     StudentResult,
@@ -33,5 +33,7 @@ export {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    TimetableList,
     AddStudent,
 };
+
