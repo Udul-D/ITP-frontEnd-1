@@ -35,7 +35,7 @@ export default function ExamCard() {
                 </div>
             </div>
             <a href="#">
-                <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg">
+                <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg hover:bg-green-800">
                     Download
                 </button>
             </a>
