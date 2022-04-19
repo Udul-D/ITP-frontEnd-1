@@ -12,6 +12,7 @@ import {
     HallList,
     ResultList,
     StudentResult,
+    RequestAdminViewList,
     TutorialList,
     AddExam,
 } from "../Pages";
@@ -55,6 +56,7 @@ export const PageRoute = () => {
                             path="/student/results"
                             element={<StudentResult />}
                         />
+                        <Route path="/admin/requests" element={<RequestAdminViewList />}/>
                         <Route
                             path="/tutorials"
                             element={<TutorialList />}
