@@ -11,7 +11,7 @@ export default function StudentList() {
             <div className=" items-center justify-center min-h-screen bg-white">
                 <div className="col-span-12">
                     <div className="overflow-auto lg:overflow-visible"></div>
-                    <div className="p-5 bg-gray-100 ">
+                    <div className="p-5 bg-gray-100">
                         <div className="overflow-auto rounded-lg shadow">
                             <table className="w-full">
                                 <thead className="bg-green-200 border-b-2 border-gray-200">
