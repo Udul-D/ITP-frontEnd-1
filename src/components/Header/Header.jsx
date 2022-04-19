@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
-import Onlylogo from "../../Assets/Images/OnlyLogoColored.svg";
+import Onlylogo from "../../assets/Images/OnlyLogoColored.svg";
 import "./header.css";
 
 
@@ -113,7 +113,7 @@ const Header = ({ toggle }) => {
 
     return (
         <>
-            <Nav>
+            <nav className="w-screen bg-black">
                 <NavbarContainer>
                     <NavLogo to="/">
                         <img src={Onlylogo} className="logo" alt="logo" />
@@ -143,7 +143,7 @@ const Header = ({ toggle }) => {
                         <NavBtnLink to="/login">Sign In</NavBtnLink>
                     </NavButton>
                 </NavbarContainer>
-            </Nav>
+            </nav>
         </>
     );
 
