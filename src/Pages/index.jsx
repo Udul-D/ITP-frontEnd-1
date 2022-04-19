@@ -12,6 +12,7 @@ import ResultList from "./Result/TeacherList/index";
 import StudentResult from "./Result/StudentList/index";
 import TutorialList from "./Tutorial/List";
 import AddExam from "./Exams/add/index";
+import AddStudent from "./Student/add/index";
 
 export {
     ExamList,
@@ -28,4 +29,5 @@ export {
     EventAdminViewList,
     TutorialList,
     AddExam,
+    AddStudent,
 };
