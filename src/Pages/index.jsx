@@ -10,6 +10,7 @@ import Requests from "./Teachers/Request/List";
 import HallList from "./Hall/List";
 import ResultList from "./Result/TeacherList/index";
 import StudentResult from "./Result/StudentList/index";
+import TutorialList from "./Tutorial/List";
 
 export {
     ExamList,
@@ -24,6 +25,8 @@ export {
     StudentResult,
     HallList,
     EventAdminViewList,
+    TutorialList,
 };
+
 
 
