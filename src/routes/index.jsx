@@ -12,6 +12,7 @@ import {
     HallList,
     ResultList,
     StudentResult,
+    RequestAdminViewList,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -48,6 +49,7 @@ export const PageRoute = () => {
                             path="/student/results"
                             element={<StudentResult />}
                         />
+                        <Route path="/admin/requests" element={<RequestAdminViewList />}/>
                     </Routes>
                 </div>
             </BrowserRouter>
