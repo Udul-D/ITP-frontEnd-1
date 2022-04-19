@@ -12,6 +12,7 @@ import {
     HallList,
     ResultList,
     StudentResult,
+    TutorialList,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -40,7 +41,7 @@ export const PageRoute = () => {
                         <Route path="/requests" element={< Requests/>} />
                         <Route path="/hall" element={< HallList/>} />
                         <Route path="/requests" element={<Requests />} />
-                        <Route
+                        <Route 
                             path="/teacher/results"
                             element={<ResultList />}
                         />
@@ -48,6 +49,7 @@ export const PageRoute = () => {
                             path="/student/results"
                             element={<StudentResult />}
                         />
+                        <Route path="/tutorials" element={<TutorialList />} />
                     </Routes>
                 </div>
             </BrowserRouter>
