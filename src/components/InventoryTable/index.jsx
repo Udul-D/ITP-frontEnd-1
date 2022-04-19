@@ -27,7 +27,7 @@ return (
                 rounded-full mb-3
             "
             >
-            ADD
+            Add Inventory
             </button>
         </a>
         
