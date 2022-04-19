@@ -3,7 +3,8 @@ import EventList from "./Events/List";
 import Home from "./Home/Home";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
-import LoginForm from "./Login/index";
+import LoginPage from "./Login/index";
+import RegisterPage from "./Register/index";
 
 export {
     ExamList,
@@ -11,5 +12,6 @@ export {
     StudentList,
     InventoryList,
     EventList,
-    LoginForm,
+    LoginPage,
+    RegisterPage,
 };
