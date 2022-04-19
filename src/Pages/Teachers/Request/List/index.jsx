@@ -17,7 +17,7 @@ const Requests = () => {
             <Header toggle={toggle} />
             <div>
             <h1 className="text-black font-bold px-10 pt-5 mt-4 mb-6 text-5xl">
-                Requests
+                My Requests
             </h1>
                 <RequestList/>
             </div>
