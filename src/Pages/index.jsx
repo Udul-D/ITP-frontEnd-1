@@ -14,7 +14,6 @@ import RequestAdminViewList from "./Teachers/Request/List/AdminList/index";
 import TutorialList from "./Tutorial/List";
 import AddExam from "./Exams/add/index";
 
-
 export {
     ExamList,
     Home,
@@ -28,7 +27,7 @@ export {
     StudentResult,
     HallList,
     EventAdminViewList,
+    RequestAdminViewList,
     TutorialList,
     AddExam,
-    RequestAdminViewList,
 };
