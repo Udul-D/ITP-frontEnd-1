@@ -1,17 +1,31 @@
 import ExamList from "./Exams/List";
 import EventList from "./Events/List";
 import Home from "./Home/Home";
+import TeacherList from "./Teachers/TeacherList/Index";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
 import LoginPage from "./Login/index";
-import RegisterPage from "./Register/index";
+import EventAdminViewList from "./EventAdmin/List";
+import LoginForm from "./Login/index";
+import Requests from "./Teachers/Request/List";
+import HallList from "./Hall/List";
+import ResultList from "./Result/TeacherList/index";
+import StudentResult from "./Result/StudentList/index";
+import TutorialList from "./Tutorial/List";
 
 export {
     ExamList,
     Home,
-    StudentList,
     InventoryList,
     EventList,
     LoginPage,
-    RegisterPage,
+    TeacherList,
+    StudentList,
+    LoginForm,
+    Requests,
+    ResultList,
+    StudentResult,
+    HallList,
+    EventAdminViewList,
+    TutorialList,
 };
