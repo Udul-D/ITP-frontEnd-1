@@ -3,16 +3,19 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
     ExamList,
     Home,
-    StudentList,
     EventList,
     InventoryList,
+    EventAdminViewList,
+    StudentList,
     TeacherList,
     Requests,
     HallList,
     ResultList,
     StudentResult,
 } from "../Pages";
+
 import LoginPage from "../Pages/Login";
+
 
 export const PageRoute = () => {
     return (
@@ -31,10 +34,8 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
-                        <Route
-                            path="/inventory"
-                            element={<InventoryList />}
-                        />
+                        <Route path="/inventory" element={<InventoryList />}/>
+                        <Route path="/admin/events" element={<EventAdminViewList />}/>
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/requests" element={< Requests/>} />
                         <Route path="/hall" element={< HallList/>} />
