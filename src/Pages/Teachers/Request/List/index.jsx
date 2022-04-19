@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import RequestList from "../../../../components/RequestTable/index";
 import Header from "../../../../components/Header/Header";
+import Footer from "../../../../components/Footer/Footer";
 import Sidebar from "../../../../components/Sidebar/Sidebar";
 
 
@@ -21,8 +22,9 @@ const Requests = () => {
             </h1>
                 <RequestList/>
             </div>
-            
+            <Footer/>
         </>
+        
     );
 };
 
