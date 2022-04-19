@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ExamList, Home, EventList } from "../Pages";
-import { ExamList, Home, InventoryList} from "../Pages";
+//import { ExamList, Home, EventList } from "../Pages";
+import { ExamList, Home, InventoryList, EventList, TimetableList} from "../Pages";
 
 export const PageRoute = () => {
     return (
@@ -13,6 +13,7 @@ export const PageRoute = () => {
                         <Route path="/exams" element={<ExamList />} />
                         <Route path="/events" element={<EventList />} />
                         <Route path="/inventory" element={<InventoryList />} />
+                        <Route path="/timetable" element={<TimetableList />} />
                     </Routes>
                 </div>
             </BrowserRouter>
