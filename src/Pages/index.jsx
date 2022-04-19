@@ -11,7 +11,8 @@ import HallList from "./Hall/List";
 import ResultList from "./Result/TeacherList/index";
 import StudentResult from "./Result/StudentList/index";
 import RequestAdminViewList from "./Teachers/Request/List/AdminList/index";
-
+import TutorialList from "./Tutorial/List";
+import AddExam from "./Exams/add/index";
 
 
 export {
@@ -27,7 +28,7 @@ export {
     StudentResult,
     HallList,
     EventAdminViewList,
+    TutorialList,
+    AddExam,
     RequestAdminViewList,
 };
-
-

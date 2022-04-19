@@ -13,10 +13,12 @@ import {
     ResultList,
     StudentResult,
     RequestAdminViewList,
+    TutorialList,
+    AddExam,
+
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
-
 
 export const PageRoute = () => {
     return (
@@ -35,11 +37,16 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
-                        <Route path="/inventory" element={<InventoryList />}/>
-                        <Route path="/admin/events" element={<EventAdminViewList />}/>
+                        <Route
+                            path="/inventory"
+                            element={<InventoryList />}
+                        />
+                        <Route
+                            path="/admin/events"
+                            element={<EventAdminViewList />}
+                        />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/requests" element={< Requests/>} />
-                        <Route path="/hall" element={< HallList/>} />
+                        <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
                             path="/teacher/results"
@@ -49,7 +56,18 @@ export const PageRoute = () => {
                             path="/student/results"
                             element={<StudentResult />}
                         />
+
                         <Route path="/admin/requests" element={<RequestAdminViewList />}/>
+
+                        <Route
+                            path="/tutorials"
+                            element={<TutorialList />}
+                        />
+                        <Route
+                            path="/teacher/exam/add"
+                            element={<AddExam />}
+                        />
+
                     </Routes>
                 </div>
             </BrowserRouter>
