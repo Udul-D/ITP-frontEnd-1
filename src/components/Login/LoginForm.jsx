@@ -1,6 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
-import logo from "../../assets/Images/Braintech.svg";
+import logo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./LoginForm.css";
 
 export default function LoginForm() {
