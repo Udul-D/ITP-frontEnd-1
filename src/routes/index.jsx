@@ -15,6 +15,7 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddEvent,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -64,6 +65,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/add"
                             element={<AddExam />}
+                        />
+                        <Route
+                            path="/admin/event/add"
+                            element={<AddEvent />}
                         />
                     </Routes>
                 </div>
