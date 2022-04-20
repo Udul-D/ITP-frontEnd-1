@@ -4,8 +4,8 @@ import Home from "./Home/Home";
 import TeacherList from "./Teachers/TeacherList/Index";
 import StudentList from "./Student/List";
 import InventoryList from "./Inventory/List";
-//import LoginForm from "./Login/index";
 import TimetableList from "./Timetable/List";
+import LoginPage from "./Login/index";
 import EventAdminViewList from "./EventAdmin/List";
 import LoginForm from "./Login/index";
 import Requests from "./Teachers/Request/List";
@@ -15,6 +15,7 @@ import StudentResult from "./Result/StudentList/index";
 import RequestAdminViewList from "./Teachers/Request/List/AdminList/index";
 import TutorialList from "./Tutorial/List";
 import AddExam from "./Exams/add/index";
+import AddStudent from "./Student/add/index";
 import AddTimetable from "./Timetable/add/index";
 import AddInventory from "./Inventory/add/index";
 
@@ -23,9 +24,9 @@ export {
     Home,
     InventoryList,
     EventList,
+    LoginPage,
     TeacherList,
     StudentList,
-    LoginForm,
     Requests,
     ResultList,
     StudentResult,
@@ -35,7 +36,8 @@ export {
     TutorialList,
     AddExam,
     TimetableList,
-    AddTimetable,
+    AddStudent,
     AddInventory,
+    AddTimetable,
 };
 
