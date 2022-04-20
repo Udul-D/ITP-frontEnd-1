@@ -14,8 +14,11 @@ import StudentResult from "./Result/StudentList/index";
 import RequestAdminViewList from "./Teachers/Request/List/AdminList/index";
 import TutorialList from "./Tutorial/List";
 import AddExam from "./Exams/add/index";
+import AddRequest from "./Teachers/Request/Add";
 import AddEvent from "./Events/add/index";
 import AddStudent from "./Student/add/index";
+import AddTeacher from "./Teachers/Add";
+
 
 
 export {
@@ -24,6 +27,7 @@ export {
     InventoryList,
     EventList,
     LoginPage,
+    LoginForm,
     TeacherList,
     StudentList,
     Requests,
@@ -34,8 +38,11 @@ export {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddRequest,
     AddEvent,
     TimetableList,
     AddStudent,
+    AddTeacher,
+
 };
 

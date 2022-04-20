@@ -16,9 +16,13 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddRequest,
     AddEvent,
     TimetableList,
     AddStudent,
+    AddTeacher,
+
+
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -53,7 +57,6 @@ export const PageRoute = () => {
                             element={<EventAdminViewList />}
                         />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/requests" element={<Requests />} />
                         <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
@@ -74,15 +77,21 @@ export const PageRoute = () => {
                             element={<AddExam />}
                         />
                         <Route
-
+                            path="/teacher/request/add"
+                            element={<AddRequest />}
                             path="/admin/event/add"
                             element={<AddEvent />}
                         />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
-
                         />
+                        <Route  path="/student/add"
+                            element={<AddStudent />}
+                            />
+                        <Route  path="/teachers/add"
+                            element={<AddTeacher />}
+                            />
                     </Routes>
                 </div>
             </BrowserRouter>
