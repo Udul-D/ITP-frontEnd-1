@@ -13,6 +13,7 @@ import StudentResult from "./Result/StudentList/index";
 import RequestAdminViewList from "./Teachers/Request/List/AdminList/index";
 import TutorialList from "./Tutorial/List";
 import AddExam from "./Exams/add/index";
+import AddTutorial from "./Tutorial/add/index";
 
 export {
     ExamList,
@@ -30,4 +31,5 @@ export {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddTutorial,
 };
