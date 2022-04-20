@@ -18,7 +18,10 @@ import AddHall from "./Hall/add/index";
 import AddRequest from "./Teachers/Request/Add";
 import AddEvent from "./Events/add/index";
 import AddStudent from "./Student/add/index";
+import AddTimetable from "./Timetable/add/index";
+import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
+
 
 
 export {
@@ -42,6 +45,8 @@ export {
     AddEvent,
     TimetableList,
     AddStudent,
+    AddInventory,
+    AddTimetable,
     AddTeacher,
 };
 

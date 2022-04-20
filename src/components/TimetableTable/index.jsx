@@ -4,9 +4,9 @@ import {EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons"
 
 export default function Timetable() {
 return (
-    <div className="p-26">
+    <div className="p-26 w-full">
 
-<div class=" items-center justify-center min-h-screen bg-white">
+<div class=" items-center justify-center mb-10 bg-white">
 <div class="col-span-12">
     <div class="overflow-auto lg:overflow-visible"></div>
         <div class="p-5 bg-gray-100 rounded-lg ">

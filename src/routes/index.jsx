@@ -19,6 +19,8 @@ import {
     AddRequest,
     AddEvent,
     TimetableList,
+    AddTimetable,
+    AddInventory,
     AddStudent,
     AddTeacher,
 } from "../Pages";
@@ -30,7 +32,7 @@ export const PageRoute = () => {
     return (
         <div>
             <BrowserRouter>
-                <div className="container">
+                <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
@@ -89,6 +91,14 @@ export const PageRoute = () => {
                         element={<AddEvent />} />
 
                         <Route
+
+                            path="/admin/timetable/add"
+                            element={<AddTimetable />}
+                        />
+                        <Route
+                            path="/admin/inventory/add"
+                            element={<AddInventory />}
+
                             path="/student/add"
                             element={<AddStudent />}
                         />
