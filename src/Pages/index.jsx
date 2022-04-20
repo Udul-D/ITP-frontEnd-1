@@ -27,7 +27,6 @@ export {
     InventoryList,
     EventList,
     LoginPage,
-    LoginForm,
     TeacherList,
     StudentList,
     Requests,
