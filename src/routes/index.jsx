@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import { ExamList, Home, EventList } from "../Pages";
 import {
     ExamList,
     Home,
@@ -15,10 +16,12 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    TimetableList,
     AddStudent,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
+
 
 export const PageRoute = () => {
     return (
@@ -37,6 +40,9 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
+
+                        <Route path="/inventory" element={<InventoryList />} />
+                        <Route path="/timetable" element={<TimetableList />} />
                         <Route
                             path="/inventory"
                             element={<InventoryList />}
