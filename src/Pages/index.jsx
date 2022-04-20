@@ -21,8 +21,7 @@ import AddStudent from "./Student/add/index";
 import AddTimetable from "./Timetable/add/index";
 import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
-
-
+import AddResult from "./Result/add/index";
 
 export {
     ExamList,
@@ -48,5 +47,5 @@ export {
     AddInventory,
     AddTimetable,
     AddTeacher,
+    AddResult,
 };
-
