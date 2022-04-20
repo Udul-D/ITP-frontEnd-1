@@ -24,11 +24,20 @@ export default function Inventory() {
                 flex
                 sm
                 rounded-full mb-3
-            ">
-                                        ADD
-                                    </button>
-                                </a>
-                            </div>
+
+            "
+            >
+            Add Inventory
+            </button>
+        </a>
+        
+        
+        </div>
+    
+
+            
+                                        
+
 
                             <table class="w-full">
                                 <thead class="bg-green-200 border-b-2 border-gray-200">

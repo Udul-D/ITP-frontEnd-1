@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import TimetableTable from "../../../components/TimetableTable";
+import Header from "../../../components/Header/Header";
+import Sidebar from "../../../components/Sidebar/Sidebar";
 
-import RequestList from "../../../../components/RequestTable/index";
-import Header from "../../../../components/Header/Header";
-import Sidebar from "../../../../components/Sidebar/Sidebar";
-
-
-const Requests = () => {
+const TimetableList = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -17,13 +15,13 @@ const Requests = () => {
             <Header toggle={toggle} />
             <div>
             <h1 className="text-black font-bold px-10 pt-5 mt-4 mb-6 text-5xl">
-                My Requests
+                Timetable
             </h1>
-                <RequestList/>
+                <TimetableTable/>
             </div>
             
         </>
     );
 };
 
-export default Requests;
+export default TimetableList;
