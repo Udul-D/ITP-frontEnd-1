@@ -19,6 +19,8 @@ import {
     AddRequest,
     TimetableList,
     AddStudent,
+    AddTeacher,
+
 
 } from "../Pages";
 
@@ -81,6 +83,9 @@ export const PageRoute = () => {
                         />
                         <Route  path="/student/add"
                             element={<AddStudent />}
+                            />
+                        <Route  path="/teachers/add"
+                            element={<AddTeacher />}
                             />
                     </Routes>
                 </div>
