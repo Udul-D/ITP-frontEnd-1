@@ -24,11 +24,20 @@ export default function Inventory() {
                 flex
                 sm
                 rounded-full mb-3
-            ">
-                                        ADD
-                                    </button>
-                                </a>
-                            </div>
+
+            "
+            >
+            Add Inventory
+            </button>
+        </a>
+        
+        
+        </div>
+    
+
+            
+                                        
+
 
                             <table class="w-full">
                                 <thead class="bg-green-200 border-b-2 border-gray-200">
@@ -53,25 +62,27 @@ export default function Inventory() {
                                 <tbody>
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" class="mr-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined
+                                                        className="text-gray-500
+                                                        mr-2
+                                                        hover:text-gray-800"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" class="mx-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined
+                                                        className="text-yellow-400
+                                                        mx-2
+                                                        hover:text-yellow-500"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#" class="ml-2">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -89,25 +100,27 @@ export default function Inventory() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" class="mr-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined
+                                                        className="text-gray-500
+                                                        mr-2
+                                                        hover:text-gray-800"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" class="mx-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined
+                                                        className="text-yellow-400
+                                                        mx-2
+                                                        hover:text-yellow-500"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#" class="ml-2">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -125,25 +138,27 @@ export default function Inventory() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" class="mr-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined
+                                                        className="text-gray-500
+                                                        mr-2
+                                                        hover:text-gray-800"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" class="mx-2">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined
+                                                        className="text-yellow-400
+                                                        mx-2
+                                                        hover:text-yellow-500"
+                                                    />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#" class="ml-2">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
