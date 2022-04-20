@@ -21,6 +21,7 @@ import {
     TimetableList,
     AddStudent,
     AddTeacher,
+    AddTutorial,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -98,7 +99,9 @@ export const PageRoute = () => {
                         <Route  path="/teachers/add"
                             element={<AddTeacher />}
                             />
-
+                        <Route path="tutorial/add"
+                            element={<AddTutorial />}
+                            />
                     </Routes>
                 </div>
             </BrowserRouter>
