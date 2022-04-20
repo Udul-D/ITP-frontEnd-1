@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-//import { ExamList, Home, EventList } from "../Pages";
 import {
     ExamList,
     Home,
@@ -16,13 +15,12 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddHall,
     AddRequest,
     AddEvent,
     TimetableList,
     AddStudent,
     AddTeacher,
-
-
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -76,12 +74,20 @@ export const PageRoute = () => {
                             path="/teacher/exam/add"
                             element={<AddExam />}
                         />
+
+                    
+                        <Route
+                            path="/admin/hall/add"
+                            element={<AddHall />}
+                        />
+
                         <Route
                             path="/teacher/request/add"
                             element={<AddRequest />}
-                            path="/admin/event/add"
-                            element={<AddEvent />}
                         />
+                        <Route path="/admin/event/add"
+                        element={<AddEvent />} />
+
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
@@ -92,6 +98,7 @@ export const PageRoute = () => {
                         <Route  path="/teachers/add"
                             element={<AddTeacher />}
                             />
+
                     </Routes>
                 </div>
             </BrowserRouter>
