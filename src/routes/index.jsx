@@ -16,7 +16,9 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
-    TimetableList
+    TimetableList,
+    AddTimetable,
+    AddInventory,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -26,7 +28,7 @@ export const PageRoute = () => {
     return (
         <div>
             <BrowserRouter>
-                <div className="container">
+                <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
@@ -70,6 +72,14 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/add"
                             element={<AddExam />}
+                        />
+                        <Route
+                            path="/admin/timetable/add"
+                            element={<AddTimetable />}
+                        />
+                        <Route
+                            path="/admin/inventory/add"
+                            element={<AddInventory />}
                         />
                     </Routes>
                 </div>
