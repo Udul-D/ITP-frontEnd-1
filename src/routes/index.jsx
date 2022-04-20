@@ -15,10 +15,16 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
-    AddTutorial,
+    AddHall,
+    AddRequest,
+    AddEvent,
+    TimetableList,
+    AddStudent,
+    AddTeacher,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
+
 
 export const PageRoute = () => {
     return (
@@ -37,6 +43,9 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
+
+                        <Route path="/inventory" element={<InventoryList />} />
+                        <Route path="/timetable" element={<TimetableList />} />
                         <Route
                             path="/inventory"
                             element={<InventoryList />}
@@ -46,7 +55,6 @@ export const PageRoute = () => {
                             element={<EventAdminViewList />}
                         />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/requests" element={<Requests />} />
                         <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
@@ -66,10 +74,31 @@ export const PageRoute = () => {
                             path="/teacher/exam/add"
                             element={<AddExam />}
                         />
+
+                    
                         <Route
-                            path="/teacher/tutorial/add"
-                            element={<AddTutorial />}
+                            path="/admin/hall/add"
+                            element={<AddHall />}
                         />
+
+                        <Route
+                            path="/teacher/request/add"
+                            element={<AddRequest />}
+                        />
+                        <Route path="/admin/event/add"
+                        element={<AddEvent />} />
+
+                        <Route
+                            path="/student/add"
+                            element={<AddStudent />}
+                        />
+                        <Route  path="/student/add"
+                            element={<AddStudent />}
+                            />
+                        <Route  path="/teachers/add"
+                            element={<AddTeacher />}
+                            />
+
                     </Routes>
                 </div>
             </BrowserRouter>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TeacherCard from "../../../components/TeacherCard/TeacherList";
 import Header from "../../../components/Header/Header";
+import Footer from "../../../components/Footer/Footer";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 
 const TeacherList = () => {
@@ -23,6 +24,7 @@ const TeacherList = () => {
                 <TeacherCard />
                 <TeacherCard />
             </div>
+            <Footer/>
         </>
     );
 };

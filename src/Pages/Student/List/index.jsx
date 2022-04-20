@@ -15,7 +15,7 @@ const StudentLists = () => {
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
-            <div className="TopicHolder">
+            <div>
                 <h1 className="text-black font-bold px-6 pt-6 text-3xl">
                     Student List
                 </h1>
@@ -25,7 +25,7 @@ const StudentLists = () => {
                 </p>
             </div>
 
-            <div className="TableHolder">
+            <div className="bg-[#dcdcdc] mt-2.5 w-screen">
                 <button className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-full m-4 transition ease-in-out delay-75 hover:scale-95 transform-gpu">
                     {/* transition ease-out delay-150 */}
                     <AiOutlineUserAdd className="AddUserIcon" />

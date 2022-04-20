@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Request from "../../../../../components/RequestTable/AdminTable/index";
 import Header from "../../../../../components/Header/Header";
+import Footer from "../../../../../components/Footer/Footer";
 import Sidebar from "../../../../../components/Sidebar/Sidebar";
 
 const RequestAdminViewList = () => {
@@ -19,6 +20,7 @@ const RequestAdminViewList = () => {
                 </h1>
                 <Request />
             </div>
+            <Footer/>
         </>
     );
 };

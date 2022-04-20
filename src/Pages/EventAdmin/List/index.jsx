@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EventAdminTable from "../../../components/EventAdminTable";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Footer from "../../../components/Footer/Footer";
 
 const EventAdminViewList = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const EventAdminViewList = () => {
                 </h1>
                 <EventAdminTable />
             </div>
+            <Footer />
         </>
     );
 };
