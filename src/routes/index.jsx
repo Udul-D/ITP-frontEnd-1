@@ -22,12 +22,11 @@ import {
 
 import LoginPage from "../Pages/Login";
 
-
 export const PageRoute = () => {
     return (
         <div>
             <BrowserRouter>
-                <div className="container">
+                <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
@@ -41,8 +40,14 @@ export const PageRoute = () => {
                         />
                         <Route path="/events" element={<EventList />} />
 
-                        <Route path="/inventory" element={<InventoryList />} />
-                        <Route path="/timetable" element={<TimetableList />} />
+                        <Route
+                            path="/inventory"
+                            element={<InventoryList />}
+                        />
+                        <Route
+                            path="/timetable"
+                            element={<TimetableList />}
+                        />
                         <Route
                             path="/inventory"
                             element={<InventoryList />}
@@ -63,7 +68,10 @@ export const PageRoute = () => {
                             path="/student/results"
                             element={<StudentResult />}
                         />
-                        <Route path="/admin/requests" element={<RequestAdminViewList />}/>
+                        <Route
+                            path="/admin/requests"
+                            element={<RequestAdminViewList />}
+                        />
                         <Route
                             path="/tutorials"
                             element={<TutorialList />}
