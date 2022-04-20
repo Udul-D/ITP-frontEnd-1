@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InventoryTable from "../../../components/InventoryTable";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Footer from "../../../components/Footer/Footer";
 
 const InventoryList = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ const InventoryList = () => {
             </h1>
                 <InventoryTable/>
             </div>
-            
+            <Footer />
         </>
     );
 };
