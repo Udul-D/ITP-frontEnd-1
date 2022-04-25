@@ -3,6 +3,7 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import StudentList from "../../../components/StudentList/StudentList";
+import Footer from "../../../components/Footer/Footer";
 import "./index.css";
 
 const StudentLists = () => {
@@ -33,6 +34,7 @@ const StudentLists = () => {
                 </button>
 
                 <StudentList />
+                <Footer />
             </div>
         </>
     );
