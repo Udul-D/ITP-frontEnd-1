@@ -114,18 +114,18 @@ export default function Event() {
                                 </thead>
                                 <tbody>
                                     <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                        <td class="p-5">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
@@ -146,17 +146,17 @@ export default function Event() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
@@ -177,17 +177,17 @@ export default function Event() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
@@ -208,17 +208,17 @@ export default function Event() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
@@ -239,17 +239,17 @@ export default function Event() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
@@ -270,17 +270,17 @@ export default function Event() {
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a href="#" class="mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
                                                     <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a href="#" class="ml-2">
+                                            <a href="#" >
                                                 <i class="material-icons-round text-base">
                                                     <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
