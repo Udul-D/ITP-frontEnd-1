@@ -3,8 +3,8 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import Footer from "../../../components/Footer/Footer";
+import axios from "axios";
 function AddExam() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -12,9 +12,40 @@ function AddExam() {
         setIsOpen(!isOpen);
     };
 
+    const [examName, setExamName] = useState("");
     const [selectDate, setSelectDate] = useState(null);
+    const [examDuration, setExamDuration] = useState("");
+    const [examTime, setExamTime] = useState("");
+    const [desc, setDesc] = useState("");
 
-    const timeValue = new Date("2020-01-01 00:00:00 AM");
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            examName: examName,
+            description: desc,
+            date: selectDate,
+            time: examTime,
+            duration: examDuration,
+        };
+
+        try {
+            await axios
+                .post("/api/exam/add", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -27,7 +58,9 @@ function AddExam() {
             </div>
             <div className="mx-96">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
-                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                    <form
+                        className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                        onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -39,6 +72,9 @@ function AddExam() {
                                 id="username"
                                 type="text"
                                 placeholder="Exam Name"
+                                onChange={(e) =>
+                                    setExamName(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-4">
@@ -61,7 +97,7 @@ function AddExam() {
                                     </svg>
                                 </div>
                                 <DatePicker
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                    className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
                                     onChange={(date) =>
                                         setSelectDate(date)
@@ -75,27 +111,64 @@ function AddExam() {
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Time
+                                Time (24 Hour Format)
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="time"
                                 type="text"
                                 placeholder="Time"
+                                onChange={(e) =>
+                                    setExamTime(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Duration
+                                Duration (in hours)
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
+                                onChange={(e) => {
+                                    setExamDuration(e.target.value);
+                                }}
                                 placeholder="Duration"
                             />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Description
+                            </label>
+                            <textarea
+                                class="
+                                    form-control
+                                    block
+                                    w-full
+                                    px-3
+                                    py-1.5
+                                    text-base
+                                    font-normal
+                                    text-gray-700
+                                    bg-white bg-clip-padding
+                                    border border-solid border-gray-300
+                                    rounded
+                                    transition
+                                    ease-in-out
+                                    m-0
+                                    focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
+                                "
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                                onChange={(e) => {
+                                    setDesc(e.target.value);
+                                }}
+                                placeholder="Description"></textarea>
                         </div>
                         <div class="flex w-full items-center justify-center bg-grey-lighter">
                             <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
@@ -112,7 +185,9 @@ function AddExam() {
                                 <input type="file" class="hidden" />
                             </label>
                         </div>
-                        <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
+                        <button
+                            type="submit"
+                            class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
                             Submit
                         </button>
                     </form>
