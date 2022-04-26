@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import Footer from "../../../../components/Footer/Footer";
+import axios from "axios";
 
 function AddRequest() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +13,45 @@ function AddRequest() {
     const toggle = () => {
         setIsOpen(!isOpen);
     };
-
+     
+    const [requestTitle,setRequestTitle] = useState("");
+    const [teacherName, setTeacherName] =useState("");
     const [selectDate, setSelectDate] = useState(null);
+    const [reqTime, setReqTime] = useState("");
+    const [desc, setDesc] = useState("");
 
     const timeValue = new Date("2020-01-01 00:00:00 AM");
+
+    const onSubmit = async (e) => {
+
+        e.preventDefault();
+
+        const data = {
+            requestTitle: requestTitle,
+            teacherName: teacherName,
+            Date: selectDate,
+            time: reqTime,
+            description: desc,
+        };
+
+        try {
+            await axios
+                .post("/api/Request/add", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -28,7 +64,8 @@ function AddRequest() {
             </div>
             <div className="mx-96">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
-                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                           onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -40,6 +77,8 @@ function AddRequest() {
                                 id="username"
                                 type="text"
                                 placeholder="Teacher Name"
+                                onChange={(e) =>
+                                    setTeacherName(e.target.value)}
                             />
                         </div>
                         <div class="mb-6">
@@ -50,15 +89,17 @@ function AddRequest() {
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="reqquestname"
                                 type="text"
                                 placeholder="Request Name"
+                                onChange={(e) =>
+                                    setRequestTitle(e.target.value)}
                             />
                         </div>
                         <div class="mb-4">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="date">
                                 Date
                             </label>
                             <div class="relative flex">
@@ -93,9 +134,12 @@ function AddRequest() {
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="time"
                                 type="text"
                                 placeholder="Time"
+                                onChange={(e) =>
+                                    setReqTime(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -104,12 +148,31 @@ function AddRequest() {
                                 for="username">
                                 Discription
                             </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                            <textarea 
+                                class="
+                                form-control
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
+                            "
+                                id="discription"
                                 type="text"
                                 placeholder="Discription"
-                            />
+                                onChange={(e) => {
+                                setDesc(e.target.value);}} >
+                                    
+                                </textarea>
                         </div>
                         
                         <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
