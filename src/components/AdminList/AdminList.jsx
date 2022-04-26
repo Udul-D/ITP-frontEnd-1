@@ -57,7 +57,7 @@ export default function AdminList() {
                                             Udul Dulsara
                                         </td>
                                         <td className="p-3">199567895953</td>
-                                        <td className="p-3 uppercase pl-8">
+                                        <td className="p-3">
                                             076 5678945
                                         </td>
                                         <td className="p-3">
@@ -87,7 +87,7 @@ export default function AdminList() {
                                             Udul Dulsara
                                         </td>
                                         <td className="p-3">199567895953</td>
-                                        <td className="p-3 uppercase pl-8">
+                                        <td className="p-3">
                                             076 5678945
                                         </td>
                                         <td className="p-3 ">
@@ -117,7 +117,7 @@ export default function AdminList() {
                                             Udul Dulsara
                                         </td>
                                         <td className="p-3">199567895953</td>
-                                        <td className="p-3 uppercase pl-8">
+                                        <td className="p-3">
                                             076 5678945
                                         </td>
                                         <td className="p-3">
