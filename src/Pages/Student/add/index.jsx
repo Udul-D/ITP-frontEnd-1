@@ -4,6 +4,7 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
+import axios from "axios";
 
 function AddStudent() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,60 @@ function AddStudent() {
         setIsOpen(!isOpen);
     };
 
-    const [selectDate, setSelectDate] = useState(null);
+    const [firstName, setFirstname] = useState("");
+    const [lastName, setLastname] = useState("");
+    const [birthDay, setbirthDay] = useState(null);
+    const [NIC, setNIC] = useState("");
+    const [gender, setGender] = useState(null);
+    const [telephone, setTelephone] = useState("");
+    const [email, setEmail] = useState("");
+    const [school, setSchool] = useState("");
+    const [grade, setGrade] = useState("");
+    const [medium, setMedium] = useState("");
+    const [parentName, setParentName] = useState("");
+    const [parentTelephone, setParentTelephone] = useState("");
+    const [parentEmail, setParentEmail] = useState("");
+    const [parentAddress, setParentAddress] = useState("");
+    const [parentOccupation, setParentOccupation] = useState("");
+    const [subject, setSubject] = useState("");
+    const [teacher, setTeacher] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-    const timeValue = new Date("2020-01-01 00:00:00 AM");
+    console.log(gender);
+    console.log(birthDay);
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            birthday: birthDay,
+            NIC: NIC,
+            phoneNumber: telephone,
+            email: email,
+            school: school,
+            grade: grade,
+            medium: medium,
+            parentName: parentName,
+            parentPhoneNumber: parentTelephone,
+            parentEmail: parentEmail,
+            studentGender: gender,
+            parentAddress: parentAddress,
+            parentOccupation: parentOccupation,
+            subject: subject,
+            teacher: teacher,
+            username: username,
+            password: password,
+        };
+
+        try {
+            await axios.post("api/student/register", {headers: {authToken: localStorage.getItem("authToken"),}, data,}).then((res) => {console.log(res);}).catch((err) => {console.log(err);})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
 
     return (
         <>
@@ -28,7 +80,7 @@ function AddStudent() {
                         Student Registration
                     </h1>
                 </div>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
+                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md" onSubmit={onSubmit}>
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
                             <svg
@@ -56,6 +108,7 @@ function AddStudent() {
                             id="firstname"
                             type="text"
                             placeholder="First Name"
+                            onChange={(e) => setFirstname(e.target.value)}
                         />
                     </div>
 
@@ -70,6 +123,7 @@ function AddStudent() {
                             id="lastname"
                             type="text"
                             placeholder="Last Name"
+                            onChange={(e) => setLastname(e.target.value)}
                         />
                     </div>
 
@@ -93,11 +147,10 @@ function AddStudent() {
                                 </svg>
                             </div>
                             <DatePicker
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                selected={selectDate}
-                                onChange={(date) => setSelectDate(date)}
+                                className="shadow appearance-none border rounded pl-10 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 dateFormat="dd/MM/yyyy"
                                 minDate={new Date()}
+                                onChange={(date) => setbirthDay(date)}
                             />
                         </div>
                     </div>
@@ -113,6 +166,7 @@ function AddStudent() {
                             id="nic"
                             type="text"
                             placeholder="NIC"
+                            onChange={(e) => setNIC(e.target.value)}
                         />
                     </div>
 
@@ -132,6 +186,7 @@ function AddStudent() {
                                     name="inlineRadioOptions"
                                     id="male"
                                     value="male"
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -147,6 +202,7 @@ function AddStudent() {
                                     name="inlineRadioOptions"
                                     id="female"
                                     value="female"
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -168,6 +224,7 @@ function AddStudent() {
                             id="phonenumber"
                             type="text"
                             placeholder="Phone Number"
+                            onChange={(e) => setTelephone(e.target.value)}
                         />
                     </div>
 
@@ -182,6 +239,7 @@ function AddStudent() {
                             id="email"
                             type="text"
                             placeholder="Email"
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
 
@@ -196,6 +254,7 @@ function AddStudent() {
                             id="school"
                             type="text"
                             placeholder="School"
+                            onChange={(e) => setSchool(e.target.value)}
                         />
                     </div>
 
@@ -210,6 +269,7 @@ function AddStudent() {
                             id="grade"
                             type="text"
                             placeholder="Grade"
+                            onChange={(e) => setGrade(e.target.value)}
                         />
                     </div>
 
@@ -224,6 +284,7 @@ function AddStudent() {
                             id="medium"
                             type="text"
                             placeholder="Medium"
+                            onChange={(e) => setMedium(e.target.value)}
                         />
                     </div>
 
@@ -238,6 +299,7 @@ function AddStudent() {
                             id="parentname"
                             type="text"
                             placeholder="Parent Name"
+                            onChange={(e) => setParentName(e.target.value)}
                         />
                     </div>
 
@@ -252,6 +314,7 @@ function AddStudent() {
                             id="parentPhoneNumber"
                             type="text"
                             placeholder="Parent Phone Number"
+                            onChange={(e) => setParentTelephone(e.target.value)}
                         />
                     </div>
 
@@ -266,6 +329,7 @@ function AddStudent() {
                             id="parentemail"
                             type="text"
                             placeholder="Parent Email"
+                            onChange={(e) => setParentEmail(e.target.value)}
                         />
                     </div>
 
@@ -280,6 +344,7 @@ function AddStudent() {
                             id="parentaddress"
                             type="text"
                             placeholder="Parent Address"
+                            onChange={(e) => setParentAddress(e.target.value)}
                         />
                     </div>
 
@@ -294,6 +359,7 @@ function AddStudent() {
                             id="parentoccupation"
                             type="text"
                             placeholder="Parent Occupation"
+                            onChange={(e) => setParentOccupation(e.target.value)}
                         />
                     </div>
 
@@ -320,7 +386,10 @@ function AddStudent() {
                                 ease-in-out
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
+                                aria-label="Default select example"
+                                
+                                onChange={(e) => setSubject(e.target.value)}
+                                >
                                 <option selected>
                                     Select Your Subject
                                 </option>
@@ -354,7 +423,9 @@ function AddStudent() {
                                 ease-in-out
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
+                                aria-label="Default select example"
+                                
+                                onChange={(e) => setTeacher(e.target.value)}>
                                 <option selected>
                                     Select Your Teacher
                                 </option>
@@ -378,6 +449,7 @@ function AddStudent() {
                             id="username"
                             type="text"
                             placeholder="Username"
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
 
@@ -392,6 +464,7 @@ function AddStudent() {
                             id="passowrd"
                             type="password"
                             placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
