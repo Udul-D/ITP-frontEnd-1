@@ -24,6 +24,7 @@ import {
     AddStudent,
     AddTeacher,
     AddResult,
+    UpdateResult,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -123,6 +124,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/result/add"
                             element={<AddResult />}
+                        />
+                        <Route
+                            path="/teacher/result/update/:id"
+                            element={<UpdateResult />}
                         />
                     </Routes>
                 </div>
