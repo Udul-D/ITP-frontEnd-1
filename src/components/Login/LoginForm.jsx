@@ -1,9 +1,29 @@
+import react, { useState } from "react";
+import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
 import logo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./LoginForm.css";
 
 export default function LoginForm() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            username: username,
+            password: password,
+        };
+        axios
+            .post("/api/login", data)
+            .then((result) => {
+                localStorage.setItem("authToken", result.data.authToken);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     return (
         <>
             {/* 
@@ -44,16 +64,19 @@ export default function LoginForm() {
                                 <label
                                     htmlFor="email-address"
                                     className="sr-only">
-                                    Email address
+                                    UserName
                                 </label>
                                 <input
                                     id="email-address"
                                     name="email"
                                     type="email"
+                                    onChange={(e) =>
+                                        setUsername(e.target.value)
+                                    }
                                     autoComplete="email"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Email address"
+                                    placeholder="Username"
                                 />
                             </div>
                             <div>
@@ -71,6 +94,9 @@ export default function LoginForm() {
                                     id="password"
                                     name="password"
                                     type="password"
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                     autoComplete="current-password"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -105,6 +131,7 @@ export default function LoginForm() {
                         <div>
                             <button
                                 type="submit"
+                                onClick={onSubmit}
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon

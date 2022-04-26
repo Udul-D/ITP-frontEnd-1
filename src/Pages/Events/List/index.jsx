@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EventCard from "../../../components/Event-Card";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import Footer from "../../../components/Footer/Footer";
 
 const EventList = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +31,7 @@ const EventList = () => {
                 <EventCard />
                 <EventCard />
             </div>
+            <Footer />
         </>
     );
 };

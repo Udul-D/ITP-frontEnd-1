@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 
-function AddStudent() {
+function AddTeacher() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -21,11 +21,11 @@ function AddStudent() {
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
 
-            <div className="mx-96">
+            <div className="mx-96 ">
                 {/* <div className="bg-gray-100 shadow-md rounded p-5 mb-10 mt-5"> */}
                 <div className="text-center py-5 bg-green-600 mt-8">
                     <h1 className="font-bold text-3xl text-white">
-                        Student Registration
+                        Teacher Registration
                     </h1>
                 </div>
                 <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
@@ -109,7 +109,7 @@ function AddStudent() {
                             NIC
                         </label>
                         <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-600 focus:shadow-outline"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="nic"
                             type="text"
                             placeholder="NIC"
@@ -119,10 +119,11 @@ function AddStudent() {
                     <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
-                            for="NIC">
+                            for="Gender">
                             Gender
                         </label>
                     </div>
+
                     <div className="mb-6">
                         <div class="flex">
                             <div class="form-check form-check-inline">
@@ -185,117 +186,7 @@ function AddStudent() {
                         />
                     </div>
 
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="school">
-                            School
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="school"
-                            type="text"
-                            placeholder="School"
-                        />
-                    </div>
 
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="grade">
-                            Grade
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="grade"
-                            type="text"
-                            placeholder="Grade"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="medium">
-                            Medium
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="medium"
-                            type="text"
-                            placeholder="Medium"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="parentname">
-                            Parent Name
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="parentname"
-                            type="text"
-                            placeholder="Parent Name"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="parentPhoneNumber">
-                            Parent Phone Number
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="parentPhoneNumber"
-                            type="text"
-                            placeholder="Parent Phone Number"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="parentemail">
-                            Parent Email
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="parentemail"
-                            type="text"
-                            placeholder="Parent Email"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="parentaddress">
-                            Parent Address
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="parentaddress"
-                            type="text"
-                            placeholder="Parent Address"
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="parentoccupation">
-                            Parent Occupation
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="parentoccupation"
-                            type="text"
-                            placeholder="Parent Occupation"
-                        />
-                    </div>
 
                     <div>
                         <label
@@ -327,6 +218,16 @@ function AddStudent() {
                                 <option value="Maths">Maths</option>
                                 <option value="Science">Science</option>
                                 <option value="Sinhala">Sinhala</option>
+                                <option value="Sinhala">History</option>
+                                <option value="Sinhala">Combined Maths</option>
+                                <option value="Sinhala">Chemistry</option>
+                                <option value="Sinhala">Physics</option>
+                                <option value="Sinhala">Science For Technology (SFT)</option>
+                                <option value="Sinhala">Engineering Technology (ET)</option>
+                                <option value="Sinhala">Business Management (BM)</option>
+                                <option value="Sinhala">Economic</option>
+                                <option value="Sinhala">Information Technology (ICT)</option>
+                                
                             </select>
                         </div>
                     </div>
@@ -335,7 +236,7 @@ function AddStudent() {
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="parentoccupation">
-                            Teacher
+                            Grade
                         </label>
                         <div class="mb-6 xl:w-full">
                             <select
@@ -356,15 +257,116 @@ function AddStudent() {
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 aria-label="Default select example">
                                 <option selected>
-                                    Select Your Teacher
+                                    Select Your Grade
                                 </option>
-                                <option value="1">U.D.P. Madawa</option>
-                                <option value="2">
-                                    M.N. Siriwardhana
+                                <option value="1">Grade 9</option>
+                                <option value="2">Grade 10</option>
+                                <option value="3">
+                                    Ordinary Level  (O/L)
                                 </option>
-                                <option value="3">S. Jeewanthi</option>
+                                <option value="4">Advanced Level  (A/L)</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="Meadium">
+                            Meadium
+                        </label>
+                    </div>
+                    <div className="mb-6">
+                        <div class="flex">
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="sinhala"
+                                    value="sinhala"
+                                />
+                                <label
+                                    class="form-check-label inline-block text-gray-800"
+                                    for="inlineRadio10">
+                                    Sinhala
+                                </label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input form-check-input appearance-none rounded-full ml-5 h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="english"
+                                    value="english"
+                                />
+                                <label
+                                    class="form-check-label inline-block text-gray-800"
+                                    for="inlineRadio20">
+                                    English
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="class type">
+                            Class Type
+                        </label>
+                    </div>
+                    <div className="mb-6">
+                        <div class="flex">
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="theory"
+                                    value="theory"
+                                />
+                                <label
+                                    class="form-check-label inline-block text-gray-800"
+                                    for="inlineRadio10">
+                                    Theory
+                                </label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input
+                                    class="form-check-input form-check-input appearance-none rounded-full ml-5 h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="revision"
+                                    value="revision"
+                                />
+                                <label
+                                    class="form-check-label inline-block text-gray-800"
+                                    for="inlineRadio20">
+                                    Revision
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    
+
+                    <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="eduQualifications">
+                            Education Qualifications
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                            id="eduQualifications"
+                            type="text"
+                            placeholder="Education Qualifications"
+                        />
                     </div>
 
                     <div class="mb-6">
@@ -422,4 +424,4 @@ function AddStudent() {
     );
 }
 
-export default AddStudent;
+export default AddTeacher;
