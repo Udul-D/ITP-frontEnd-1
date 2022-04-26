@@ -14,89 +14,79 @@ export default function Event() {
                         <div class="overflow-auto rounded-lg shadow">
                             <div>
                                 <div>
-                                <a href="#">
-                                    <button
-                                        class="
-                bg-green-600
-                hover:bg-green-800
-                text-white
-                py-1
-                px-3
-                sm
-                rounded-full mb-3
-            ">
-                                        ADD EVENT
-                                    </button>
-                                </a>
+                                    <a href="#">
+                                        <button
+                                            class="
+                                        bg-green-600
+                                        hover:bg-green-800
+                                        text-white
+                                        py-1
+                                        px-3
+                                        sm
+                                        rounded-full mb-3
+                                    ">
+                                            ADD EVENT
+                                        </button>
+                                    </a>
                                 </div>
-                            
 
-
-
-                            
                                 <a href="#">
                                     <button
                                         class="
-                bg-green-600
-                hover:bg-green-800
-                text-white
-                py-1
-                px-5
-                sm
-                rounded-full mb-3
-                
-            ">
+                                        bg-green-600
+                                        hover:bg-green-800
+                                        text-white
+                                        py-1
+                                        px-5
+                                        sm
+                                        rounded-full mb-3
+                                        
+                                    ">
                                         All
                                     </button>
                                 </a>
-                            
 
-
-
-                            
                                 <a href="#">
                                     <button
                                         class="
                 
-                hover:bg-green-800
-                text-black
-                py-1
-                px-8
-                sm
-                rounded-full mb-3
-            ">
+                                        hover:bg-green-800
+                                        text-black
+                                        py-1
+                                        px-8
+                                        sm
+                                        rounded-full mb-3
+                                    ">
                                         Upcoming
                                     </button>
                                 </a>
 
-
                                 <a href="#">
                                     <button
                                         class="
                 
-                hover:bg-green-800
-                text-black
-                py-1
-                px-5
-                sm
-                rounded-full mb-3
-            ">
+                                        hover:bg-green-800
+                                        text-black
+                                        py-1
+                                        px-5
+                                        sm
+                                        rounded-full mb-3
+                                    ">
                                         Past
                                     </button>
                                 </a>
 
-
                                 <a href="#">
                                     <button
                                         class="
                 
-                hover:bg-green-800
-                text-black
-                py-1
-                px-5
-                sm
-                rounded-full mb-3
-            ">
+                                        hover:bg-green-800
+                                        text-black
+                                        py-1
+                                        px-5
+                                        sm
+                                        rounded-full mb-3
+                                    ">
                                         Ongoing
                                     </button>
                                 </a>
@@ -124,62 +114,51 @@ export default function Event() {
                                 </thead>
                                 <tbody>
                                     <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                        <td class="p-5">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
                                         <td class="p-3 font-medium">
-                                            Science Seminar O/L 
+                                            Science Seminar O/L
                                         </td>
                                         <td class="p-3">2022/05/01</td>
-                                        <td class="p-3">
-                                            7 am - 10 am
-                                        </td>
+                                        <td class="p-3">7 am - 10 am</td>
                                         <td class="p-3 font-medium">
-                                        The goal of Science Seminar is to expose students interested in Science to improve their own knowledge.
+                                            The goal of Science Seminar is
+                                            to expose students interested
+                                            in Science to improve their own
+                                            knowledge.
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#">
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -187,35 +166,30 @@ export default function Event() {
                                             Maths Seminar O/L
                                         </td>
                                         <td class="p-3">2022/06/11</td>
+                                        <td class="p-3">2 pm - 5 pm</td>
                                         <td class="p-3">
-                                            2 pm - 5 pm
-                                        </td>
-                                        <td class="p-3">
-                                        The goal of Maths Seminar is to expose students interested in Maths to improve their own knowledge.
+                                            The goal of Maths Seminar is to
+                                            expose students interested in
+                                            Maths to improve their own
+                                            knowledge.
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -223,35 +197,30 @@ export default function Event() {
                                             Physics Seminar A/L
                                         </td>
                                         <td class="p-3">2022/05/28</td>
-                                        <td class="p-3">
-                                            11 am - 1 pm
-                                        </td>
+                                        <td class="p-3">11 am - 1 pm</td>
                                         <td class="p-3 ">
-                                        The goal of Physics Seminar is to expose students interested in Physics to improve their own knowledge.
+                                            The goal of Physics Seminar is
+                                            to expose students interested
+                                            in Physics to improve their own
+                                            knowledge.
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -259,35 +228,30 @@ export default function Event() {
                                             Chemistry Seminar A/L
                                         </td>
                                         <td class="p-3">2022/05/18</td>
-                                        <td class="p-3">
-                                            9 am - 11 am
-                                        </td>
+                                        <td class="p-3">9 am - 11 am</td>
                                         <td class="p-3 ">
-                                        The goal of Chemistry Seminar is to expose students interested in Chemistry to improve their own knowledge.
+                                            The goal of Chemistry Seminar
+                                            is to expose students
+                                            interested in Chemistry to
+                                            improve their own knowledge.
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#">
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -295,35 +259,30 @@ export default function Event() {
                                             Sinhala Seminar O/L
                                         </td>
                                         <td class="p-3">2022/06/12</td>
-                                        <td class="p-3">
-                                            8 am - 11 am
-                                        </td>
+                                        <td class="p-3">8 am - 11 am</td>
                                         <td class="p-3 ">
-                                        The goal of Sinhala Seminar is to expose students interested in Sinhala to improve their own knowledge.
+                                            The goal of Sinhala Seminar is
+                                            to expose students interested
+                                            in Sinhala to improve their own
+                                            knowledge.
                                         </td>
                                     </tr>
 
                                     <tr class="bg-green-100 lg:text-black">
                                         <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
+                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2">
+                                            <a href="#" >
                                                 <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
+                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
                                                 </i>
                                             </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2">
+                                            <a href="#" >
                                                 <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
+                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
                                                 </i>
                                             </a>
                                         </td>
@@ -331,11 +290,12 @@ export default function Event() {
                                             History Seminar A/L
                                         </td>
                                         <td class="p-3">2022/05/28</td>
-                                        <td class="p-3">
-                                            2 pm - 5 pm
-                                        </td>
+                                        <td class="p-3">2 pm - 5 pm</td>
                                         <td class="p-3 ">
-                                        The goal of History Seminar is to expose students interested in History to improve their own knowledge.
+                                            The goal of History Seminar is
+                                            to expose students interested
+                                            in History to improve their own
+                                            knowledge.
                                         </td>
                                     </tr>
                                 </tbody>
