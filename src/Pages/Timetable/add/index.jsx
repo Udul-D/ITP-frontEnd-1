@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import Footer from "../../../components/Footer/Footer";
-function AddEvent() {
+function AddTimetable() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -22,7 +22,7 @@ function AddEvent() {
             <Header toggle={toggle} />
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">
-                    Create Your Event
+                    Create Timetable
                 </h1>
             </div>
             <div className="mx-96">
@@ -32,13 +32,52 @@ function AddEvent() {
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Event Name
+                                Subject
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Event Name"
+                                placeholder="Subject"
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Grade
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                placeholder="Grade"
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Teacher Name
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                placeholder="Teacher Name"
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Hall Number
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                placeholder="Hall Number"
                             />
                         </div>
                         <div class="mb-4">
@@ -48,7 +87,7 @@ function AddEvent() {
                                 Date
                             </label>
                             <div class="relative flex">
-                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none z-10">
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
                                 <svg
                                     class="w-5 h-5 text-gray-700 dark:text-gray-400 top-10"
                                     fill="currentColor"
@@ -59,7 +98,6 @@ function AddEvent() {
                                         d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                </div>
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
@@ -88,70 +126,44 @@ function AddEvent() {
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Venue
+                                Class Type
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Venue"
+                                placeholder="Class Type"
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Description
+                                Medium
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Description"
+                                placeholder="Medium"
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Image
+                                Floor Number
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Image Url"
+                                placeholder="Floor Number"
                             />
                         </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Tags
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                placeholder="Tags"
-                            />
-                        </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Registration Link
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                placeholder="Registration Link"
-                            />
-                        </div>
-
+                        
                         <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                            Create
+                            Submit
                         </button>
                     </form>
                 </div>
@@ -161,4 +173,4 @@ function AddEvent() {
     );
 }
 
-export default AddEvent;
+export default AddTimetable;

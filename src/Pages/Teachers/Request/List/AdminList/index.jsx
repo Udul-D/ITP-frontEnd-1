@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import EventAdminTable from "../../../components/EventAdminTable";
-import Header from "../../../components/Header/Header";
-import Sidebar from "../../../components/Sidebar/Sidebar";
-import Footer from "../../../components/Footer/Footer";
+import Request from "../../../../../components/RequestTable/AdminTable/index";
+import Header from "../../../../../components/Header/Header";
+import Footer from "../../../../../components/Footer/Footer";
+import Sidebar from "../../../../../components/Sidebar/Sidebar";
 
-const EventAdminViewList = () => {
+const RequestAdminViewList = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -16,13 +16,13 @@ const EventAdminViewList = () => {
             <Header toggle={toggle} />
             <div>
                 <h1 className="text-black font-bold px-10 pt-5 mt-4 mb-6 text-5xl">
-                    Events
+                    Requests
                 </h1>
-                <EventAdminTable />
+                <Request />
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };
 
-export default EventAdminViewList;
+export default RequestAdminViewList;

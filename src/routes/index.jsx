@@ -12,8 +12,18 @@ import {
     HallList,
     ResultList,
     StudentResult,
+    RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddHall,
+    AddRequest,
+    AddEvent,
+    TimetableList,
+    AddTimetable,
+    AddInventory,
+    AddStudent,
+    AddTeacher,
+    AddResult,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -22,7 +32,7 @@ export const PageRoute = () => {
     return (
         <div>
             <BrowserRouter>
-                <div className="container">
+                <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/exams" element={<ExamList />} />
@@ -35,6 +45,15 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
+
+                        <Route
+                            path="/inventory"
+                            element={<InventoryList />}
+                        />
+                        <Route
+                            path="/timetable"
+                            element={<TimetableList />}
+                        />
                         <Route
                             path="/inventory"
                             element={<InventoryList />}
@@ -44,7 +63,6 @@ export const PageRoute = () => {
                             element={<EventAdminViewList />}
                         />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/requests" element={<Requests />} />
                         <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
@@ -56,12 +74,55 @@ export const PageRoute = () => {
                             element={<StudentResult />}
                         />
                         <Route
+                            path="/admin/requests"
+                            element={<RequestAdminViewList />}
+                        />
+                        <Route
                             path="/tutorials"
                             element={<TutorialList />}
                         />
                         <Route
                             path="/teacher/exam/add"
                             element={<AddExam />}
+                        />
+
+                        <Route
+                            path="/admin/hall/add"
+                            element={<AddHall />}
+                        />
+
+                        <Route
+                            path="/teacher/request/add"
+                            element={<AddRequest />}
+                        />
+                        <Route
+                            path="/admin/event/add"
+                            element={<AddEvent />}
+                        />
+
+                        <Route
+                            path="/admin/timetable/add"
+                            element={<AddTimetable />}
+                        />
+                        <Route
+                            path="/admin/inventory/add"
+                            element={<AddInventory />}
+                        />
+                        <Route
+                            path="/student/add"
+                            element={<AddStudent />}
+                        />
+                        <Route
+                            path="/student/add"
+                            element={<AddStudent />}
+                        />
+                        <Route
+                            path="/teachers/add"
+                            element={<AddTeacher />}
+                        />
+                        <Route
+                            path="/teacher/result/add"
+                            element={<AddResult />}
                         />
                     </Routes>
                 </div>
