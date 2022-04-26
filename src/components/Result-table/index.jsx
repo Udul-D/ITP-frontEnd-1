@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     EyeOutlined,
     EditOutlined,
@@ -18,6 +18,33 @@ export default function Result() {
         };
         fetchResult();
     }, []);
+
+    let navigate = useNavigate();
+
+    const addResult = () => {
+        const path = `/teacher/result/add`;
+        navigate(path);
+    };
+
+    const handleDelete = async (id, e) => {
+        e.preventDefault();
+        axios
+            .delete(`/api/result/delete/${id}`, {
+                headers: { authToken: localStorage.getItem("authToken") },
+            })
+            .then((res) => {
+                console.log("deleted");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleUpdate = async (id, e) => {
+        e.preventDefault();
+        const path = `/teacher/result/update/${id}`;
+        navigate(path);
+    };
 
     return (
         <div className="p-26">
@@ -58,9 +85,8 @@ export default function Result() {
                                     </div>
                                 </div>
                                 <div className="flex">
-                                    <a href="#">
-                                        <button
-                                            class="
+                                    <button
+                                        class="
                                             bg-green-600
                                             hover:bg-green-800
                                             text-white
@@ -68,11 +94,10 @@ export default function Result() {
                                             px-3
                                             flex
                                             sm
-                                            rounded-full mb-3
-                                            ">
-                                            ADD
-                                        </button>
-                                    </a>
+                                            rounded-full mb-3"
+                                        onClick={addResult}>
+                                        ADD
+                                    </button>
                                 </div>
                             </div>
 
@@ -111,14 +136,25 @@ export default function Result() {
                                                     href="#"
                                                     class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
                                                     <i class="material-icons-outlined text-base">
-                                                        <EditOutlined />
+                                                        <EditOutlined
+                                                            onClick={handleUpdate(
+                                                                r._id,
+                                                            )}
+                                                        />
                                                     </i>
                                                 </a>
                                                 <a
                                                     href="#"
                                                     class="text-red-400 hover:text-gray-100 ml-2 px-2">
                                                     <i class="material-icons-round text-base">
-                                                        <DeleteOutlined />
+                                                        <DeleteOutlined
+                                                            onClick={(e) =>
+                                                                handleDelete(
+                                                                    r._id,
+                                                                    e,
+                                                                )
+                                                            }
+                                                        />
                                                     </i>
                                                 </a>
                                             </td>
@@ -136,7 +172,6 @@ export default function Result() {
                                             </td>
                                         </tr>
                                     ))}
-                                    ;
                                 </tbody>
                             </table>
                         </div>
