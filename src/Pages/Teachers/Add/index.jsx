@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
@@ -453,22 +453,22 @@ function AddTeacher() {
                             }
                         />
                     </div>
-                    <div class="mb-6">
+                    {/* <div class="mb-6">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
-                            for="eduQualifications">
+                            for="experienceYear">
                             Experience Year
                         </label>
                         <input
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="eduQualifications"
+                            id="experienceYear"
                             type="text"
                             placeholder="Education Qualifications"
                             onChange={(e) => 
                               setExperienceYear(e.target.value)
                             }
                         />
-                    </div>
+                    </div> */}
 
                     <div class="mb-6">
                         <label
@@ -504,7 +504,7 @@ function AddTeacher() {
                         />
                     </div>
 
-                    <div class="mb-6">
+                    {/* <div class="mb-6">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="confirmpassowrd">
@@ -519,7 +519,7 @@ function AddTeacher() {
                              setConfPassword(e.target.value)
                             }
                         />
-                    </div>
+                    </div> */}
 
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
