@@ -1,7 +1,20 @@
 import {EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons"
 
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 export default function RequestList() {
+    const [request, setRequest] = useState([]);
+
+    useEffect(() => {
+        const fetchRequest = async () => {
+            const res = await axios.get("/api/Request/all");
+            setRequest(res.data);
+            console.log(res.data);
+        };
+        fetchRequest();
+    }, []);
+    
 return (
     <div className="p-26">
 
@@ -47,6 +60,8 @@ return (
                 </tr>
             </thead>
             <tbody>
+
+            {request.map((r) => (
     
         <tr class="bg-green-100 lg:text-black">
         <td class="p-3">
@@ -63,56 +78,15 @@ return (
                 <i class="material-icons-round text-base"><DeleteOutlined /></i>
             </a>
             </td>
-            <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
-            <td class="p-3 font-medium capitalize">A/L ICT Seminar</td>
-            <td class="p-3 font-medium capitalize">22/05/01</td>
-            <td class="p-3 font-medium capitalize">8.30 AM</td>
-            <td class="p-3 font-medium capitalizee">This is only for Advanced Level Students</td>
-        </tr>
+            <td class="p-3 font-medium capitalize">{r.teacherName}</td>
+            <td class="p-3 font-medium capitalize">{r.requestTitle}</td>
+            <td class="p-3 font-medium capitalize">{r.Date}</td>
+            <td class="p-3 font-medium capitalize">{r.time}</td>
+            <td class="p-3 font-medium capitalizee">{r.description}</td>
+        </tr>))}
 
-        <tr class="bg-green-100 lg:text-black">
-        <td class="p-3">
-            <a href="#" class="text-gray-500 hover:text-gray-100 mr-2">
-                <i class="material-icons-outlined text-base"><EyeOutlined /></i>
-            </a>
-            <a href="#" class="text-yellow-400 hover:text-gray-100 mx-2">
-                <i class="material-icons-outlined text-base"><EditOutlined /></i>
-            </a>
-            <a
-                href="#"
-                class="text-red-400 hover:text-gray-100 ml-2"
-            >
-                <i class="material-icons-round text-base"><DeleteOutlined /></i>
-            </a>
-            </td>
-            <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
-            <td class="p-3 font-medium capitalize">A/L ICT Revision</td>
-            <td class="p-3 font-medium capitalize">22/05/07</td>
-            <td class="p-3 font-medium capitalize">8.30 AM</td>
-            <td class="p-3 font-medium capitalizee"> I want a projector</td>
-        </tr>
-
-        <tr class="bg-green-100 lg:text-black">
-        <td class="p-3">
-            <a href="#" class="text-gray-500 hover:text-gray-100 mr-2">
-                <i class="material-icons-outlined text-base"><EyeOutlined /></i>
-            </a>
-            <a href="#" class="text-yellow-400 hover:text-gray-100 mx-2">
-                <i class="material-icons-outlined text-base"><EditOutlined /></i>
-            </a>
-            <a
-                href="#"
-                class="text-red-400 hover:text-gray-100 ml-2"
-                >
-                <i class="material-icons-round text-base"><DeleteOutlined /></i>
-            </a>
-            </td>
-            <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
-            <td class="p-3 font-medium capitalize">Practical</td>
-            <td class="p-3 font-medium capitalize">22/05/01</td>
-            <td class="p-3 font-medium capitalize">8.30 AM</td>
-            <td class="p-3 font-medium capitalizee">This is only for A/L ICT students</td>
-        </tr>
+        
+        
 
         </tbody>
         </table>
