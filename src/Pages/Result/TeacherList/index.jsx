@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Result from "../../../components/Result-table";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import axios from "axios";
 
 const ResultList = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const ResultList = () => {
     const toggle = () => {
         setIsOpen(!isOpen);
     };
+
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />

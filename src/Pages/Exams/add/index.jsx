@@ -72,6 +72,7 @@ function AddExam() {
                                 id="username"
                                 type="text"
                                 placeholder="Exam Name"
+                                required
                                 onChange={(e) =>
                                     setExamName(e.target.value)
                                 }
@@ -99,6 +100,7 @@ function AddExam() {
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
+                                    required
                                     onChange={(date) =>
                                         setSelectDate(date)
                                     }
@@ -116,6 +118,7 @@ function AddExam() {
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="time"
+                                required
                                 type="text"
                                 placeholder="Time"
                                 onChange={(e) =>
@@ -132,6 +135,7 @@ function AddExam() {
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
+                                required
                                 type="text"
                                 onChange={(e) => {
                                     setExamDuration(e.target.value);
@@ -164,6 +168,7 @@ function AddExam() {
                                     focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
                                 "
                                 id="exampleFormControlTextarea1"
+                                required
                                 rows="3"
                                 onChange={(e) => {
                                     setDesc(e.target.value);
