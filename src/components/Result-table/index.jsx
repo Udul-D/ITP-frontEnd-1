@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import {
     EyeOutlined,
     EditOutlined,
@@ -5,6 +8,17 @@ import {
 } from "@ant-design/icons";
 
 export default function Result() {
+    const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        const fetchResult = async () => {
+            const res = await axios.get("/api/result/all");
+            setResults(res.data);
+            console.log(res.data);
+        };
+        fetchResult();
+    }, []);
+
     return (
         <div className="p-26">
             <div class=" items-center justify-center min-h-screen bg-white">
@@ -19,7 +33,9 @@ export default function Result() {
                                             Teacher Name :{" "}
                                         </span>
                                         <span className="text-gray-800">
-                                            Sasindu Nanayakkara
+                                            {localStorage.getItem(
+                                                "teacherName",
+                                            )}
                                         </span>
                                     </div>
                                     <div className="pr-96">
@@ -27,7 +43,9 @@ export default function Result() {
                                             Subject :{" "}
                                         </span>
                                         <span className="text-gray-800">
-                                            Science
+                                            {localStorage.getItem(
+                                                "subject",
+                                            )}
                                         </span>
                                     </div>
                                     <div className="">
@@ -35,7 +53,7 @@ export default function Result() {
                                             Exam Name :{" "}
                                         </span>
                                         <span className="text-gray-800">
-                                            Pilot Exam
+                                            {results.examName}
                                         </span>
                                     </div>
                                 </div>
@@ -43,15 +61,15 @@ export default function Result() {
                                     <a href="#">
                                         <button
                                             class="
-                                                bg-green-600
-                                                hover:bg-green-800
-                                                text-white
-                                                py-1
-                                                px-3
-                                                flex
-                                                sm
-                                                rounded-full mb-3
-                                                ">
+                                            bg-green-600
+                                            hover:bg-green-800
+                                            text-white
+                                            py-1
+                                            px-3
+                                            flex
+                                            sm
+                                            rounded-full mb-3
+                                            ">
                                             ADD
                                         </button>
                                     </a>
@@ -79,107 +97,46 @@ export default function Result() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2 px-2">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            IT2032332
-                                        </td>
-                                        <td class="p-3">Tony Stark</td>
-                                        <td class="p-3 uppercase pl-8">
-                                            88
-                                        </td>
-                                        <td class="p-3 uppercase">2</td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2 px-2">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            IT2032332
-                                        </td>
-                                        <td class="p-3">Tony Stark</td>
-                                        <td class="p-3 uppercase pl-8">
-                                            88
-                                        </td>
-                                        <td class="p-3 uppercase">2</td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a
-                                                href="#"
-                                                class="text-gray-500 hover:text-gray-100 mr-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined />
-                                                </i>
-                                            </a>
-                                            <a
-                                                href="#"
-                                                class="text-red-400 hover:text-gray-100 ml-2 px-2">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            IT2032332
-                                        </td>
-                                        <td class="p-3">Tony Stark</td>
-                                        <td class="p-3 uppercase pl-8">
-                                            88
-                                        </td>
-                                        <td class="p-3 uppercase">2</td>
-                                    </tr>
+                                    {results.map((r) => (
+                                        <tr class="bg-green-100 lg:text-black">
+                                            <td class="p-3">
+                                                <a
+                                                    href="#"
+                                                    class="text-gray-500 hover:text-gray-100 mr-2 px-2">
+                                                    <i class="material-icons-outlined text-base">
+                                                        <EyeOutlined />
+                                                    </i>
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
+                                                    <i class="material-icons-outlined text-base">
+                                                        <EditOutlined />
+                                                    </i>
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    class="text-red-400 hover:text-gray-100 ml-2 px-2">
+                                                    <i class="material-icons-round text-base">
+                                                        <DeleteOutlined />
+                                                    </i>
+                                                </a>
+                                            </td>
+                                            <td class="p-3 font-medium capitalize">
+                                                {r.studentId}
+                                            </td>
+                                            <td class="p-3">
+                                                {r.studentName}
+                                            </td>
+                                            <td class="p-3 uppercase pl-8">
+                                                {r.marks}
+                                            </td>
+                                            <td class="p-3 uppercase">
+                                                2
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    ;
                                 </tbody>
                             </table>
                         </div>
