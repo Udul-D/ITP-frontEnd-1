@@ -10,16 +10,6 @@ const ResultList = () => {
     const toggle = () => {
         setIsOpen(!isOpen);
     };
-    // const [results, setResults] = useState([]);
-
-    // useEffect(() => {
-    //     const fetchResult = async () => {
-    //         const res = await axios.get("/api/result/all");
-    //         setResults(res.data);
-    //         console.log(res.data);
-    //     };
-    //     fetchResult();
-    // }, []);
 
     return (
         <>
