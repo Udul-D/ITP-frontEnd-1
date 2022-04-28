@@ -51,7 +51,6 @@ export {
     AddHall,
     AddRequest,
     AddEvent,
-    TimetableList,
     AddInventory,
     AddTimetable,
     AddTeacher,
