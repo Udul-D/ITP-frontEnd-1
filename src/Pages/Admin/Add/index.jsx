@@ -1,10 +1,9 @@
 import { Fragment, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
-
+import axios from "axios";
 function AddAdmin() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -12,10 +11,46 @@ function AddAdmin() {
         setIsOpen(!isOpen);
     };
 
-    const [selectDate, setSelectDate] = useState(null);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [nic, setNIC] = useState();
+    const [userName, setUserName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [password, setPassword] = useState("");
 
-    const timeValue = new Date("2020-01-01 00:00:00 AM");
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            NIC: nic,
+            username: userName,
+            phoneNumber: phoneNumber,
+            email: email, 
+            address: address,
+            password: password,
+        };
 
+        try {
+            await axios
+                .post("/api/admin/register", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
@@ -28,7 +63,8 @@ function AddAdmin() {
                         Admin Registration
                     </h1>
                 </div>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
+                <form  onSubmit={onSubmit} className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
+                
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
                             <svg
@@ -56,6 +92,9 @@ function AddAdmin() {
                             id="firstname"
                             type="text"
                             placeholder="First Name"
+                            onChange={(e) =>
+                                setFirstName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -70,6 +109,9 @@ function AddAdmin() {
                             id="lastname"
                             type="text"
                             placeholder="Last Name"
+                            onChange={(e) =>
+                                setLastName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -84,6 +126,9 @@ function AddAdmin() {
                             id="nic"
                             type="text"
                             placeholder="NIC"
+                            onChange={(e) =>
+                                setNIC(e.target.value)
+                            }
                         />
                     </div>
 
@@ -98,6 +143,9 @@ function AddAdmin() {
                             id="username"
                             type="text"
                             placeholder="User Name"
+                            onChange={(e) =>
+                                setUserName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -112,6 +160,9 @@ function AddAdmin() {
                             id="phonenumber"
                             type="text"
                             placeholder="phonenumber"
+                            onChange={(e) =>
+                                setPhoneNumber(e.target.value)
+                            }
                         />
                     </div>
                     
@@ -127,6 +178,9 @@ function AddAdmin() {
                             id="email"
                             type="text"
                             placeholder="Email"
+                            onChange={(e) =>
+                                setEmail(e.target.value)
+                            }
                         />
                     </div>
 
@@ -141,6 +195,9 @@ function AddAdmin() {
                             id="address"
                             type="text"
                             placeholder="Address"
+                            onChange={(e) =>
+                                setAddress(e.target.value)
+                            }
                         />
                     </div>
                     <div class="mb-6">
@@ -154,6 +211,9 @@ function AddAdmin() {
                             id="passowrd"
                             type="password"
                             placeholder="Password"
+                            onChange={(e) =>
+                                setPassword(e.target.value)
+                            }
                         />
                     </div>
 
