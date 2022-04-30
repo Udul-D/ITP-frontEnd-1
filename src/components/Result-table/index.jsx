@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     EyeOutlined,
     EditOutlined,
@@ -9,6 +9,10 @@ import {
 
 export default function Result() {
     const [results, setResults] = useState([]);
+    const [updateClicked, setUpdateClicked] = useState(false);
+    const [studentId, setStudentId] = useState("");
+    const [studentName, setStudentName] = useState("");
+    const [marks, setMarks] = useState("");
 
     useEffect(() => {
         const fetchResult = async () => {
@@ -18,7 +22,6 @@ export default function Result() {
         };
         fetchResult();
     }, []);
-
     let navigate = useNavigate();
 
     const addResult = () => {
@@ -34,16 +37,28 @@ export default function Result() {
             })
             .then((res) => {
                 console.log("deleted");
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-
-    const handleUpdate = async (id, e) => {
-        e.preventDefault();
-        const path = `/teacher/result/update/${id}`;
-        navigate(path);
+    const handleUpdate = async (
+        id,
+        e,
+        studentId,
+        studentName,
+        marks,
+        examName,
+    ) => {
+        navigate(`/teacher/result/update/${id}`, {
+            state: {
+                studentId: studentId,
+                studentName: studentName,
+                marks: marks,
+                examName: examName,
+            },
+        });
     };
 
     return (
@@ -132,14 +147,19 @@ export default function Result() {
                                                         <EyeOutlined />
                                                     </i>
                                                 </a>
-                                                <a
-                                                    href="#"
-                                                    class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
+                                                <a class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
                                                     <i class="material-icons-outlined text-base">
                                                         <EditOutlined
-                                                            onClick={handleUpdate(
-                                                                r._id,
-                                                            )}
+                                                            onClick={(e) =>
+                                                                handleUpdate(
+                                                                    r._id,
+                                                                    e,
+                                                                    r.studentId,
+                                                                    r.studentName,
+                                                                    r.marks,
+                                                                    r.examName,
+                                                                )
+                                                            }
                                                         />
                                                     </i>
                                                 </a>
@@ -157,15 +177,70 @@ export default function Result() {
                                                         />
                                                     </i>
                                                 </a>
+                                                {updateClicked && (
+                                                    <button
+                                                        onClick={
+                                                            handleUpdate
+                                                        }
+                                                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-10 rounded">
+                                                        Update
+                                                    </button>
+                                                )}
                                             </td>
                                             <td class="p-3 font-medium capitalize">
-                                                {r.studentId}
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={studentId}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setStudentId(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {r.studentId}
+                                                    </span>
+                                                )}
                                             </td>
                                             <td class="p-3">
-                                                {r.studentName}
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={studentName}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setStudentName(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {r.studentName}
+                                                    </span>
+                                                )}
                                             </td>
                                             <td class="p-3 uppercase pl-8">
-                                                {r.marks}
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={marks}
+                                                        onChange={(e) =>
+                                                            setMarks(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                    />
+                                                ) : (
+                                                    <span>{r.marks}</span>
+                                                )}
                                             </td>
                                             <td class="p-3 uppercase">
                                                 2
