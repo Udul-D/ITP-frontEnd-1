@@ -23,6 +23,7 @@ import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
 import AddResult from "./Result/add/index";
 import AddTutorial from "./Tutorial/add";
+import UpdateResult from "./Result/Update/index";
 
 export {
     ExamList,
@@ -50,4 +51,5 @@ export {
     AddTeacher,
     AddResult,
     AddTutorial,
+    UpdateResult,
 };
