@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
@@ -142,5 +143,4 @@ const Header = ({ toggle }) => {
         </>
     );
 };
-
 export default Header;

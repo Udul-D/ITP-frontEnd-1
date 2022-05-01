@@ -3,7 +3,7 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-import { data } from "autoprefixer";
+import { useLocation, useNavigate } from "react-router-dom";
 function UpdateResult() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -11,44 +11,35 @@ function UpdateResult() {
         setIsOpen(!isOpen);
     };
 
-    const id = this.props.match.params.id;
+    const id = window.location.pathname.split("/")[4];
+    let navigate = useNavigate();
 
-    const [examName, setExamName] = useState("");
     const [studentName, setStudentName] = useState("");
     const [studentId, setStudentID] = useState("");
     const [marks, setMarks] = useState(null);
+    const [examName, setExamName] = useState("");
+
+    const location = useLocation();
 
     useEffect(() => {
-        const getData = () => {
-            axios
-                .get("/api/result/" + id, {
-                    headers: {
-                        authToken: localStorage.getItem("authToken"),
-                    },
-                })
-                .then((res) => {
-                    console.log(res);
-                    setExamName(res.data.examName);
-                    setStudentName(res.data.studentName);
-                    setStudentID(res.data.studentId);
-                    setMarks(res.data.marks);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+        const getData = async () => {
+            setStudentID(location.state.studentId);
+            setStudentName(location.state.studentName);
+            setMarks(location.state.marks);
+            setExamName(location.state.examName);
         };
         getData();
-    }, []);
+    }, [location]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            examName: examName,
             studentName: studentName,
             studentId: studentId,
             marks: marks,
+            examName: examName,
         };
-
+        console.log(id);
         try {
             await axios
                 .put("/api/result/update/" + id, {
@@ -59,6 +50,7 @@ function UpdateResult() {
                 })
                 .then((res) => {
                     console.log(res);
+                    navigate("/teacher/results");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -73,7 +65,9 @@ function UpdateResult() {
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
             <div className="text-center py-5">
-                <h1 className="font-bold text-5xl text-black">Results</h1>
+                <h1 className="font-bold text-5xl text-black">
+                    Update Results
+                </h1>
             </div>
             <div className="mx-96 w-1/2 ">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
@@ -85,28 +79,15 @@ function UpdateResult() {
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Exam Name
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                onChange={(e) => setExamName(e)}
-                                value={examName}
-                                placeholder="Exam Name"
-                            />
-                        </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
                                 Student Name
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) => setStudentName(e)}
+                                onChange={(e) =>
+                                    setStudentName(e.target.value)
+                                }
                                 value={studentName}
                                 placeholder="Student Name"
                             />
@@ -121,7 +102,9 @@ function UpdateResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) => setStudentID(e)}
+                                onChange={(e) =>
+                                    setStudentID(e.target.value)
+                                }
                                 value={studentId}
                                 placeholder="Student ID"
                             />
@@ -136,7 +119,7 @@ function UpdateResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="number"
-                                onChange={(e) => setMarks(e)}
+                                onChange={(e) => setMarks(e.target.value)}
                                 value={marks}
                                 placeholder="Marks"
                             />

@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
@@ -8,6 +8,22 @@ import "./LoginForm.css";
 export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        const logout = () => {
+            axios
+                .post("/api/logout", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                    localStorage.removeItem("authToken");
+                    window.location.reload();
+                });
+        };
+    }, []);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +35,7 @@ export default function LoginForm() {
             .post("/api/login", data)
             .then((result) => {
                 localStorage.setItem("authToken", result.data.authToken);
+                localStorage.setItem("isLoggedIn", true);
             })
             .catch((err) => {
                 console.log(err);
