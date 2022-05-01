@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Result from "../../../components/Result-table";
+import React, {useState} from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import axios from "axios";
 
-const ResultList = () => {
+function ExamStart() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -15,14 +13,14 @@ const ResultList = () => {
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
+
             <div>
-                <h1 className="text-black font-bold px-10 pt-5 mt-4 mb-6 text-5xl">
-                    Results
-                </h1>
-                <Result />
+                <div className="">
+                    
+                </div>
             </div>
         </>
     );
-};
+}
 
-export default ResultList;
+export default ExamStart;

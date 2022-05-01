@@ -1,19 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-function AddResult() {
+import { data } from "autoprefixer";
+function UpdateResult() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const id = this.props.match.params.id;
+
     const [examName, setExamName] = useState("");
     const [studentName, setStudentName] = useState("");
     const [studentId, setStudentID] = useState("");
     const [marks, setMarks] = useState(null);
+
+    useEffect(() => {
+        const getData = () => {
+            axios
+                .get("/api/result/" + id, {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                    setExamName(res.data.examName);
+                    setStudentName(res.data.studentName);
+                    setStudentID(res.data.studentId);
+                    setMarks(res.data.marks);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        getData();
+    }, []);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +51,7 @@ function AddResult() {
 
         try {
             await axios
-                .post("/api/result/add", {
+                .put("/api/result/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
@@ -66,9 +91,8 @@ function AddResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) =>
-                                    setExamName(e.target.value)
-                                }
+                                onChange={(e) => setExamName(e)}
+                                value={examName}
                                 placeholder="Exam Name"
                             />
                         </div>
@@ -82,9 +106,8 @@ function AddResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) =>
-                                    setStudentName(e.target.value)
-                                }
+                                onChange={(e) => setStudentName(e)}
+                                value={studentName}
                                 placeholder="Student Name"
                             />
                         </div>
@@ -98,9 +121,8 @@ function AddResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) =>
-                                    setStudentID(e.target.value)
-                                }
+                                onChange={(e) => setStudentID(e)}
+                                value={studentId}
                                 placeholder="Student ID"
                             />
                         </div>
@@ -114,14 +136,15 @@ function AddResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="number"
-                                onChange={(e) => setMarks(e.target.value)}
+                                onChange={(e) => setMarks(e)}
+                                value={marks}
                                 placeholder="Marks"
                             />
                         </div>
                         <button
                             type="submit"
                             class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                            Submit
+                            Update
                         </button>
                     </form>
                 </div>
@@ -131,4 +154,4 @@ function AddResult() {
     );
 }
 
-export default AddResult;
+export default UpdateResult;
