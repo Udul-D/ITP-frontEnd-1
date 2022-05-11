@@ -1,32 +1,59 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
     EyeOutlined,
+    PlusOutlined,
     EditOutlined,
     DeleteOutlined,
 } from "@ant-design/icons";
 
 export default function Result() {
+    const location = useLocation();
+    const exam_name = location.state.examName;
+    console.log("exam value " + location.state.examName);
     const [results, setResults] = useState([]);
     const [updateClicked, setUpdateClicked] = useState(false);
     const [studentId, setStudentId] = useState("");
     const [studentName, setStudentName] = useState("");
     const [marks, setMarks] = useState("");
 
+    function compare(a, b) {
+        if (a.marks < b.marks) {
+            return 1;
+        }
+        if (a.marks > b.marks) {
+            return -1;
+        }
+        return 0;
+    }
+
     useEffect(() => {
         const fetchResult = async () => {
-            const res = await axios.get("/api/result/all");
-            setResults(res.data);
-            console.log(res.data);
+            const res = await axios.get("/api/result/all", {
+                params: { examName: exam_name },
+            });
+
+            const copyResults = res.data;
+            const dt = copyResults?.sort(compare);
+            let newArr = dt.map((entry, i) => ({
+                ...entry,
+                newRank: i + 1,
+            }));
+            console.log({ newArr });
+
+            setResults(newArr);
+            console.log("result data " + res.data[0].marks);
         };
         fetchResult();
     }, []);
     let navigate = useNavigate();
 
     const addResult = () => {
+        const exam = exam_name;
         const path = `/teacher/result/add`;
-        navigate(path);
+        navigate(path, { state: { ExamName: exam } });
     };
 
     const handleDelete = async (id, e) => {
@@ -63,26 +90,30 @@ export default function Result() {
 
     return (
         <div className="p-26">
-            <div class=" items-center justify-center min-h-screen bg-white">
+            <div class=" items-center justify-center bg-white">
                 <div class="col-span-12">
                     <div class="overflow-auto lg:overflow-visible"></div>
                     <div class="p-5 bg-gray-100 rounded-lg ">
                         <div class="overflow-auto rounded-lg shadow">
                             <div className="pb-4">
                                 <div className="flex p-3">
-                                    <div className="pr-96">
+                                    <div className="">
                                         <span className="font-bold">
-                                            Teacher Name :{" "}
+                                            {/* Teacher Name :{" "} */}
                                         </span>
                                         <span className="text-gray-800">
-                                            {localStorage.getItem(
+                                            {/* {localStorage.getItem(
                                                 "teacherName",
-                                            )}
+                                            )} */}
                                         </span>
                                     </div>
-                                    <div className="pr-96">
+                                    <div className="">
                                         <span className="font-bold">
-                                            Subject :{" "}
+                                            {/* Subject :
+                                            {" " +
+                                                localStorage.getItem(
+                                                    "subject",
+                                                )} */}
                                         </span>
                                         <span className="text-gray-800">
                                             {localStorage.getItem(
@@ -91,28 +122,35 @@ export default function Result() {
                                         </span>
                                     </div>
                                     <div className="">
-                                        <span className="font-bold">
-                                            Exam Name :{" "}
+                                        <span className="font-bold text-lg">
+                                            Exam Name :{"  " + exam_name}
                                         </span>
                                         <span className="text-gray-800">
                                             {results.examName}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="flex">
-                                    <button
-                                        class="
+                                <div className="ml-56">
+                                    <div className="ml-96">
+                                        <div className="ml-96">
+                                            <div className="flex ml-96">
+                                                <button
+                                                    class="
                                             bg-green-600
                                             hover:bg-green-800
                                             text-white
-                                            py-1
-                                            px-3
+                                            py-2
+                                            px-5
                                             flex
                                             sm
                                             rounded-full mb-3"
-                                        onClick={addResult}>
-                                        ADD
-                                    </button>
+                                                    onClick={addResult}>
+                                                    {/* <PlusOutlined /> */}
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -140,13 +178,6 @@ export default function Result() {
                                     {results.map((r) => (
                                         <tr class="bg-green-100 lg:text-black">
                                             <td class="p-3">
-                                                <a
-                                                    href="#"
-                                                    class="text-gray-500 hover:text-gray-100 mr-2 px-2">
-                                                    <i class="material-icons-outlined text-base">
-                                                        <EyeOutlined />
-                                                    </i>
-                                                </a>
                                                 <a class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
                                                     <i class="material-icons-outlined text-base">
                                                         <EditOutlined
@@ -243,7 +274,7 @@ export default function Result() {
                                                 )}
                                             </td>
                                             <td class="p-3 uppercase">
-                                                2
+                                                {r.newRank}
                                             </td>
                                         </tr>
                                     ))}
@@ -253,6 +284,7 @@ export default function Result() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }
