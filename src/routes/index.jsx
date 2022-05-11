@@ -69,11 +69,11 @@ export const PageRoute = () => {
                         <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
-                            path="/teacher/results"
+                            path="/teacher/results/:id"
                             element={<ResultList />}
                         />
                         <Route
-                            path="/student/results"
+                            path="/student/results/:id"
                             element={<StudentResult />}
                         />
                         <Route

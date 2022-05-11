@@ -20,12 +20,15 @@ function AddExam() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        const role = localStorage.getItem("role");
         const data = {
             examName: examName,
             description: desc,
             date: selectDate,
             time: examTime,
             duration: examDuration,
+            role: role,
         };
 
         try {
@@ -37,7 +40,7 @@ function AddExam() {
                     data,
                 })
                 .then((res) => {
-                    console.log(res);
+                    console.log("add exam res", res);
                 })
                 .catch((err) => {
                     console.log(err);

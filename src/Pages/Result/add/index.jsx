@@ -3,9 +3,10 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 function AddResult() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const location = useLocation();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
@@ -14,11 +15,13 @@ function AddResult() {
     const [studentName, setStudentName] = useState("");
     const [studentId, setStudentID] = useState("");
     const [marks, setMarks] = useState(null);
-
+    // setExamName(location.state.ExamName);
+    console.log(location.state.ExamName);
+    const exam = location.state.ExamName;
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = {
-            examName: examName,
+            examName: exam,
             studentName: studentName,
             studentId: studentId,
             marks: marks,
@@ -66,9 +69,7 @@ function AddResult() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                onChange={(e) =>
-                                    setExamName(e.target.value)
-                                }
+                                value={exam}
                                 placeholder="Exam Name"
                             />
                         </div>

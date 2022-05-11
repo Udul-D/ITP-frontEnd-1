@@ -14,6 +14,7 @@ const ExamList = () => {
     useEffect(() => {
         const fetchExams = async () => {
             const res = await axios.get("/api/exam/all");
+
             setExams(res.data);
             console.log(res.data);
         };
