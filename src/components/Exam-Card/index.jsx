@@ -1,7 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import isFuture from "date-fns/isFuture";
 import getDate from "date-fns/getDate";
-
+import {
+    EyeOutlined,
+    PlusOutlined,
+    EditOutlined,
+    DeleteOutlined,
+} from "@ant-design/icons";
 export default function ExamCard({ exam }) {
     let navigate = useNavigate();
     const selectedDate = exam.date;
@@ -26,14 +31,40 @@ export default function ExamCard({ exam }) {
             });
         }
     };
-    console.log(exam.examName);
+    const examDate = new Date(exam.date);
+    examDate.toISOString().substring(0, 10);
+    console.log("date - " + examDate);
+
+    const handleUpdate = () => {
+        navigate(`/teacher/exam/update/${exam._id}`, {
+            state: {
+                examName: exam.examName,
+                description: exam.description,
+                date: exam.date,
+                time: exam.time,
+                duration: exam.duration,
+            },
+        });
+    };
 
     return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
             <div className=" pt-2 px-2 bg-gray-100">
+                {localStorage.getItem("role") === "teacher" ? (
+                    <div>
+                        <EditOutlined
+                            className="text-green-800 text-lg ml-52 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
+                            onClick={handleUpdate}
+                        />
+                        <DeleteOutlined className="text-red-800 text-lg pl-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110" />
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                <div className=""></div>
                 <img
                     className="h-40 w-full object-cover rounded-lg"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wk4x2MS5IwwYFijpcXzrSnwZI-eYc07CiA&usqp=CAU"
+                    src="https://img.freepik.com/free-vector/focused-people-studying-online-school_74855-5834.jpg?w=2000"
                     alt=""
                 />
                 <div className="p-2">
@@ -47,12 +78,12 @@ export default function ExamCard({ exam }) {
                 <div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            {exam.date}
+                            Date : {exam.date.split("T")[0]}
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            {exam.time}
+                            Time : {exam.time}
                         </span>
                     </div>
                     <div>
