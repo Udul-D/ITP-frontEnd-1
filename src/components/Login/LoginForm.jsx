@@ -34,8 +34,11 @@ export default function LoginForm() {
         axios
             .post("/api/login", data)
             .then((result) => {
+                console.log({ result });
                 localStorage.setItem("authToken", result.data.authToken);
                 localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("role", result.data.role);
+                localStorage.setItem("roleData", result.data.roleData);
             })
             .catch((err) => {
                 console.log(err);
