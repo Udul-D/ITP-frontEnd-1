@@ -39,6 +39,16 @@ export default function LoginForm() {
                 localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+                if (result.data.role === "teacher") {
+                    localStorage.setItem(
+                        "teacherName",
+                        result.data.roleData.firstName,
+                    );
+                    localStorage.setItem(
+                        "subject",
+                        result.data.roleData.subject,
+                    );
+                }
             })
             .catch((err) => {
                 console.log(err);
