@@ -7,9 +7,12 @@ import {
     PlusOutlined,
     EditOutlined,
     DeleteOutlined,
+    DownloadOutlined,
 } from "@ant-design/icons";
 import Notification from "../Notification/index";
 import ConfirmDialog from "../ConfirmDialog/index";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function Result() {
     const location = useLocation();
@@ -63,10 +66,11 @@ export default function Result() {
         fetchResult();
     }, []);
     let navigate = useNavigate();
+    const examId = window.location.pathname.split("/")[3];
 
     const addResult = () => {
         const exam = exam_name;
-        const path = `/teacher/result/add`;
+        const path = `/teacher/result/add/${examId}`;
         navigate(path, { state: { ExamName: exam } });
     };
 
@@ -107,6 +111,26 @@ export default function Result() {
         });
     };
 
+    const columns = [
+        { title: "Student ID", field: "studentId" },
+        { title: "Student Name", field: "studentName" },
+        { title: "Marks", field: "marks", type: "numeric" },
+        { title: "Rank", field: "newRank", type: "numeric" },
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text(exam_name + " Result Sheet", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: results,
+        });
+        doc.save(exam_name + " Result Sheet");
+    };
+
     return (
         <div className="p-26">
             <div class=" items-center justify-center bg-white">
@@ -116,26 +140,6 @@ export default function Result() {
                         <div class="overflow-auto rounded-lg shadow">
                             <div className="pb-4">
                                 <div className="flex p-3">
-                                    <div className="">
-                                        <span className="font-bold">
-                                            {/* Teacher Name :{" "} */}
-                                        </span>
-                                        <span className="text-gray-800">
-                                            {/* {localStorage.getItem(
-                                                "teacherName",
-                                            )} */}
-                                        </span>
-                                    </div>
-                                    <div className="">
-                                        <span className="font-bold">
-                                            {/* Subject :
-                                            {" " +
-                                                localStorage.getItem(
-                                                    "subject",
-                                                )} */}
-                                        </span>
-                                        <span className="text-gray-800"></span>
-                                    </div>
                                     <div className="flex justify-between">
                                         <div>
                                             <span>
@@ -150,7 +154,7 @@ export default function Result() {
                                         </div>
                                         <div className="ml-96">
                                             <div className="ml-96">
-                                                <div className="ml-64">
+                                                <div className="ml-32">
                                                     {localStorage.getItem(
                                                         "role",
                                                     ) === "teacher" ? (
@@ -163,6 +167,7 @@ export default function Result() {
                                             px-5
                                             flex
                                             sm
+                                            font-bold
                                             rounded-full mb-3"
                                                             onClick={
                                                                 addResult
@@ -175,6 +180,26 @@ export default function Result() {
                                                 </div>
                                             </div>
                                         </div>
+                                        <button
+                                            className="bg-green-600
+                                            hover:bg-green-800
+                                            text-white
+                                            py-2
+                                            px-5
+                                            flex
+                                            sm
+                                            ml-8
+                                            outline-none
+                                            font-bold
+                                            rounded-full mb-3"
+                                            onClick={() => downLoadPdf()}>
+                                            <span>
+                                                <span>
+                                                    <DownloadOutlined className="font-bold" />{" "}
+                                                </span>
+                                                Download
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
