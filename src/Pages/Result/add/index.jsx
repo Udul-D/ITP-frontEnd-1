@@ -3,13 +3,23 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/index";
+
 function AddResult() {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+    const navigate = useNavigate();
+    const examId = window.location.pathname.split("/")[3];
 
     const [examName, setExamName] = useState("");
     const [studentName, setStudentName] = useState("");
@@ -37,6 +47,18 @@ function AddResult() {
                 })
                 .then((res) => {
                     console.log(res);
+                    setNotify({
+                        isOpen: true,
+                        message: "Result added successfully",
+                        type: "success",
+                    });
+                    setInterval(() => {
+                        navigate(`/teacher/results/${examId}`, {
+                            state: {
+                                examName: exam,
+                            },
+                        });
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -127,6 +149,7 @@ function AddResult() {
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
