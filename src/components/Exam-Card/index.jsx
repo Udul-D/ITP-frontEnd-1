@@ -38,7 +38,13 @@ export default function ExamCard({ exam }) {
         const date = selectedDate.slice(8, 10);
         const isInFuture = isFuture(new Date(year, month - 1, date));
         if (isInFuture) {
-            navigate("/login");
+            navigate(`/exam/start/${exam._id}`, {
+                state: {
+                    examName: exam.examName,
+                    duration: exam.duration,
+                    time: exam.time,
+                },
+            });
         } else {
             navigate(`/teacher/results/${exam._id}`, {
                 state: {

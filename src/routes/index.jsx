@@ -29,6 +29,7 @@ import {
     AddResult,
     UpdateResult,
     UpdateExam,
+    ExamStart,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -109,18 +110,12 @@ export const PageRoute = () => {
                             path="/admin/inventory/add"
                             element={<AddInventory />}
                         />
-                        <Route
-                            path="/admin"
-                            element={<AdminList/>}
-                        />
+                        <Route path="/admin" element={<AdminList />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
-                        />  
-                        <Route
-                            path="/admin/add"
-                            element={<AddAdmin/>}
-                        /> 
+                        />
+                        <Route path="/admin/add" element={<AddAdmin />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
@@ -128,15 +123,14 @@ export const PageRoute = () => {
                         <Route
                             path="/teachers/add"
                             element={<AddTeacher />}
-
-                            />
-                        <Route path="/tutorial/add"
-                            element={<AddTutorial />}
-                            />
-
-                        
+                        />
                         <Route
-                            path="/teacher/result/add"
+                            path="/tutorial/add"
+                            element={<AddTutorial />}
+                        />
+
+                        <Route
+                            path="/teacher/result/add/:id"
                             element={<AddResult />}
                         />
 
@@ -147,6 +141,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/update/:id"
                             element={<UpdateExam />}
+                        />
+                        <Route
+                            path="exam/start/:id"
+                            element={<ExamStart />}
                         />
                     </Routes>
                 </div>
