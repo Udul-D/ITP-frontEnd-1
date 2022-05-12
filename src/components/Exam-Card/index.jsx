@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import isFuture from "date-fns/isFuture";
 import getDate from "date-fns/getDate";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
 import {
     EyeOutlined,
     PlusOutlined,
@@ -8,6 +12,18 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 export default function ExamCard({ exam }) {
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
+
     let navigate = useNavigate();
     const selectedDate = exam.date;
     const year = selectedDate.slice(0, 4);
@@ -47,6 +63,31 @@ export default function ExamCard({ exam }) {
         });
     };
 
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
+        axios
+            .delete(`/api/exam/delete/${id}`, {
+                headers: {
+                    authToken: localStorage.getItem("authToken"),
+                },
+            })
+            .then((res) => {
+                console.log("exam deleted");
+                window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Exam deleted successfully",
+                    type: "error",
+                });
+            })
+            .catch((err) => {
+                console.log("delete error" + err);
+            });
+    };
+
     return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
             <div className=" pt-2 px-2 bg-gray-100">
@@ -56,7 +97,20 @@ export default function ExamCard({ exam }) {
                             className="text-green-800 text-lg ml-52 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
                             onClick={handleUpdate}
                         />
-                        <DeleteOutlined className="text-red-800 text-lg pl-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110" />
+                        <DeleteOutlined
+                            className="text-red-800 text-lg pl-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
+                            onClick={() => {
+                                setConfirmDialog({
+                                    isOpen: true,
+                                    title: "Delete Exam",
+                                    subTitle:
+                                        "Are you sure you want to delete this exam?",
+                                    onConfirm: () => {
+                                        handleDelete(exam._id);
+                                    },
+                                });
+                            }}
+                        />
                     </div>
                 ) : (
                     <div></div>
@@ -103,6 +157,11 @@ export default function ExamCard({ exam }) {
                     {datePassed ? "View Exam" : " View Results"}
                 </button>
             </a>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     );
 }
