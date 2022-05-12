@@ -28,6 +28,7 @@ import AddTeacher from "./Teachers/Add";
 import AddResult from "./Result/add/index";
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
+import UpdateExam from "./Exams/Update/index";
 
 
 export {
@@ -59,4 +60,5 @@ export {
     AddResult,
     AddTutorial,
     UpdateResult,
+    UpdateExam,
 };
