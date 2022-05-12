@@ -4,8 +4,15 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/index";
+
 function UpdateResult() {
     const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
     const toggle = () => {
         setIsOpen(!isOpen);
@@ -50,7 +57,21 @@ function UpdateResult() {
                 })
                 .then((res) => {
                     console.log(res);
-                    navigate("/teacher/results");
+                    setNotify({
+                        isOpen: true,
+                        message: "Exam updated successfully",
+                        type: "success",
+                    });
+                    setStudentID("");
+                    setStudentName("");
+                    setMarks(null);
+                    setInterval(() => {
+                        navigate(`/teacher/results/${id}`, {
+                            state: {
+                                examName: examName,
+                            },
+                        });
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -132,6 +153,7 @@ function UpdateResult() {
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
