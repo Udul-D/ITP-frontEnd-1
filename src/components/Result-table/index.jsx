@@ -8,6 +8,8 @@ import {
     EditOutlined,
     DeleteOutlined,
 } from "@ant-design/icons";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
 
 export default function Result() {
     const location = useLocation();
@@ -18,6 +20,18 @@ export default function Result() {
     const [studentId, setStudentId] = useState("");
     const [studentName, setStudentName] = useState("");
     const [marks, setMarks] = useState("");
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
 
     function compare(a, b) {
         if (a.marks < b.marks) {
@@ -65,6 +79,11 @@ export default function Result() {
             .then((res) => {
                 console.log("deleted");
                 window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Result deleted successfully",
+                    type: "error",
+                });
             })
             .catch((err) => {
                 console.log(err);
@@ -115,27 +134,28 @@ export default function Result() {
                                                     "subject",
                                                 )} */}
                                         </span>
-                                        <span className="text-gray-800">
-                                            {localStorage.getItem(
-                                                "subject",
-                                            )}
-                                        </span>
+                                        <span className="text-gray-800"></span>
                                     </div>
-                                    <div className="">
-                                        <span className="font-bold text-lg">
-                                            Exam Name :{"  " + exam_name}
-                                        </span>
-                                        <span className="text-gray-800">
-                                            {results.examName}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="ml-56">
-                                    <div className="ml-96">
+                                    <div className="flex justify-between">
+                                        <div>
+                                            <span>
+                                                <span>Exam Name : </span>
+                                                <span className="font-bold text-lg">
+                                                    {"  " + exam_name}
+                                                </span>
+                                                <span className="text-gray-800">
+                                                    {results.examName}
+                                                </span>
+                                            </span>
+                                        </div>
                                         <div className="ml-96">
-                                            <div className="flex ml-96">
-                                                <button
-                                                    class="
+                                            <div className="ml-96">
+                                                <div className="ml-64">
+                                                    {localStorage.getItem(
+                                                        "role",
+                                                    ) === "teacher" ? (
+                                                        <button
+                                                            class="
                                             bg-green-600
                                             hover:bg-green-800
                                             text-white
@@ -144,10 +164,15 @@ export default function Result() {
                                             flex
                                             sm
                                             rounded-full mb-3"
-                                                    onClick={addResult}>
-                                                    {/* <PlusOutlined /> */}
-                                                    ADD
-                                                </button>
+                                                            onClick={
+                                                                addResult
+                                                            }>
+                                                            Add Results
+                                                        </button>
+                                                    ) : (
+                                                        <div></div>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -194,15 +219,26 @@ export default function Result() {
                                                         />
                                                     </i>
                                                 </a>
-                                                <a
-                                                    href="#"
-                                                    class="text-red-400 hover:text-gray-100 ml-2 px-2">
+                                                <a class="text-red-400 hover:text-gray-100 ml-2 px-2">
                                                     <i class="material-icons-round text-base">
                                                         <DeleteOutlined
                                                             onClick={(e) =>
-                                                                handleDelete(
-                                                                    r._id,
-                                                                    e,
+                                                                setConfirmDialog(
+                                                                    {
+                                                                        isOpen: true,
+                                                                        title: "Delete Result",
+                                                                        subTitle:
+                                                                            "Are you sure you want to delete this Result?",
+                                                                        onConfirm:
+                                                                            () => {
+                                                                                {
+                                                                                    handleDelete(
+                                                                                        r._id,
+                                                                                        e,
+                                                                                    );
+                                                                                }
+                                                                            },
+                                                                    },
                                                                 )
                                                             }
                                                         />
@@ -284,6 +320,11 @@ export default function Result() {
                     </div>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
             <Footer />
         </div>
     );
