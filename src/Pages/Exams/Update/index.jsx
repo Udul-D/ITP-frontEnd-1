@@ -1,46 +1,78 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-function AddExam() {
-    const [isOpen, setIsOpen] = useState(false);
+import { useLocation, useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Notification from "../../../components/Notification/index";
 
+function UpdateExam() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const id = window.location.pathname.split("/")[4];
+    let navigate = useNavigate();
+    const location = useLocation();
+
     const [examName, setExamName] = useState("");
-    const [selectDate, setSelectDate] = useState(null);
-    const [examDuration, setExamDuration] = useState("");
-    const [examTime, setExamTime] = useState("");
-    const [desc, setDesc] = useState("");
+    const [description, setDescription] = useState("");
+    const [date, setDate] = useState(null);
+    const [time, setTime] = useState("");
+    const [duration, setDuration] = useState("");
+
+    useEffect(() => {
+        const getData = async () => {
+            setExamName(location.state.examName);
+            setDescription(location.state.description);
+            // setDate(location.state.date);
+            setTime(location.state.time);
+            setDuration(location.state.duration);
+        };
+        getData();
+    }, [location]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        const role = localStorage.getItem("role");
         const data = {
             examName: examName,
-            description: desc,
-            date: selectDate,
-            time: examTime,
-            duration: examDuration,
-            role: role,
+            description: description,
+            date: date,
+            time: time,
+            duration: duration,
         };
-
+        console.log(id);
         try {
             await axios
-                .post("/api/exam/add", {
+                .put("/api/exam/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
                     data,
                 })
                 .then((res) => {
-                    console.log("add exam res", res);
+                    console.log("updated" + res.data);
+                    setNotify({
+                        isOpen: true,
+                        message: "Exam updated successfully",
+                        type: "success",
+                    });
+                    setExamName("");
+                    setDescription("");
+                    setDate(null);
+                    setTime("");
+                    setDuration("");
+                    setInterval(() => {
+                        navigate("/exams");
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -56,13 +88,14 @@ function AddExam() {
             <Header toggle={toggle} />
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">
-                    Create Your Exam
+                    Update Exam
                 </h1>
             </div>
-            <div className="mx-96">
+            <div className="mx-96 w-1/2 ">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
                     <form
                         className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                        autoComplete="off"
                         onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
@@ -74,11 +107,11 @@ function AddExam() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Exam Name"
-                                required
                                 onChange={(e) =>
                                     setExamName(e.target.value)
                                 }
+                                value={examName}
+                                placeholder="Exam Name"
                             />
                         </div>
                         <div class="mb-4">
@@ -102,11 +135,9 @@ function AddExam() {
                                 </div>
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                    selected={selectDate}
+                                    selected={date}
                                     required
-                                    onChange={(date) =>
-                                        setSelectDate(date)
-                                    }
+                                    onChange={(date) => setDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
                                 />
@@ -116,34 +147,32 @@ function AddExam() {
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Time (24 Hour Format)
+                                Exam Time
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="time"
-                                required
+                                id="username"
                                 type="text"
-                                placeholder="Time"
-                                onChange={(e) =>
-                                    setExamTime(e.target.value)
-                                }
+                                onChange={(e) => setTime(e.target.value)}
+                                value={time}
+                                placeholder="Student ID"
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
                                 for="username">
-                                Duration (in hours)
+                                Duration
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
-                                required
-                                type="text"
-                                onChange={(e) => {
-                                    setExamDuration(e.target.value);
-                                }}
-                                placeholder="Duration"
+                                type="number"
+                                onChange={(e) =>
+                                    setDuration(e.target.value)
+                                }
+                                value={duration}
+                                placeholder="Marks"
                             />
                         </div>
                         <div class="mb-6">
@@ -174,36 +203,23 @@ function AddExam() {
                                 required
                                 rows="3"
                                 onChange={(e) => {
-                                    setDesc(e.target.value);
+                                    setDescription(e.target.value);
                                 }}
+                                value={description}
                                 placeholder="Description"></textarea>
-                        </div>
-                        <div class="flex w-full items-center justify-center bg-grey-lighter">
-                            <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
-                                <svg
-                                    class="w-8 h-8"
-                                    fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20">
-                                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                                </svg>
-                                <span class="mt-2 text-base leading-normal">
-                                    Select the exam file
-                                </span>
-                                <input type="file" class="hidden" />
-                            </label>
                         </div>
                         <button
                             type="submit"
                             class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                            Submit
+                            Update
                         </button>
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
 }
 
-export default AddExam;
+export default UpdateExam;

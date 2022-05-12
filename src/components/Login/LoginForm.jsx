@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
@@ -9,6 +9,22 @@ export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    useEffect(() => {
+        const logout = () => {
+            axios
+                .post("/api/logout", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                    localStorage.removeItem("authToken");
+                    window.location.reload();
+                });
+        };
+    }, []);
+
     const onSubmit = (e) => {
         e.preventDefault();
         const data = {
@@ -18,7 +34,21 @@ export default function LoginForm() {
         axios
             .post("/api/login", data)
             .then((result) => {
+                console.log({ result });
                 localStorage.setItem("authToken", result.data.authToken);
+                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("role", result.data.role);
+                localStorage.setItem("roleData", result.data.roleData);
+                if (result.data.role === "teacher") {
+                    localStorage.setItem(
+                        "teacherName",
+                        result.data.roleData.firstName,
+                    );
+                    localStorage.setItem(
+                        "subject",
+                        result.data.roleData.subject,
+                    );
+                }
             })
             .catch((err) => {
                 console.log(err);
