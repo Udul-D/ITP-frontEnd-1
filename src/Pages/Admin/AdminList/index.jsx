@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import StudentList from "../../../components/StudentList/StudentList";
-import Footer from "../../../components/Footer/Footer";
+import AdminList from "../../../components/AdminList/AdminList";
 import "./index.css";
 
-const StudentLists = () => {
+const AdminLists = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -16,28 +15,27 @@ const StudentLists = () => {
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
-            <div>
+            <div className="TopicHolder">
                 <h1 className="text-black font-bold px-6 pt-6 text-3xl">
-                    Student List
+                    Admin List
                 </h1>
                 <p className="text-black text-xs px-6">
-                    List of all the students including their name, date of
-                    birth, parent name, parent phone number and age
+                    List of all the Admins including their name, NIC, phone number
+                    and email
                 </p>
             </div>
 
-            <div className="bg-[#dcdcdc] mt-2.5 w-screen">
+            <div className="TableHolder w-screen">
                 <button className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-full m-4 transition ease-in-out delay-75 hover:scale-95 transform-gpu">
                     {/* transition ease-out delay-150 */}
                     <AiOutlineUserAdd className="AddUserIcon" />
-                    <span>Add Student</span>
+                   <a href="admin/add"> <span>Add Admin</span></a>
                 </button>
 
-                <StudentList />
-                <Footer />
+                <AdminList />
             </div>
         </>
     );
 };
 
-export default StudentLists;
+export default AdminLists;
