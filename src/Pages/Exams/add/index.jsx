@@ -1,13 +1,21 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
-import axios from "axios";
+import Notification from "../../../components/Notification/index";
+import { useNavigate } from "react-router-dom";
 function AddExam() {
     const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
+    const navigate = useNavigate();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
@@ -41,6 +49,19 @@ function AddExam() {
                 })
                 .then((res) => {
                     console.log("add exam res", res);
+                    setExamName("");
+                    setDesc("");
+                    setSelectDate(null);
+                    setExamTime("");
+                    setExamDuration("");
+                    setNotify({
+                        isOpen: true,
+                        message: "Exam added successfully",
+                        type: "success",
+                    });
+                    setInterval(() => {
+                        navigate("/exams");
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -139,7 +160,7 @@ function AddExam() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 required
-                                type="text"
+                                type="number"
                                 onChange={(e) => {
                                     setExamDuration(e.target.value);
                                 }}
@@ -201,6 +222,7 @@ function AddExam() {
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
