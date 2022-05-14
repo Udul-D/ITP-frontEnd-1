@@ -15,6 +15,7 @@ import {
     RequestAdminViewList,
     TutorialList,
     AddExam,
+    AddAdmin,
     AddHall,
     AddRequest,
     AddEvent,
@@ -22,8 +23,13 @@ import {
     AddTimetable,
     AddInventory,
     AddStudent,
+    AdminList,
     AddTeacher,
+    AddTutorial,
     AddResult,
+    UpdateResult,
+    UpdateExam,
+    ExamStart,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -45,7 +51,6 @@ export const PageRoute = () => {
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
-
                         <Route
                             path="/inventory"
                             element={<InventoryList />}
@@ -66,11 +71,11 @@ export const PageRoute = () => {
                         <Route path="/hall" element={<HallList />} />
                         <Route path="/requests" element={<Requests />} />
                         <Route
-                            path="/teacher/results"
+                            path="/teacher/results/:id"
                             element={<ResultList />}
                         />
                         <Route
-                            path="/student/results"
+                            path="/student/results/:id"
                             element={<StudentResult />}
                         />
                         <Route
@@ -85,12 +90,10 @@ export const PageRoute = () => {
                             path="/teacher/exam/add"
                             element={<AddExam />}
                         />
-
                         <Route
                             path="/admin/hall/add"
                             element={<AddHall />}
                         />
-
                         <Route
                             path="/teacher/request/add"
                             element={<AddRequest />}
@@ -99,7 +102,6 @@ export const PageRoute = () => {
                             path="/admin/event/add"
                             element={<AddEvent />}
                         />
-
                         <Route
                             path="/admin/timetable/add"
                             element={<AddTimetable />}
@@ -108,10 +110,12 @@ export const PageRoute = () => {
                             path="/admin/inventory/add"
                             element={<AddInventory />}
                         />
+                        <Route path="/admin" element={<AdminList />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
                         />
+                        <Route path="/admin/add" element={<AddAdmin />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
@@ -121,8 +125,26 @@ export const PageRoute = () => {
                             element={<AddTeacher />}
                         />
                         <Route
-                            path="/teacher/result/add"
+                            path="/tutorial/add"
+                            element={<AddTutorial />}
+                        />
+
+                        <Route
+                            path="/teacher/result/add/:id"
                             element={<AddResult />}
+                        />
+
+                        <Route
+                            path="/teacher/result/update/:id"
+                            element={<UpdateResult />}
+                        />
+                        <Route
+                            path="/teacher/exam/update/:id"
+                            element={<UpdateExam />}
+                        />
+                        <Route
+                            path="exam/start/:id"
+                            element={<ExamStart />}
                         />
                     </Routes>
                 </div>
