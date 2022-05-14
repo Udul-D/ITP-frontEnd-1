@@ -14,6 +14,11 @@ export default function RequestList() {
         };
         fetchRequest();
     }, []);
+
+    const deleteRequestTable = async (id) => {
+          await axios.delete(`/api/Request/delete/${id}`);
+          alert("deleted");
+    };
     
 return (
     <div className="p-26">
@@ -27,7 +32,7 @@ return (
         <div class="overflow-auto rounded-lg shadow">
         
         <div>
-        <a href="#">
+        <a href="/teacher/request/add">
             <button
             class="
                 bg-green-600
@@ -75,7 +80,7 @@ return (
                 href="#"
                 class="text-red-400 hover:text-gray-100 ml-2"
             >
-                <i class="material-icons-round text-base"><DeleteOutlined /></i>
+                <i class="material-icons-round text-base"><DeleteOutlined onClick={() => deleteRequestTable(r._id)}/></i>
             </a>
             </td>
             <td class="p-3 font-medium capitalize">{r.teacherName}</td>
