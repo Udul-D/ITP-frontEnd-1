@@ -33,6 +33,7 @@ import {
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
+import UpdateTutorial from "../Pages/Tutorial/Update";
 
 export const PageRoute = () => {
     return (
@@ -145,6 +146,10 @@ export const PageRoute = () => {
                         <Route
                             path="exam/start/:id"
                             element={<ExamStart />}
+                        />
+                        <Route
+                            path="/tutorial/update/:id"
+                            element={<UpdateTutorial />}
                         />
                     </Routes>
                 </div>
