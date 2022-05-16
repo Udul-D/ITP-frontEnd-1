@@ -24,6 +24,8 @@ function AddEvent() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+    
         const data = {
             eventName: eventName,
             eventDate: selectDate,
@@ -33,6 +35,7 @@ function AddEvent() {
             imageUrl: image,
             tags: tags,
             registrationLink: reglink,
+            
         };
 
         try {
@@ -44,17 +47,13 @@ function AddEvent() {
                     data,
                 })
                 .then((res) => {
-                    console.log("Dev");
-                    console.log(res);
-                    window.location.href = "/admin/events"
+                    console.log("add event res", res);
                 })
                 .catch((err) => {
-                    console.log(err);
-                    console.log("Dev-2");
+                    console.log(err);                   
                 });
         } catch (error) {
             console.log(error);
-            console.log("Dev-3");
         }
     };
 
@@ -156,16 +155,31 @@ function AddEvent() {
                                 for="username">
                                 Description
                             </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                placeholder="Description"
-                                onChange={(e) =>
-                                    setDescription(e.target.value)
-                                }
+                            <textarea
+                                class="
+                                    form-control
+                                    block
+                                    w-full
+                                    px-3
+                                    py-1.5
+                                    text-base
+                                    font-normal
+                                    text-gray-700
+                                    bg-white bg-clip-padding
+                                    border border-solid border-gray-300
+                                    rounded
+                                    transition
+                                    ease-in-out
+                                    m-0
+                                    focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none
+                                "
+                                id="exampleFormControlTextarea1"
                                 required
-                            />
+                                rows="3"
+                                onChange={(e) =>{
+                                    setDescription(e.target.value);
+                                }}          
+                                placeholder="Description"></textarea>
                         </div>
                         <div class="mb-6">
                             <label
