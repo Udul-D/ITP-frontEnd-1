@@ -19,6 +19,7 @@ export default function LoginForm() {
             .post("/api/login", data)
             .then((result) => {
                 localStorage.setItem("authToken", result.data.authToken);
+                window.location.href = "/admin/events"
             })
             .catch((err) => {
                 console.log(err);
