@@ -1,9 +1,10 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
+import axios from "axios";
 
 function AddTeacher() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,67 @@ function AddTeacher() {
         setIsOpen(!isOpen);
     };
 
+    const [firstName,setFirstName] = useState("");
+    const[lastName,setLastName] = useState("");
+    const[birthDay,setBirthDay] = useState(null);
+    const[NIC,setNIC] = useState("");
+    const[gender,setGenger] = useState(null);
+    const[phoneNumber,setPhoneNumber] = useState("");
+    const[email,setEmail] = useState("");
+    const[subject,setSubject] = useState("");
+    const[grade,setGrade] = useState("");
+    const[medium,setMedium] = useState(null);
+    const[classType,setClassType]= useState(null);
+    const[educationQualifications,setEducationQualifications]=useState("");
+    const[userName,setUserName]=useState("");
+    const[password,setPassword]=useState("");
+    const[confPassword,setConfPassword]=useState("");
+    const[experienceYear,setExperienceYear]=useState("");
+
+
+
     const [selectDate, setSelectDate] = useState(null);
 
     const timeValue = new Date("2020-01-01 00:00:00 AM");
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            firstName: firstName,
+            lastName:lastName,
+            birthday:birthDay,
+            NIC: NIC,
+            gender: gender,
+            phoneNumber:phoneNumber,
+            email:email,
+            subject:subject,
+            grade:grade,
+            medium:medium,
+            classType:classType,
+            higerQulification:educationQualifications,
+            username:userName,
+            password:password,
+            confPassword : confPassword,
+        };
+
+        try {
+            await axios
+                .post("/api/teacher/register", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -28,7 +87,8 @@ function AddTeacher() {
                         Teacher Registration
                     </h1>
                 </div>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
+                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md"
+                onSubmit={onSubmit}>
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
                             <svg
@@ -56,6 +116,9 @@ function AddTeacher() {
                             id="firstname"
                             type="text"
                             placeholder="First Name"
+                            onChange={(e) =>
+                            setFirstName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -70,6 +133,9 @@ function AddTeacher() {
                             id="lastname"
                             type="text"
                             placeholder="Last Name"
+                            onChange={(e) =>
+                            setLastName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -95,7 +161,8 @@ function AddTeacher() {
                             <DatePicker
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 selected={selectDate}
-                                onChange={(date) => setSelectDate(date)}
+                               
+                                onChange={(date) => setBirthDay(date)}
                                 dateFormat="dd/MM/yyyy"
                                 minDate={new Date()}
                             />
@@ -113,6 +180,9 @@ function AddTeacher() {
                             id="nic"
                             type="text"
                             placeholder="NIC"
+                            onChange={(e) =>
+                            setNIC(e.target.value)
+                            }
                         />
                     </div>
 
@@ -133,6 +203,9 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="male"
                                     value="male"
+                                    onChange={(gender) =>
+                                        setGenger(gender)
+                                    }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -148,6 +221,9 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="female"
                                     value="female"
+                                    onChange={(gender) =>
+                                        setGenger(gender)
+                                    }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -169,6 +245,9 @@ function AddTeacher() {
                             id="phonenumber"
                             type="text"
                             placeholder="Phone Number"
+                            onChange={(e)=>
+                            setPhoneNumber(e.target.value)
+                            }
                         />
                     </div>
 
@@ -183,6 +262,9 @@ function AddTeacher() {
                             id="email"
                             type="text"
                             placeholder="Email"
+                            onChange={(e)=>{
+                            setEmail(e.target.value);
+                            }}
                         />
                     </div>
 
@@ -366,8 +448,27 @@ function AddTeacher() {
                             id="eduQualifications"
                             type="text"
                             placeholder="Education Qualifications"
+                            onChange={(e) => 
+                              setEducationQualifications(e.target.value)
+                            }
                         />
                     </div>
+                    {/* <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="experienceYear">
+                            Experience Year
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                            id="experienceYear"
+                            type="text"
+                            placeholder="Education Qualifications"
+                            onChange={(e) => 
+                              setExperienceYear(e.target.value)
+                            }
+                        />
+                    </div> */}
 
                     <div class="mb-6">
                         <label
@@ -380,6 +481,9 @@ function AddTeacher() {
                             id="username"
                             type="text"
                             placeholder="Username"
+                            onChange={(e)=> 
+                            setUserName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -394,10 +498,13 @@ function AddTeacher() {
                             id="passowrd"
                             type="password"
                             placeholder="Password"
+                            onChange={(e)=>
+                             setPassword(e.target.value)
+                            }
                         />
                     </div>
 
-                    <div class="mb-6">
+                    {/* <div class="mb-6">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="confirmpassowrd">
@@ -408,8 +515,11 @@ function AddTeacher() {
                             id="confirmpassowrd"
                             type="password"
                             placeholder="Confirm Password"
+                            onChange={(e)=>
+                             setConfPassword(e.target.value)
+                            }
                         />
-                    </div>
+                    </div> */}
 
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">

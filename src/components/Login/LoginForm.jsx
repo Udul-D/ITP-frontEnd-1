@@ -1,13 +1,43 @@
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/solid";
 import { AiTwotoneMail } from "react-icons/ai";
 import logo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./LoginForm.css";
+import Notification from "../Notification/index";
+import Footer from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     const logout = () => {
+    //         axios
+    //             .post("/api/logout", {
+    //                 headers: {
+    //                     authToken: localStorage.getItem("authToken"),
+    //                 },
+    //             })
+    //             .then((res) => {
+    //                 console.log(res);
+    //                 localStorage.removeItem("authToken");
+    //                 window.location.reload();
+    //             });
+    //     };
+    // }, []);
+
+    if (isLoggedIn) {
+        localStorage.setItem("loggedIn", true);
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -18,11 +48,44 @@ export default function LoginForm() {
         axios
             .post("/api/login", data)
             .then((result) => {
+                console.log({ result });
+                setNotify({
+                    isOpen: true,
+                    message: "Login Successful",
+                    type: "success",
+                });
                 localStorage.setItem("authToken", result.data.authToken);
+<<<<<<< HEAD
                 window.location.href = "/admin/events"
+=======
+                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("role", result.data.role);
+                localStorage.setItem("roleData", result.data.roleData);
+                if (result.data.role === "teacher") {
+                    localStorage.setItem(
+                        "teacherName",
+                        result.data.roleData.firstName,
+                    );
+                    localStorage.setItem(
+                        "subject",
+                        result.data.roleData.subject,
+                    );
+                }
+                setUsername("");
+                setPassword("");
+                setIsLoggedIn(true);
+                setInterval(() => {
+                    navigate("/exams");
+                }, 2500);
+>>>>>>> dc86d03c18c44569030d5c8e336d85813ca9cb07
             })
             .catch((err) => {
                 console.log(err);
+                setNotify({
+                    isOpen: true,
+                    message: "username or password is incorrect",
+                    type: "error",
+                });
             });
     };
     return (
@@ -146,6 +209,8 @@ export default function LoginForm() {
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <Footer />
         </>
     );
 }
