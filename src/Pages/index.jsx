@@ -22,6 +22,7 @@ import AddTimetable from "./Timetable/add/index";
 import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
 import AddResult from "./Result/add/index";
+import UpdateTimetable from "./Timetable/update/index";
 
 export {
     ExamList,
@@ -48,4 +49,5 @@ export {
     AddTimetable,
     AddTeacher,
     AddResult,
+    UpdateTimetable,
 };
