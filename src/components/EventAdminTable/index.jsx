@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {
     EyeOutlined,
     EditOutlined,
@@ -5,16 +9,92 @@ import {
 } from "@ant-design/icons";
 
 export default function Event() {
+    //const [eventDetails, setEventDetails] = useState([]);
+    const [event, setEvents] = useState([]);
+    const [updateClicked, setUpdateClicked] = useState(false);
+    const [eventName, setEventName] = useState("");
+    const [selectDate, setSelectDate] = useState("");
+    const [time, setTime] = useState("");
+    const [venue, setVenue] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
+    const [tags, setTags] = useState("");
+    const [reglink, setReglink] = useState("");
+
+
+    //useEffect(() => {
+        //const getallEventDetails = async () => {
+            //const response = await axios.get("/api/event/all");
+           // setEventDetails(response.data);
+           // console.log(response.data);
+       // };
+       // getallEventDetails();
+   // }, []);
+useEffect(() => {
+    const fetchEvent = async () => {
+        const res = await axios.get("/api/event/all");
+        setEvents(res.data);
+        console.log(res.data);
+    };
+    fetchEvent();
+}, []);
+    let navigate = useNavigate();
+
+    const addEvent = () => {
+        const path = `/admin/event/add`;
+        navigate(path);
+    };
+
+    const handleDelete = async (id, e) => {
+        e.preventDefault();
+        axios
+            .delete(`/api/event/delete/${id}`, {
+                headers: { authToken: localStorage.getItem("authToken") },
+            })
+            .then((res) => {
+                console.log("deleted");
+                window.location.reload();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleUpdate = async (
+        id,
+        e,
+        eventName,
+        selectDate,
+        time,
+        venue,
+        description,
+        image,
+        tags,
+        reglink,
+    ) => {
+        navigate(`/admin/event/update/${id}`, {
+            state: {
+            eventName: eventName,
+            eventDate: selectDate,
+            time: time,
+            Venue: venue,
+            description: description,
+            imageUrl: image,
+            tags: tags,
+            registrationLink: reglink,
+            },
+        });
+    };
+
     return (
         <div className="p-26">
             <div class=" items-center justify-center min-h-screen bg-white">
                 <div class="col-span-12">
                     <div class="overflow-auto lg:overflow-visible"></div>
                     <div class="p-5 bg-gray-100 rounded-lg ">
-                        <div class="overflow-auto rounded-lg shadow">
-                            <div>
-                                <div>
-                                    <a href="#">
+                        <div class="overflow-auto rounded-lg shadow">  
+                            
+                                    <a href="/admin/event/add">
                                         <button
                                             class="
                                         bg-green-600
@@ -24,7 +104,8 @@ export default function Event() {
                                         px-3
                                         sm
                                         rounded-full mb-3
-                                    ">
+                                    "
+                                        onClick={addEvent}>
                                             ADD EVENT
                                         </button>
                                     </a>
@@ -108,202 +189,170 @@ export default function Event() {
                                             Time
                                         </th>
                                         <th class="p-3 text-sm font-bold tracking-wide text-left">
+                                            Venue
+                                        </th>
+                                        <th class="p-3 text-sm font-bold tracking-wide text-left">
                                             Description
                                         </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-5">
-                                            <a href="#">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium">
-                                            Science Seminar O/L
-                                        </td>
-                                        <td class="p-3">2022/05/01</td>
-                                        <td class="p-3">7 am - 10 am</td>
-                                        <td class="p-3 font-medium">
-                                            The goal of Science Seminar is
-                                            to expose students interested
-                                            in Science to improve their own
-                                            knowledge.
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            Maths Seminar O/L
-                                        </td>
-                                        <td class="p-3">2022/06/11</td>
-                                        <td class="p-3">2 pm - 5 pm</td>
-                                        <td class="p-3">
-                                            The goal of Maths Seminar is to
-                                            expose students interested in
-                                            Maths to improve their own
-                                            knowledge.
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            Physics Seminar A/L
-                                        </td>
-                                        <td class="p-3">2022/05/28</td>
-                                        <td class="p-3">11 am - 1 pm</td>
-                                        <td class="p-3 ">
-                                            The goal of Physics Seminar is
-                                            to expose students interested
-                                            in Physics to improve their own
-                                            knowledge.
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            Chemistry Seminar A/L
-                                        </td>
-                                        <td class="p-3">2022/05/18</td>
-                                        <td class="p-3">9 am - 11 am</td>
-                                        <td class="p-3 ">
-                                            The goal of Chemistry Seminar
-                                            is to expose students
-                                            interested in Chemistry to
-                                            improve their own knowledge.
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            Sinhala Seminar O/L
-                                        </td>
-                                        <td class="p-3">2022/06/12</td>
-                                        <td class="p-3">8 am - 11 am</td>
-                                        <td class="p-3 ">
-                                            The goal of Sinhala Seminar is
-                                            to expose students interested
-                                            in Sinhala to improve their own
-                                            knowledge.
-                                        </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        <td class="p-3">
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                </i>
-                                            </a>
-                                            <a href="#" >
-                                                <i class="material-icons-outlined text-base">
-                                                    <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                </i>
-                                            </a>
-                                            <a href="#" >
-                                                <i class="material-icons-round text-base">
-                                                    <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td class="p-3 font-medium capitalize">
-                                            History Seminar A/L
-                                        </td>
-                                        <td class="p-3">2022/05/28</td>
-                                        <td class="p-3">2 pm - 5 pm</td>
-                                        <td class="p-3 ">
-                                            The goal of History Seminar is
-                                            to expose students interested
-                                            in History to improve their own
-                                            knowledge.
-                                        </td>
-                                    </tr>
+                                    {event.map((event) => (
+                                        <tr class="bg-green-100 lg:text-black">
+                                            <td class="p-5">
+                                                <a href="#">
+                                                    <i class="material-icons-outlined text-base">
+                                                        <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
+                                                    </i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="material-icons-outlined text-base">
+                                                        <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" 
+                                                        onClick={(e) =>
+                                                            handleUpdate(
+                                                                event._id,
+                                                                e,                                                        
+                                                                event.eventName,
+                                                                event.selectDate,
+                                                                event.time,
+                                                                event.venue,
+                                                                event.description,
+                                                                event.imgUrl,                                                                                                                 
+                                                                event.tags,
+                                                                event.reglink,
+                                                                
+                                                            )
+                                                        }/>
+                                                    </i>
+                                                </a>
+                                                <a
+                                                    href="#"
+                                                    className="text-red-400 ml-2 hover:text-red-500">
+                                                    <i class="material-icons-round text-base">
+                                                        <DeleteOutlined
+                                                            onClick={(e) =>
+                                                                handleDelete(
+                                                                    event._id,
+                                                                    e,
+                                                                )
+                                                            }
+                                                        />
+                                                    </i>
+                                                </a>
+                                                {updateClicked && (
+                                                    <button
+                                                        onClick={
+                                                            handleUpdate
+                                                        }
+                                                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-10 rounded">
+                                                        Update
+                                                    </button>
+                                                )}
+                                            </td>
+                                            <td class="p-3 font-medium capitalize">
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={eventName}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setEventName(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {event.eventName}
+                                                    </span>
+                                                )}
+                                            </td>
+                                            <td class="p-3">
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={selectDate}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setSelectDate(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {event.selectDate}
+                                                    </span>
+                                                )}
+                                            </td>
+                                            <td class="p-3 uppercase pl-8">
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={time}
+                                                        onChange={(e) =>
+                                                            setTime(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                    />
+                                                ) : (
+                                                    <span>{event.events}</span>
+                                                )}
+                                            </td>
+                                            <td class="p-3 font-medium capitalize">
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={venue}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setVenue(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {event.Venue}
+                                                    </span>
+                                                )}
+                                            </td>
+                                            <td class="p-3 font-medium capitalize">
+                                                {updateClicked ? (
+                                                    <input
+                                                        type="text"
+                                                        value={description}
+                                                        className="rounded-sm focus:outline-1 focus:outline-green-500 focus:shadow-outline"
+                                                        onChange={(e) =>
+                                                            setDescription(
+                                                                e.target
+                                                                    .value,
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <span>
+                                                        {event.description}
+                                                    </span>
+                                                )}
+                                            </td>                                                                                                                
+                                
+                        
+                                            
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                        
     );
 }
