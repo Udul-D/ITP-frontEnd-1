@@ -8,7 +8,6 @@ import TimetableList from "./Timetable/List";
 import LoginPage from "./Login/index";
 import EventAdminViewList from "./EventAdmin/List";
 //import LoginForm from "./Login/index";
-
 import Requests from "./Teachers/Request/List";
 import HallList from "./Hall/List";
 import ResultList from "./Result/TeacherList/index";
@@ -26,15 +25,13 @@ import AddTimetable from "./Timetable/add/index";
 import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
 import AddResult from "./Result/add/index";
-<<<<<<< HEAD
 import UpdateEvent from "./Events/update/index";
-=======
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
 import UpdateExam from "./Exams/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateTutorial from "./Tutorial/Update";
->>>>>>> dc86d03c18c44569030d5c8e336d85813ca9cb07
+
 
 export {
     ExamList,
@@ -63,13 +60,10 @@ export {
     AddTimetable,
     AddTeacher,
     AddResult,
-<<<<<<< HEAD
     UpdateEvent,
-=======
     AddTutorial,
     UpdateResult,
     UpdateExam,
     ExamStart,
     UpdateTutorial,
->>>>>>> dc86d03c18c44569030d5c8e336d85813ca9cb07
 };
