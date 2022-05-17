@@ -38,17 +38,17 @@ function UpdateEvent() {
     useEffect(() => {
         const getData = async () => {
             setEventName(location.state.eventName);
-            setSelectDate(location.state.selectDate);
+           // setSelectDate(location.state.eventDate.toString());
             setTime(location.state.time);
-            setVenue(location.state.venue);
+            setVenue(location.state.Venue);
             setDescription(location.state.description);
-            setImage(location.state.image);
+            setImage(location.state.imageUrl);
             setTags(location.state.tags);
-            setReglink(location.state.reglink);
+            setReglink(location.state.registrationLink);
         };
         getData();
     }, [location]);
-            
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const data = {
@@ -86,8 +86,8 @@ function UpdateEvent() {
                     setTags("");
                     setReglink();
                     setInterval(() => {
-                    navigate("/events");
-                }, 2500);
+                        navigate("/events");
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -108,7 +108,7 @@ function UpdateEvent() {
             </div>
             <div className="mx-96 w-1/2 ">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
-                <form
+                    <form
                         className="bg-white rounded px-8 pt-6 pb-8 mb-4"
                         autoComplete="off"
                         onSubmit={onSubmit}>
@@ -127,7 +127,6 @@ function UpdateEvent() {
                                 }
                                 value={eventName}
                                 placeholder="Event Name"
-                                
                             />
                         </div>
                         <div class="mb-4">
@@ -158,7 +157,6 @@ function UpdateEvent() {
                                     }
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
-                                    
                                 />
                             </div>
                         </div>
@@ -171,7 +169,7 @@ function UpdateEvent() {
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
-                                type="text"                               
+                                type="text"
                                 onChange={(e) => setTime(e.target.value)}
                                 value={time}
                                 placeholder="Time"
@@ -186,7 +184,7 @@ function UpdateEvent() {
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
-                                type="text"                            
+                                type="text"
                                 onChange={(e) => setVenue(e.target.value)}
                                 value={venue}
                                 placeholder="Venue"
@@ -198,7 +196,7 @@ function UpdateEvent() {
                                 for="username">
                                 Description
                             </label>
-                        {/* <input
+                            {/* <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"                              
@@ -228,7 +226,7 @@ function UpdateEvent() {
                                 "
                                 id="exampleFormControlTextarea1"
                                 required
-                                rows="3"
+                                rows="5"
                                 onChange={(e) => {
                                     setDescription(e.target.value);
                                 }}
@@ -244,7 +242,7 @@ function UpdateEvent() {
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
-                                type="text"                                
+                                type="text"
                                 onChange={(e) => setImage(e.target.value)}
                                 value={image}
                                 placeholder="Image Url"
