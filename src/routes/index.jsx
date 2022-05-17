@@ -27,9 +27,11 @@ import {
     AddTeacher,
     AddTutorial,
     AddResult,
+    UpdateEvent,
     UpdateResult,
     UpdateExam,
     ExamStart,
+
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -129,12 +131,10 @@ export const PageRoute = () => {
                             path="/tutorial/add"
                             element={<AddTutorial />}
                         />
-
                         <Route
                             path="/teacher/result/add/:id"
                             element={<AddResult />}
                         />
-
                         <Route
                             path="/teacher/result/update/:id"
                             element={<UpdateResult />}
@@ -151,6 +151,10 @@ export const PageRoute = () => {
                             path="/tutorial/update/:id"
                             element={<UpdateTutorial />}
                         />
+                        <Route
+                            path="/admin/event/update/:id"
+                            element={<UpdateEvent />}
+                            />
                     </Routes>
                 </div>
             </BrowserRouter>
