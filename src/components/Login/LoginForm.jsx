@@ -54,11 +54,7 @@ export default function LoginForm() {
                     message: "Login Successful",
                     type: "success",
                 });
-                localStorage.setItem("authToken", result.data.authToken);
-<<<<<<< HEAD
-                window.location.href = "/admin/events"
-=======
-                localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("authToken", result.data.authToken);        localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
                 if (result.data.role === "teacher") {
@@ -77,7 +73,6 @@ export default function LoginForm() {
                 setInterval(() => {
                     navigate("/exams");
                 }, 2500);
->>>>>>> dc86d03c18c44569030d5c8e336d85813ca9cb07
             })
             .catch((err) => {
                 console.log(err);
