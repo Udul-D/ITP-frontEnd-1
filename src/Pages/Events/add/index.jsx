@@ -48,6 +48,7 @@ function AddEvent() {
                 })
                 .then((res) => {
                     console.log("add event res", res);
+                    window.location.href = "/admin/events"
                 })
                 .catch((err) => {
                     console.log(err);                   
