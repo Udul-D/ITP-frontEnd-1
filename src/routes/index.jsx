@@ -27,13 +27,16 @@ import {
     AddTeacher,
     AddTutorial,
     AddResult,
+    UpdateEvent,
     UpdateResult,
     UpdateExam,
     ExamStart,
     UpdateRequest,
+
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
+import UpdateTutorial from "../Pages/Tutorial/Update";
 
 export const PageRoute = () => {
     return (
@@ -129,12 +132,10 @@ export const PageRoute = () => {
                             path="/tutorial/add"
                             element={<AddTutorial />}
                         />
-
                         <Route
                             path="/teacher/result/add/:id"
                             element={<AddResult />}
                         />
-
                         <Route
                             path="/teacher/result/update/:id"
                             element={<UpdateResult />}
@@ -151,6 +152,14 @@ export const PageRoute = () => {
                             path="exam/start/:id"
                             element={<ExamStart />}
                         />
+                        <Route
+                            path="/tutorial/update/:id"
+                            element={<UpdateTutorial />}
+                        />
+                        <Route
+                            path="/admin/event/update/:id"
+                            element={<UpdateEvent />}
+                            />
                     </Routes>
                 </div>
             </BrowserRouter>
