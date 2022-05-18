@@ -17,7 +17,7 @@ function AddTeacher() {
     const[lastName,setLastName] = useState("");
     //const[birthDay,setBirthDay] = useState(null);
     const[NIC,setNIC] = useState("");
-    const[gender,setGenger] = useState("");
+    const[gender,setGender] = useState("");
     const[phoneNumber,setPhoneNumber] = useState("");
     const[email,setEmail] = useState("");
     const[subject,setSubject] = useState("");
@@ -54,14 +54,14 @@ function AddTeacher() {
             higerQulification:educationQualifications,
             username:userName,
             password:password,
-            confPassword : confPassword,
-            imageUrl : imageUrl,
+            // confPassword : confPassword,
+            // imageUrl : imageUrl,
             experienceYear: experienceYear,
         };
 
         try {
             await axios
-                .post("/api/teacher/register", {
+                .post("api/teacher/register", {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
@@ -197,23 +197,20 @@ function AddTeacher() {
                     <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
-                            for="Gender">
+                            for="NIC">
                             Gender
                         </label>
                     </div>
-
                     <div className="mb-6">
                         <div class="flex">
                             <div class="form-check form-check-inline">
                                 <input
                                     class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                     type="radio"
-                                    name="RadioOptions"
+                                    name="inlineRadioOptions"
                                     id="male"
                                     value="male"
-                                    onChange={(gender) =>
-                                        setGenger(gender)
-                                    }
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -229,9 +226,7 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="female"
                                     value="female"
-                                    onChange={(gender) =>
-                                        setGenger(gender)
-                                    }
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
