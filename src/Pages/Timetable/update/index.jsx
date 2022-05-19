@@ -5,10 +5,17 @@ import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Notification from "../../../components/Notification/index";
 
 
 function UpdateTimetable() {
     const [isOpen, setIsOpen] = useState(false);
+    const[notify, setNotify] =useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
     const toggle = () => {
         setIsOpen(!isOpen);
@@ -32,7 +39,7 @@ function UpdateTimetable() {
 
     useEffect(() => {
         const getData = async () => {
-                    setSelectDate(location.state.selectDate);
+                    setSelectDate(location.state.date);
                     setSubject(location.state.subject);
                     setGrade(location.state.grade);
                     setTeacherName(location.state.teacherName);
@@ -44,6 +51,7 @@ function UpdateTimetable() {
                 };
                 getData();
     }, [location]);
+    console.log(teacherName);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -70,8 +78,24 @@ function UpdateTimetable() {
                     data,
                 })
                 .then((res) => {
-                    console.log(res);
-                    navigate("/admin/timetable");
+                    console.log("updated"+res.data);
+                    setNotify({
+                        isOpen: true,
+                        message: "Timetable updated successfully.",
+                    type: "success",                  
+                  })
+                  setSelectDate("");
+                  setSubject("");
+                  setGrade("");
+                  setTeacherName("");
+                  setHallNumber("");
+                  setTime("");
+                  setClassType("");
+                  setMedium("");
+                  setFloorNumber("");
+                  setInterval(() =>{
+                    navigate("/timetable");
+                  },2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -96,12 +120,12 @@ function UpdateTimetable() {
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="subject">
                                 Subject
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="subject"
                                 type="text"
                                 placeholder="Subject"
                                 onChange={(e) =>
@@ -109,15 +133,17 @@ function UpdateTimetable() {
                                     value={subject}
                             />
                         </div>
+                       
+         
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="grade">
                                 Grade
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="grade"
                                 type="text"
                                 placeholder="Grade"
                                 onChange={(e) =>
@@ -129,13 +155,14 @@ function UpdateTimetable() {
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="name">
                                 Teacher Name
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="name"
                                 type="text"
+                                name="teacherName"
                                 placeholder="Teacher Name"
                                 onChange={(e) =>
                                     setTeacherName(e.target.value) }
@@ -145,12 +172,12 @@ function UpdateTimetable() {
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="hall">
                                 Hall Number
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="hall"
                                 type="text"
                                 placeholder="Hall Number"
                                 onChange={(e) =>
@@ -181,15 +208,25 @@ function UpdateTimetable() {
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
+                                    required
                                     dateFormat="dd/MM/yyyy"
-                                    onChange={(e) =>
-                                        setSelectDate(e.target.value)}
+
+                                    onChange={(date) =>
+                                        setSelectDate(date)}
                                         value={selectDate}
                                     
-                                    minDate={new Date()}                                
+                                        
+                                    
+                                    // minDate={new Date()}                                
                                 />
                             </div>
                         </div>
+                        
+           
+                        
+                                                 
+          
+                       
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -256,12 +293,16 @@ function UpdateTimetable() {
                             />
                         </div>
                         
-                        <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                            Submit
+                        <button 
+                        type="submit"
+                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
+                            Update
                         </button>
                     </form>
                 </div>
             </div>
+            
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
