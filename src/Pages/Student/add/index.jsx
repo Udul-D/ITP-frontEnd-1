@@ -61,12 +61,23 @@ function AddStudent() {
         };
 
         try {
-            await axios.post("api/student/register", {headers: {authToken: localStorage.getItem("authToken"),}, data,}).then((res) => {console.log(res);}).catch((err) => {console.log(err);})
+            await axios
+                .post("api/student/register", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         } catch (error) {
             console.log(error);
         }
-    }
-    
+    };
 
     return (
         <>
@@ -80,7 +91,9 @@ function AddStudent() {
                         Student Registration
                     </h1>
                 </div>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md" onSubmit={onSubmit}>
+                <form
+                    className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md"
+                    onSubmit={onSubmit}>
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
                             <svg
@@ -130,8 +143,8 @@ function AddStudent() {
                     <div class="mb-4">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
-                            for="birthday">
-                            Birthday
+                            for="username">
+                            Date
                         </label>
                         <div class="relative flex">
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none z-10">
@@ -147,10 +160,9 @@ function AddStudent() {
                                 </svg>
                             </div>
                             <DatePicker
-                                className="shadow appearance-none border rounded pl-10 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                dateFormat="dd/MM/yyyy"
-                                minDate={new Date()}
+                                className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 onChange={(date) => setbirthDay(date)}
+                                dateFormat="dd/MM/yyyy"
                             />
                         </div>
                     </div>
@@ -186,7 +198,9 @@ function AddStudent() {
                                     name="inlineRadioOptions"
                                     id="male"
                                     value="male"
-                                    onChange={(e) => setGender(e.target.value)}
+                                    onChange={(e) =>
+                                        setGender(e.target.value)
+                                    }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -202,7 +216,9 @@ function AddStudent() {
                                     name="inlineRadioOptions"
                                     id="female"
                                     value="female"
-                                    onChange={(e) => setGender(e.target.value)}
+                                    onChange={(e) =>
+                                        setGender(e.target.value)
+                                    }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -314,7 +330,9 @@ function AddStudent() {
                             id="parentPhoneNumber"
                             type="text"
                             placeholder="Parent Phone Number"
-                            onChange={(e) => setParentTelephone(e.target.value)}
+                            onChange={(e) =>
+                                setParentTelephone(e.target.value)
+                            }
                         />
                     </div>
 
@@ -329,7 +347,9 @@ function AddStudent() {
                             id="parentemail"
                             type="text"
                             placeholder="Parent Email"
-                            onChange={(e) => setParentEmail(e.target.value)}
+                            onChange={(e) =>
+                                setParentEmail(e.target.value)
+                            }
                         />
                     </div>
 
@@ -344,7 +364,9 @@ function AddStudent() {
                             id="parentaddress"
                             type="text"
                             placeholder="Parent Address"
-                            onChange={(e) => setParentAddress(e.target.value)}
+                            onChange={(e) =>
+                                setParentAddress(e.target.value)
+                            }
                         />
                     </div>
 
@@ -359,7 +381,9 @@ function AddStudent() {
                             id="parentoccupation"
                             type="text"
                             placeholder="Parent Occupation"
-                            onChange={(e) => setParentOccupation(e.target.value)}
+                            onChange={(e) =>
+                                setParentOccupation(e.target.value)
+                            }
                         />
                     </div>
 
@@ -387,9 +411,9 @@ function AddStudent() {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 aria-label="Default select example"
-                                
-                                onChange={(e) => setSubject(e.target.value)}
-                                >
+                                onChange={(e) =>
+                                    setSubject(e.target.value)
+                                }>
                                 <option selected>
                                     Select Your Subject
                                 </option>
@@ -424,16 +448,21 @@ function AddStudent() {
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 aria-label="Default select example"
-                                
-                                onChange={(e) => setTeacher(e.target.value)}>
+                                onChange={(e) =>
+                                    setTeacher(e.target.value)
+                                }>
                                 <option selected>
                                     Select Your Teacher
                                 </option>
-                                <option value="1">U.D.P. Madawa</option>
-                                <option value="2">
+                                <option value="U.D.P. Madawa">
+                                    U.D.P. Madawa
+                                </option>
+                                <option value="M.N. Siriwardhana">
                                     M.N. Siriwardhana
                                 </option>
-                                <option value="3">S. Jeewanthi</option>
+                                <option value="S. Jeewanthi">
+                                    S. Jeewanthi
+                                </option>
                             </select>
                         </div>
                     </div>
