@@ -1,9 +1,13 @@
+import React from "react";
 import styled from "styled-components";
-import { Link as LinkR } from "react-router-dom";
+import { Link as LinkR, Navigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { Link as LinkScroll } from "react-scroll";
 import Onlylogo from "../../Assets/Images/OnlyLogoColored.svg";
 import "./header.css";
+import { UserOutlined } from "@ant-design/icons";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const NavbarContainer = styled.div`
     display: flex;
@@ -106,10 +110,35 @@ export const NavBtnLink = styled(LinkR)`
 `;
 
 const Header = ({ toggle }) => {
+    const navigate = useNavigate();
+    const login = localStorage.getItem("loggedIn");
+    console.log(login);
+
+    const logout = () => {
+        localStorage.clear();
+        navigate("/login");
+        console.log("logout");
+        // axios
+        //     .post("/api/logout", {
+        //         headers: {
+        //             authToken: localStorage.getItem("authToken"),
+        //         },
+        //     })
+        //     .then((res) => {
+        //         console.log(res);
+        //         console.log("logout success");
+        //         localStorage.clear();
+        //     });
+    };
+
+    const profileClicked = () => {
+        navigate("/login");
+    };
+
     return (
         <>
-            <nav className="w-full bg-black">
-                <NavbarContainer>
+            <nav className="w-screen bg-black">
+                <div className="flex w-full justify-between h-20 -z-10 py-0 px-6">
                     <NavLogo to="/">
                         <img src={Onlylogo} className="logo" alt="logo" />
                         <p className="text-green-600">
@@ -128,19 +157,32 @@ const Header = ({ toggle }) => {
                             <NavLinks to="contact">Contact</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="services">Services</NavLinks>
+                            <NavLinks to="services">Events</NavLinks>
                         </NavItem>
-                        <NavItem>
-                            <NavLinks to="signup">Sign Up</NavLinks>
-                        </NavItem>
+                        {login ? (
+                            <NavItem>
+                                <NavLinks to={logout}> Logout</NavLinks>
+                            </NavItem>
+                        ) : (
+                            <NavItem>
+                                <NavLinks to="/login">Sign Up</NavLinks>
+                            </NavItem>
+                        )}
                     </NavMenu>
-                    <NavButton>
-                        <NavBtnLink to="/login">Sign In</NavBtnLink>
-                    </NavButton>
-                </NavbarContainer>
+                    {login ? (
+                        <img
+                            src="https://icon-library.com/images/profile-icon-white/profile-icon-white-7.jpg"
+                            className="pr-5"
+                            onClick={profileClicked}
+                        />
+                    ) : (
+                        <NavButton>
+                            <NavBtnLink to="/login">Login</NavBtnLink>
+                        </NavButton>
+                    )}
+                </div>
             </nav>
         </>
     );
 };
-
 export default Header;

@@ -1,9 +1,10 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
+import axios from "axios";
 
 function AddTeacher() {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,71 @@ function AddTeacher() {
         setIsOpen(!isOpen);
     };
 
+    const [firstName,setFirstName] = useState("");
+    const[lastName,setLastName] = useState("");
+    //const[birthDay,setBirthDay] = useState(null);
+    const[NIC,setNIC] = useState("");
+    const[gender,setGender] = useState("");
+    const[phoneNumber,setPhoneNumber] = useState("");
+    const[email,setEmail] = useState("");
+    const[subject,setSubject] = useState("");
+    const[grade,setGrade] = useState("");
+    const[medium,setMedium] = useState("");
+    const[classType,setClassType]= useState("");
+    const[educationQualifications,setEducationQualifications]=useState("");
+    const[userName,setUserName]=useState("");
+    const[password,setPassword]=useState("");
+    const[confPassword,setConfPassword]=useState("");
+    const[imageUrl,setImgUrl]=useState("");
+    const[experienceYear,setExperienceYear]=useState("");
+
+
+
     const [selectDate, setSelectDate] = useState(null);
 
     const timeValue = new Date("2020-01-01 00:00:00 AM");
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            firstName: firstName,
+            lastName:lastName,
+            // birthday:birthDay,
+            NIC: NIC,
+            gender: gender,
+            phoneNumber:phoneNumber,
+            email:email,
+            subject:subject,
+            grade:grade,
+            medium:medium,
+            classType:classType,
+            higerQulification:educationQualifications,
+            username:userName,
+            password:password,
+            // confPassword : confPassword,
+            // imageUrl : imageUrl,
+            experienceYear: experienceYear,
+        };
+
+        try {
+            await axios
+                .post("api/teacher/register", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    console.log("Data error");
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -28,14 +91,18 @@ function AddTeacher() {
                         Teacher Registration
                     </h1>
                 </div>
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
+                <form className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md"
+                onSubmit={(e)=> onSubmit(e)}>
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
                         <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
                             <svg
                                 class="w-8 h-8"
                                 fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
+                                viewBox="0 0 20 20"
+                                onChange={(e) =>
+                                    setImgUrl(e.target.value)
+                                    }>
                                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                             </svg>
                             <span class="mt-2 text-base leading-normal">
@@ -56,6 +123,9 @@ function AddTeacher() {
                             id="firstname"
                             type="text"
                             placeholder="First Name"
+                            onChange={(e) =>
+                            setFirstName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -70,9 +140,12 @@ function AddTeacher() {
                             id="lastname"
                             type="text"
                             placeholder="Last Name"
+                            onChange={(e) =>
+                            setLastName(e.target.value)
+                            }
                         />
                     </div>
-
+{/* 
                     <div class="mb-4">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
@@ -93,14 +166,16 @@ function AddTeacher() {
                                 </svg>
                             </div>
                             <DatePicker
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                selected={selectDate}
-                                onChange={(date) => setSelectDate(date)}
-                                dateFormat="dd/MM/yyyy"
-                                minDate={new Date()}
-                            />
+                                    className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                    selected={selectDate}
+                                    onChange={(date) =>
+                                        setBirthDay(date)
+                                    }
+                                    dateFormat="dd/MM/yyyy"
+                                    minDate={new Date()}
+                                />
                         </div>
-                    </div>
+                    </div> */}
 
                     <div class="mb-6">
                         <label
@@ -113,17 +188,19 @@ function AddTeacher() {
                             id="nic"
                             type="text"
                             placeholder="NIC"
+                            onChange={(e) =>
+                            setNIC(e.target.value)
+                            }
                         />
                     </div>
 
                     <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
-                            for="Gender">
+                            for="NIC">
                             Gender
                         </label>
                     </div>
-
                     <div className="mb-6">
                         <div class="flex">
                             <div class="form-check form-check-inline">
@@ -133,6 +210,7 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="male"
                                     value="male"
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -148,6 +226,7 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="female"
                                     value="female"
+                                    onChange={(e) => setGender(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -169,6 +248,9 @@ function AddTeacher() {
                             id="phonenumber"
                             type="text"
                             placeholder="Phone Number"
+                            onChange={(e)=>
+                            setPhoneNumber(e.target.value)
+                            }
                         />
                     </div>
 
@@ -183,18 +265,55 @@ function AddTeacher() {
                             id="email"
                             type="text"
                             placeholder="Email"
+                            onChange={(e)=>{
+                            setEmail(e.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="subject">
+                            Subject
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                            id="subject"
+                            type="text"
+                            placeholder="subject"
+                            onChange={(e)=>{
+                            setSubject(e.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="grade">
+                            Grade
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                            id="grade"
+                            type="text"
+                            placeholder="Grade"
+                            onChange={(e)=>{
+                            setGrade(e.target.value);
+                            }}
                         />
                     </div>
 
 
 
-                    <div>
+                    {/* <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="parentoccupation">
                             Subject
                         </label>
-                        <div class="mb-6 xl:w-full">
+                        <div class="mb-6 xl:w-full" >
                             <select
                                 class="form-select appearance-none
                                 block
@@ -211,8 +330,11 @@ function AddTeacher() {
                                 ease-in-out
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
-                                <option selected>
+                                aria-label="Default select example"
+                                onChange={(e)=>{
+                                    setSubject(e.target.value);
+                                    }}>
+                                <option select>
                                     Select Your Subject
                                 </option>
                                 <option value="Maths">Maths</option>
@@ -229,10 +351,11 @@ function AddTeacher() {
                                 <option value="Sinhala">Information Technology (ICT)</option>
                                 
                             </select>
+                            
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div>
+                    {/* <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="parentoccupation">
@@ -255,7 +378,11 @@ function AddTeacher() {
                                 ease-in-out
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
+                                aria-label="Default select example"
+                                onChange={(e)=>{
+                                    setGrade(e.target.value);
+                                    }}
+                                    >
                                 <option selected>
                                     Select Your Grade
                                 </option>
@@ -267,7 +394,7 @@ function AddTeacher() {
                                 <option value="4">Advanced Level  (A/L)</option>
                             </select>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div>
                         <label
@@ -282,9 +409,10 @@ function AddTeacher() {
                                 <input
                                     class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                     type="radio"
-                                    name="inlineRadioOptions"
+                                    name="inlineRadio"
                                     id="sinhala"
                                     value="sinhala"
+                                    onChange={(e) => setMedium(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -297,9 +425,10 @@ function AddTeacher() {
                                 <input
                                     class="form-check-input form-check-input appearance-none rounded-full ml-5 h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                     type="radio"
-                                    name="inlineRadioOptions"
+                                    name="inlineRadio"
                                     id="english"
                                     value="english"
+                                    onChange={(e) => setMedium(e.target.value)}
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -326,6 +455,9 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="theory"
                                     value="theory"
+                                    onChange={(e)=> 
+                                        setClassType(e.target.value)
+                                        }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -341,6 +473,9 @@ function AddTeacher() {
                                     name="inlineRadioOptions"
                                     id="revision"
                                     value="revision"
+                                    onChange={(e)=> 
+                                        setClassType(e.target.value)
+                                        }
                                 />
                                 <label
                                     class="form-check-label inline-block text-gray-800"
@@ -366,6 +501,25 @@ function AddTeacher() {
                             id="eduQualifications"
                             type="text"
                             placeholder="Education Qualifications"
+                            onChange={(e) => 
+                              setEducationQualifications(e.target.value)
+                            }
+                        />
+                    </div>
+                    <div class="mb-6">
+                        <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="experienceYear">
+                            Experience Year
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                            id="experienceYear"
+                            type="text"
+                            placeholder="Education Qualifications"
+                            onChange={(e) => 
+                              setExperienceYear(e.target.value)
+                            }
                         />
                     </div>
 
@@ -380,6 +534,9 @@ function AddTeacher() {
                             id="username"
                             type="text"
                             placeholder="Username"
+                            onChange={(e)=> 
+                            setUserName(e.target.value)
+                            }
                         />
                     </div>
 
@@ -394,6 +551,9 @@ function AddTeacher() {
                             id="passowrd"
                             type="password"
                             placeholder="Password"
+                            onChange={(e)=>
+                             setPassword(e.target.value)
+                            }
                         />
                     </div>
 
@@ -408,6 +568,9 @@ function AddTeacher() {
                             id="confirmpassowrd"
                             type="password"
                             placeholder="Confirm Password"
+                            onChange={(e)=>
+                             setConfPassword(e.target.value)
+                            }
                         />
                     </div>
 
@@ -417,7 +580,6 @@ function AddTeacher() {
                         </button>
                     </div>
                 </form>
-                {/* </div> */}
             </div>
             <Footer />
         </>
