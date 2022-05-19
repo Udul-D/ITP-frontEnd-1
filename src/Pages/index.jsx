@@ -32,6 +32,7 @@ import UpdateResult from "./Result/Update/index";
 import UpdateExam from "./Exams/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateTutorial from "./Tutorial/Update";
+import UpdateInventory from "./Inventory/Update/index";
 
 export {
     ExamList,
@@ -66,4 +67,5 @@ export {
     UpdateExam,
     ExamStart,
     UpdateTutorial,
+    UpdateInventory,
 };
