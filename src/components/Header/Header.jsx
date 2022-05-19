@@ -108,7 +108,7 @@ export const NavBtnLink = styled(LinkR)`
 const Header = ({ toggle }) => {
     return (
         <>
-            <nav className="w-screen bg-black">
+            <nav className="w-full bg-black">
                 <NavbarContainer>
                     <NavLogo to="/">
                         <img src={Onlylogo} className="logo" alt="logo" />
