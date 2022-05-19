@@ -25,6 +25,7 @@ import AddTimetable from "./Timetable/add/index";
 import AddInventory from "./Inventory/add/index";
 import AddTeacher from "./Teachers/Add";
 import AddResult from "./Result/add/index";
+import UpdateTimetable from "./Timetable/update/index";
 import UpdateEvent from "./Events/update/index";
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
@@ -32,6 +33,7 @@ import UpdateExam from "./Exams/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
+import UpdateInventory from "./Inventory/Update/index";
 
 
 
@@ -62,6 +64,7 @@ export {
     AddTimetable,
     AddTeacher,
     AddResult,
+    UpdateTimetable,
     UpdateEvent,
     AddTutorial,
     UpdateResult,
@@ -69,5 +72,5 @@ export {
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
-
+    UpdateInventory,
 };
