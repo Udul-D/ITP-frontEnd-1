@@ -143,13 +143,7 @@ export default function Timetable() {
                                     {timetable.map((r) => (
                                         <tr class="bg-green-100 lg:text-black">
                                             <td class="p-3">
-                                                <a
-                                                    href="#"
-                                                    class="text-gray-500 hover:text-gray-100 mr-2 px-2">
-                                                    <i class="material-icons-outlined text-base">
-                                                        <EyeOutlined />
-                                                    </i>
-                                                </a>
+                                                
                                                 <a class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
                                                     <i class="material-icons-outlined text-base">
                                                         <EditOutlined
@@ -159,9 +153,9 @@ export default function Timetable() {
                                                                     e,
                                                                     r.subject,
                                                                     r.grade,
-                                                                    r.selectDate,
                                                                     r.teacherName,
                                                                     r.hallNumber,
+                                                                    r.selectDate,
                                                                     r.time,
                                                                     r.classType,
                                                                     r.medium,
@@ -172,7 +166,7 @@ export default function Timetable() {
                                                     </i>
                                                 </a>
                                                 <a
-                                                    href="#"
+                                                    
                                                     class="text-red-400 hover:text-gray-100 ml-2 px-2">
                                                     <i class="material-icons-round text-base">
                                                         <DeleteOutlined
@@ -248,7 +242,7 @@ export default function Timetable() {
                                                     />
                                                 ) : (
                                                     <span>
-                                                        {r.selectDate}
+                                                        {r.date}
                                                     </span>
                                                 )}
                                             </td>
