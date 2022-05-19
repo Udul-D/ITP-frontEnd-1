@@ -27,9 +27,13 @@ import {
     AddTeacher,
     AddTutorial,
     AddResult,
+    UpdateTimetable,
+    UpdateInventory,
+    UpdateEvent,
     UpdateResult,
     UpdateExam,
     ExamStart,
+    UpdateRequest,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -129,12 +133,15 @@ export const PageRoute = () => {
                             path="/tutorial/add"
                             element={<AddTutorial />}
                         />
-
                         <Route
                             path="/teacher/result/add/:id"
                             element={<AddResult />}
                         />
 
+                        <Route
+                            path="/admin/timetable/update/:id"
+                            element={<UpdateTimetable />}
+                        />
                         <Route
                             path="/teacher/result/update/:id"
                             element={<UpdateResult />}
@@ -144,6 +151,10 @@ export const PageRoute = () => {
                             element={<UpdateExam />}
                         />
                         <Route
+                            path="/teacher/request/update/:id"
+                            element={<UpdateRequest />}
+                        />
+                        <Route
                             path="exam/start/:id"
                             element={<ExamStart />}
                         />
@@ -151,6 +162,16 @@ export const PageRoute = () => {
                             path="/tutorial/update/:id"
                             element={<UpdateTutorial />}
                         />
+                        <Route
+
+                            path="/admin/inventory/update/:id"
+                            element={<UpdateInventory />}
+                        />
+                        <Route
+                            path="/admin/event/update/:id"
+                            element={<UpdateEvent />}
+                            />
+
                     </Routes>
                 </div>
             </BrowserRouter>

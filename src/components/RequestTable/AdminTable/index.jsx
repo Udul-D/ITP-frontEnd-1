@@ -4,7 +4,23 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
+
 export default function AdminRequestList() {
+
+    const [AdminRequestList, setAdminRequestList] = useState([]);
+
+    useEffect(() => {
+        const fetchAdminRequestList = async () => {
+            const res = await axios.get("/api/Request/all");
+            setAdminRequestList(res.data);
+            console.log(res.data);
+        };
+        fetchAdminRequestList();
+    }, []);
+
     return (
         <div className="p-26">
             <div class=" items-center justify-center mb-10 ml-10 bg-white">
@@ -104,60 +120,19 @@ export default function AdminRequestList() {
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                {AdminRequestList.map((r) => (
                                     <tr class="bg-green-100 lg:text-black">
                                         
-                                    <td class="p-3 font-medium capitalize">Mr Rathnayaka</td>
-                                    <td class="p-3 font-medium capitalize">A/L ICT Seminar</td>
-                                    <td class="p-3 font-medium capitalize">22/05/01</td>
-                                    <td class="p-3 font-medium capitalize">8.30 AM</td>
-                                    <td class="p-3 font-medium capitalizee">This is only for Advanced Level Students</td>
+                                    <td class="p-3 font-medium capitalize">{r.teacherName}</td>
+                                    <td class="p-3 font-medium capitalize">{r.requestTitle}</td>
+                                    <td class="p-3 font-medium capitalize">{r.Date}</td>
+                                    <td class="p-3 font-medium capitalize">{r.time}</td>
+                                    <td class="p-3 font-medium capitalizee">{r.description}</td>
                                     </tr>
 
-                                    <tr class="bg-green-100 lg:text-black">
-                                        
-                                    <td class="p-3 font-medium capitalize">Mr Premathilaka</td>
-                                    <td class="p-3 font-medium capitalize">Chemistry Revision</td>
-                                    <td class="p-3 font-medium capitalize">22/05/08</td>
-                                    <td class="p-3 font-medium capitalize">8.30 AM</td>
-                                    <td class="p-3 font-medium capitalizee">This is only for Advanced Level Students</td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        
-                                    <td class="p-3 font-medium capitalize">Prof. Mahesh</td>
-                                    <td class="p-3 font-medium capitalize">A/L seminar</td>
-                                    <td class="p-3 font-medium capitalize">22/03/01</td>
-                                    <td class="p-3 font-medium capitalize">8.30 AM</td>
-                                    <td class="p-3 font-medium capitalizee">This is only for the after O/L exam students</td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        
-                                    <td class="p-3 font-medium capitalize">Mrs. Kumudu</td>
-                                    <td class="p-3 font-medium capitalize">SFT Practical</td>
-                                    <td class="p-3 font-medium capitalize">22/05/04</td>
-                                    <td class="p-3 font-medium capitalize">1.30 pM</td>
-                                    <td class="p-3 font-medium capitalizee">I want a projector on that day</td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        
-                                    <td class="p-3 font-medium capitalize">Mr Silva</td>
-                                    <td class="p-3 font-medium capitalize">O/L History </td>
-                                    <td class="p-3 font-medium capitalize">22/05/10</td>
-                                    <td class="p-3 font-medium capitalize">10.30 AM</td>
-                                    <td class="p-3 font-medium capitalizee">Want a large Sri Lanka map </td>
-                                    </tr>
-
-                                    <tr class="bg-green-100 lg:text-black">
-                                        
-                                    <td class="p-3 font-medium capitalize">Mrs. Susila</td>
-                                    <td class="p-3 font-medium capitalize">A/L Sinhala Seminar</td>
-                                    <td class="p-3 font-medium capitalize">22/05/012</td>
-                                    <td class="p-3 font-medium capitalize">10.30 AM</td>
-                                    <td class="p-3 font-medium capitalizee">I will be invite Mr Perera for special speec on that day</td>
-                                    </tr>
-                                </tbody>
+                                    
+                             ))}</tbody>
                             </table>
                         </div>
                     </div>

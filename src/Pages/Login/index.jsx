@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import LoginForm from "../../components/Login/LoginForm";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -16,6 +17,8 @@ const LoginPage = () => {
             <Header toggle={toggle} />
 
             <LoginForm />
+
+            <Footer />
         </>
     );
 };
