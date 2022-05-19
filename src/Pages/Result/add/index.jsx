@@ -2,17 +2,70 @@ import React, { useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Form, Input, Button, Space } from "antd";
-export default function AddResult() {
-    const [isOpen, setIsOpen] = useState(false);
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/index";
 
+function AddResult() {
+    const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
-    const onFinish = (values) => {
-        console.log("Received values of form:", values);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+    const navigate = useNavigate();
+    const examId = window.location.pathname.split("/")[3];
+
+    const [examName, setExamName] = useState("");
+    const [studentName, setStudentName] = useState("");
+    const [studentId, setStudentID] = useState("");
+    const [marks, setMarks] = useState(null);
+    // setExamName(location.state.ExamName);
+    console.log(location.state.ExamName);
+    const exam = location.state.ExamName;
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            examName: exam,
+            studentName: studentName,
+            studentId: studentId,
+            marks: marks,
+        };
+
+        try {
+            await axios
+                .post("/api/result/add", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                    setNotify({
+                        isOpen: true,
+                        message: "Result added successfully",
+                        type: "success",
+                    });
+                    setInterval(() => {
+                        navigate(`/teacher/results/${examId}`, {
+                            state: {
+                                examName: exam,
+                            },
+                        });
+                    }, 2500);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -22,12 +75,12 @@ export default function AddResult() {
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">Results</h1>
             </div>
-            <div className="mx-72 w-3/5">
+            <div className="mx-96 w-1/2 ">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
                     <form
                         className="bg-white rounded px-8 pt-6 pb-8 mb-4"
-                        onFinish={onFinish}
-                        autoComplete="off">
+                        autoComplete="off"
+                        onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -35,122 +88,71 @@ export default function AddResult() {
                                 Exam Name
                             </label>
                             <input
-                                class="shadow appearance-none border rounded w-96 py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
+                                value={exam}
                                 placeholder="Exam Name"
                             />
                         </div>
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="username">
-                            Results
-                        </label>
-                        <Form>
-                            <Form.List name="users">
-                                {(fields, { add, remove }) => (
-                                    <>
-                                        {fields.map(
-                                            ({
-                                                key,
-                                                name,
-                                                ...restField
-                                            }) => (
-                                                <Space
-                                                    key={key}
-                                                    style={{
-                                                        display: "flex",
-                                                        marginBottom: 8,
-                                                    }}
-                                                    align="baseline">
-                                                    <Form.Item
-                                                        {...restField}
-                                                        name={[
-                                                            name,
-                                                            "first",
-                                                        ]}
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message:
-                                                                    "Missing Student Name",
-                                                            },
-                                                        ]}>
-                                                        <Input
-                                                            placeholder="Student Name"
-                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                                        />
-                                                    </Form.Item>
-                                                    <Form.Item
-                                                        {...restField}
-                                                        name={[
-                                                            name,
-                                                            "last",
-                                                        ]}
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message:
-                                                                    "Missing Student ID",
-                                                            },
-                                                        ]}>
-                                                        <Input
-                                                            placeholder="Student ID"
-                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                                        />
-                                                    </Form.Item>
-                                                    <Form.Item
-                                                        {...restField}
-                                                        name={[
-                                                            name,
-                                                            "first",
-                                                        ]}
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message:
-                                                                    "Missing Marks",
-                                                            },
-                                                        ]}>
-                                                        <Input
-                                                            placeholder="Marks"
-                                                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                                        />
-                                                    </Form.Item>
-                                                    <MinusCircleOutlined
-                                                        onClick={() =>
-                                                            remove(name)
-                                                        }
-                                                    />
-                                                </Space>
-                                            ),
-                                        )}
-                                        <Form.Item>
-                                            <Button
-                                                type="dashed"
-                                                onClick={() => add()}
-                                                block
-                                                className="bg-green-600 mx-0 mt-4 hover:bg-green-700 text-white font-bold py-2 px-12 rounded mb-10"
-                                                icon={<PlusOutlined />}>
-                                                Add field
-                                            </Button>
-                                        </Form.Item>
-                                    </>
-                                )}
-                            </Form.List>
-                            <Form.Item>
-                                <Button
-                                    type="primary"
-                                    htmlType="submit"
-                                    className="bg-green-600 mx-64 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                                    Submit
-                                </Button>
-                            </Form.Item>
-                        </Form>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Student Name
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                onChange={(e) =>
+                                    setStudentName(e.target.value)
+                                }
+                                placeholder="Student Name"
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Student ID
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                onChange={(e) =>
+                                    setStudentID(e.target.value)
+                                }
+                                placeholder="Student ID"
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label
+                                class="block text-gray-700 text-sm font-bold mb-2"
+                                for="username">
+                                Marks
+                            </label>
+                            <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="number"
+                                onChange={(e) => setMarks(e.target.value)}
+                                placeholder="Marks"
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
+                            Submit
+                        </button>
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
 }
+
+export default AddResult;

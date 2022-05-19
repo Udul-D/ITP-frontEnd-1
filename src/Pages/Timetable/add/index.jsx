@@ -3,8 +3,8 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import Footer from "../../../components/Footer/Footer";
+import axios from "axios";
 function AddTimetable() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -13,8 +13,52 @@ function AddTimetable() {
     };
 
     const [selectDate, setSelectDate] = useState(null);
+    const [subject, setSubject] = useState("");
+    const [grade, setGrade] = useState("");
+    const [teacherName, setTeacherName] = useState("");
+    const [hallNumber, setHallNumber] = useState("");
+    const [time, setTime] = useState("");
+    const [classType, setClassType] = useState("");
+    const [medium, setMedium] = useState("");
+    const [floorNumber, setFloorNumber] = useState("");
 
-    const timeValue = new Date("2020-01-01 00:00:00 AM");
+    //const timeValue = new Date("2020-01-01 00:00:00 AM");
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            subject: subject,
+            grade: grade,
+            date: selectDate,
+            teacherName: teacherName,
+            hallNumber: hallNumber,
+            time: time,
+            classType: classType,
+            medium: medium,
+            floorNumber: floorNumber,
+        };
+        console.log(data);
+        try {
+            await axios
+                .post("/api/timetable/add", {
+                    headers: {
+                        authToken: localStorage.getItem("authToken"),
+                    },
+                    data,
+                })
+                .then((res) => {
+                    console.log(res);
+                    window.location.href = "/timetable";
+
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -27,7 +71,7 @@ function AddTimetable() {
             </div>
             <div className="mx-96">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
-                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4" onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -39,6 +83,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Subject"
+                                required
+                                onChange={(e) =>
+                                    setSubject(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -52,6 +100,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Grade"
+                                required
+                                onChange={(e) =>
+                                    setGrade(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -65,6 +117,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Teacher Name"
+                                required
+                                onChange={(e) =>
+                                    setTeacherName(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -78,6 +134,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Hall Number"
+                                required
+                                onChange={(e) =>
+                                    setHallNumber(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-4">
@@ -87,7 +147,7 @@ function AddTimetable() {
                                 Date
                             </label>
                             <div class="relative flex">
-                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"></div>
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none z-10">
                                 <svg
                                     class="w-5 h-5 text-gray-700 dark:text-gray-400 top-10"
                                     fill="currentColor"
@@ -98,14 +158,17 @@ function AddTimetable() {
                                         d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                         clip-rule="evenodd"></path>
                                 </svg>
+                                </div>
                                 <DatePicker
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                    className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
+                                    dateFormat="dd/MM/yyyy"
+                                    required
                                     onChange={(date) =>
                                         setSelectDate(date)
                                     }
-                                    dateFormat="dd/MM/yyyy"
-                                    minDate={new Date()}
+                                    
+                                    minDate={new Date()}                                
                                 />
                             </div>
                         </div>
@@ -120,6 +183,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Time"
+                                required
+                                onChange={(e) =>
+                                    setTime(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -133,6 +200,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Class Type"
+                                required
+                                onChange={(e) =>
+                                    setClassType(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -146,6 +217,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Medium"
+                                required
+                                onChange={(e) =>
+                                    setMedium(e.target.value)
+                                }
                             />
                         </div>
                         <div class="mb-6">
@@ -159,6 +234,10 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Floor Number"
+                                required
+                                onChange={(e) =>
+                                    setFloorNumber(e.target.value)
+                                }
                             />
                         </div>
                         

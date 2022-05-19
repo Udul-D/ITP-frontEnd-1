@@ -1,4 +1,4 @@
-# ITP 
+# BrainTech Institute
 
 Frontend apllication for SLIIT 2nd year 2nd semeter IT Projetct<br>
 Read further to know how **you** can start contributing to this project.
@@ -41,12 +41,15 @@ git push origin <add-your-branch-name>
 
 **React**
 -[Offical Documentation](https://reactjs.org/docs/getting-started.html)
--[tutorials](https://www.youtube.com/results?search_query=react+tutorial+for+beginners)
 
-**React Router**
--[Offical Documentation](https://redux.js.org/introduction/getting-started)
--[Tutorials](https://www.youtube.com/results?search_query=react+router+tutorial+for+beginners)
+**React Router Dom**
+-[Offical Documentation](https://reactrouter.com/docs/en/v6/getting-started/installation)
 
-**Redux**
--[Offical Documentation](https://redux.js.org/introduction/getting-started)
--[Tutorials](https://www.youtube.com/results?search_query=redux+tutorial+for+beginners)
+**Tailwind CSS**
+-[Offical Documentation](https://tailwindcss.com/docs/installation)
+
+**Ant Design**
+-[Offical Documentation](https://ant.design/docs/react/introduce)
+
+**Material UI**
+-[Offical Documentation](https://mui.com/material-ui/getting-started/installation/)
