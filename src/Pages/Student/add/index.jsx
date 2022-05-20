@@ -5,17 +5,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddStudent() {
     const [isOpen, setIsOpen] = useState(false);
+    const [endDate, setEndDate] = useState(new Date("2006/01/01"));
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
+    let navigate = useNavigate();
+
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastname] = useState("");
-    const [birthDay, setbirthDay] = useState(null);
+    const [birthDay, setbirthDay] = useState(new Date("2000/01/01"));
     const [NIC, setNIC] = useState("");
     const [gender, setGender] = useState(null);
     const [telephone, setTelephone] = useState("");
@@ -70,6 +74,7 @@ function AddStudent() {
                 })
                 .then((res) => {
                     console.log(res);
+                    navigate(`/login`);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -94,22 +99,6 @@ function AddStudent() {
                 <form
                     className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md"
                     onSubmit={onSubmit}>
-                    <div class="flex w-full items-center justify-center bg-grey-lighter">
-                        <label class="w-48 mb-6 flex flex-col items-center px-2 py-3 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer bg-green-600 hover:bg-green-800 text-white hover:text-white">
-                            <svg
-                                class="w-8 h-8"
-                                fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
-                                <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                            </svg>
-                            <span class="mt-2 text-base leading-normal">
-                                Select Your Photo
-                            </span>
-                            <input type="file" class="hidden" />
-                        </label>
-                    </div>
-
                     <div class="mb-6">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
@@ -162,6 +151,9 @@ function AddStudent() {
                             <DatePicker
                                 className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 onChange={(date) => setbirthDay(date)}
+                                selected={birthDay}
+                                startDate={birthDay}
+                                endDate={endDate}
                                 dateFormat="dd/MM/yyyy"
                             />
                         </div>
