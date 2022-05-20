@@ -38,6 +38,7 @@ import {
 
 import LoginPage from "../Pages/Login";
 import UpdateTutorial from "../Pages/Tutorial/Update";
+import UpdateStudent from "../Pages/Student/update";
 
 export const PageRoute = () => {
     return (
@@ -52,7 +53,7 @@ export const PageRoute = () => {
                             element={<TeacherList />}
                         />
                         <Route
-                            path="/studentlist"
+                            path="/students"
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
@@ -163,15 +164,17 @@ export const PageRoute = () => {
                             element={<UpdateTutorial />}
                         />
                         <Route
-
                             path="/admin/inventory/update/:id"
                             element={<UpdateInventory />}
                         />
                         <Route
                             path="/admin/event/update/:id"
                             element={<UpdateEvent />}
-                            />
-
+                        />
+                        <Route
+                            path="/student/update/:id"
+                            element={<UpdateStudent />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>
