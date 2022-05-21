@@ -54,9 +54,11 @@ export default function LoginForm() {
                     message: "Login Successful",
                     type: "success",
                 });
-                localStorage.setItem("authToken", result.data.authToken);        localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("authToken", result.data.authToken);
+                localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+                console.log("role - " + localStorage.getItem("role"));
                 if (result.data.role === "teacher") {
                     localStorage.setItem(
                         "teacherName",
