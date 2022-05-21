@@ -32,7 +32,7 @@ import UpdateExam from "./Exams/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
-
+import Dashboard from "./Dashboard";
 
 
 export {
@@ -69,5 +69,6 @@ export {
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
+    Dashboard,
 
 };
