@@ -35,10 +35,13 @@ import {
     ExamStart,
     UpdateRequest,
     EventStart,
+    Dashboard,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
 import UpdateTutorial from "../Pages/Tutorial/Update";
+import UpdateStudent from "../Pages/Student/update";
+import StudentProfile from "../Pages/Student/Profile/profile";
 
 export const PageRoute = () => {
     return (
@@ -47,13 +50,14 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
                             element={<TeacherList />}
                         />
                         <Route
-                            path="/studentlist"
+                            path="/students"
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
@@ -174,6 +178,12 @@ export const PageRoute = () => {
                         <Route
                             path="/events/start/:id"
                             element={<EventStart />}
+                            path="/student/update/:id"
+                            element={<UpdateStudent />}
+                        />
+                        <Route
+                            path="/student/profile/:id"
+                            element={<StudentProfile />}
                         />
                     </Routes>
                 </div>
