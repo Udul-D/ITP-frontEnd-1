@@ -207,7 +207,6 @@ export default function LoginForm() {
                 </div>
             </div>
             <Notification notify={notify} setNotify={setNotify} />
-            <Footer />
         </>
     );
 }

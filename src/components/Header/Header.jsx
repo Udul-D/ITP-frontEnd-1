@@ -175,7 +175,7 @@ const Header = ({ toggle }) => {
                     {login ? (
                         <img
                             src="https://icon-library.com/images/profile-icon-white/profile-icon-white-7.jpg"
-                            className="pr-5"
+                            className="w-12 cursor-pointer mx-4 my-4 h-12"
                             onClick={profileClicked}
                         />
                     ) : (
