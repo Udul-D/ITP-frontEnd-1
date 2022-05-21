@@ -256,10 +256,12 @@ export default function Result() {
                                                                             "Are you sure you want to delete this Result?",
                                                                         onConfirm:
                                                                             () => {
-                                                                                handleDelete(
-                                                                                    r._id,
-                                                                                    e,
-                                                                                );
+                                                                                {
+                                                                                    handleDelete(
+                                                                                        r._id,
+                                                                                        e,
+                                                                                    );
+                                                                                }
                                                                             },
                                                                     },
                                                                 )
