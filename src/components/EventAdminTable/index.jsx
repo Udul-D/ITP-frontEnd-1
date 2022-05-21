@@ -6,7 +6,11 @@ import {
     EyeOutlined,
     EditOutlined,
     DeleteOutlined,
+    DownloadOutlined,
+    PlusOutlined,
 } from "@ant-design/icons";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function Event() {
     //const [eventDetails, setEventDetails] = useState([]);
@@ -17,9 +21,7 @@ export default function Event() {
     const [time, setTime] = useState("");
     const [venue, setVenue] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
     const [tags, setTags] = useState("");
-    const [reglink, setReglink] = useState("");
 
     //useEffect(() => {
     //const getallEventDetails = async () => {
@@ -67,9 +69,7 @@ export default function Event() {
         time,
         venue,
         description,
-        image,
         tags,
-        reglink,
     ) => {
         navigate(`/admin/event/update/${id}`, {
             state: {
@@ -78,11 +78,30 @@ export default function Event() {
                 time: time,
                 Venue: venue,
                 description: description,
-                imageUrl: image,
                 tags: tags,
-                registrationLink: reglink,
             },
         });
+    };
+
+    const columns = [
+        { title: "Event Name", field: "eventName" },
+        { title: "Date", field: "eventDate" },
+        { title: "Time", field: "time" },
+        { title: "Venue", field: "Venue" },
+        { title: "Description", field: "description" },
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text(eventName + " Event Sheet", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: event,
+        });
+        doc.save(eventName + " Event Sheet");
     };
 
     return (
@@ -101,75 +120,36 @@ export default function Event() {
                                         py-1
                                         px-3
                                         sm
+                                        font-bold
                                         rounded-full mb-3
                                     "
                                     onClick={addEvent}>
-                                    ADD EVENT
+                                    ADD NEW EVENT
                                 </button>
                             </a>
+                        <button
+                                            className="bg-green-600
+                                            hover:bg-green-800
+                                            text-white
+                                            py-2
+                                            px-5
+                                            flex
+                                            sm                                          
+                                            outline-none
+                                            font-bold
+                                            rounded-full mb-3"
+                                            onClick={() => downLoadPdf()}>
+                                            <span>
+                                                <span>
+                                                    <DownloadOutlined className="font-bold" />{" "}
+                                                </span>
+                                                Download
+                                            </span>
+                                        </button>                    
+                                        </div>
                         </div>
 
-                        <a>
-                            <button
-                                class="
-                                        bg-green-600
-                                        hover:bg-green-800
-                                        text-white
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                        
-                                    ">
-                                All
-                            </button>
-                        </a>
 
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-8
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Upcoming
-                            </button>
-                        </a>
-
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Past
-                            </button>
-                        </a>
-
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Ongoing
-                            </button>
-                        </a>
-                    </div>
 
                     <table class="w-full">
                         <thead class="bg-green-200 border-b-2 border-gray-200">
@@ -214,9 +194,7 @@ export default function Event() {
                                                             event.time,
                                                             event.Venue,
                                                             event.description,
-                                                            event.imageUrl,
                                                             event.tags,
-                                                            event.registrationLink,
                                                         )
                                                     }
                                                 />
@@ -271,7 +249,7 @@ export default function Event() {
                                                 }
                                             />
                                         ) : (
-                                            <span>{event.eventDate}</span>
+                                            <span>{event.eventDate.split("T")[0]}</span>
                                         )}
                                     </td>
                                     <td class="p-3 uppercase pl-8">
