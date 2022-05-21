@@ -1,25 +1,34 @@
-import { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/index";
 
-function AddStudent() {
+function UpdateStudent() {
     const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
     const [endDate, setEndDate] = useState(new Date("2006/01/01"));
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const id = window.location.pathname.split("/")[3];
     let navigate = useNavigate();
+    const location = useLocation();
 
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastname] = useState("");
-    const [birthDay, setbirthDay] = useState(new Date("2000/01/01"));
+    const [birthDay, setbirthDay] = useState(null);
     const [NIC, setNIC] = useState("");
     const [gender, setGender] = useState(null);
     const [telephone, setTelephone] = useState("");
@@ -34,11 +43,44 @@ function AddStudent() {
     const [parentOccupation, setParentOccupation] = useState("");
     const [subject, setSubject] = useState("");
     const [teacher, setTeacher] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
 
-    console.log(gender);
+    useEffect(() => {
+        const getData = async () => {
+            setFirstname(location.state.firstName);
+            setLastname(location.state.lastName);
+            setbirthDay(location.state.birthday);
+            setNIC(location.state.NIC);
+            setGender(location.state.studentGender);
+            setTelephone(location.state.phoneNumber);
+            setEmail(location.state.email);
+            setSchool(location.state.school);
+            setGrade(location.state.grade);
+            setMedium(location.state.medium);
+            setParentName(location.state.parentName);
+            setParentTelephone(location.state.parentPhoneNumber);
+            setParentOccupation(location.state.parentOccupation);
+            setParentEmail(location.state.parentEmail);
+            setParentAddress(location.state.parentAddress);
+            setSubject(location.state.subject);
+            setTeacher(location.state.teacher);
+        };
+        getData();
+    }, [location]);
+
+    // setting radio buttons
+    const malebtn = document.getElementById("male");
+    const femalebtn = document.getElementById("female");
+    if (gender === "male") {
+        malebtn.checked = true;
+        femalebtn.checked = false;
+    } else if (gender === "female") {
+        malebtn.checked = false;
+        femalebtn.checked = true;
+    }
+
+    // console.log(location.state.firstName);
     console.log(birthDay);
+    console.log(parentOccupation);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -60,13 +102,11 @@ function AddStudent() {
             parentOccupation: parentOccupation,
             subject: subject,
             teacher: teacher,
-            username: username,
-            password: password,
         };
 
         try {
             await axios
-                .post("api/student/register", {
+                .put("api/student/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
@@ -74,7 +114,32 @@ function AddStudent() {
                 })
                 .then((res) => {
                     console.log(res);
-                    navigate(`/login`);
+                    setNotify({
+                        isOpen: true,
+                        message: "Student Updated Successfully",
+                        type: "success",
+                    });
+                    setFirstname("");
+                    setLastname("");
+                    setbirthDay(null);
+                    setNIC("");
+                    setGender(null);
+                    setTelephone("");
+                    setEmail("");
+                    setSchool("");
+                    setGrade("");
+                    setMedium("");
+                    setParentName("");
+                    setParentTelephone("");
+                    setParentOccupation("");
+                    setParentEmail("");
+                    setParentAddress("");
+                    setSubject("");
+                    setTeacher("");
+
+                    setInterval(() => {
+                        navigate(`/students`);
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -109,6 +174,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="firstname"
                             type="text"
+                            value={firstName}
                             placeholder="First Name"
                             onChange={(e) => setFirstname(e.target.value)}
                         />
@@ -124,6 +190,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="lastname"
                             type="text"
+                            value={lastName}
                             placeholder="Last Name"
                             onChange={(e) => setLastname(e.target.value)}
                         />
@@ -151,7 +218,7 @@ function AddStudent() {
                             <DatePicker
                                 className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 onChange={(date) => setbirthDay(date)}
-                                selected={birthDay}
+                                value={birthDay}
                                 startDate={birthDay}
                                 endDate={endDate}
                                 dateFormat="dd/MM/yyyy"
@@ -169,6 +236,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-600 focus:shadow-outline"
                             id="nic"
                             type="text"
+                            value={NIC}
                             placeholder="NIC"
                             onChange={(e) => setNIC(e.target.value)}
                         />
@@ -231,6 +299,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="phonenumber"
                             type="text"
+                            value={telephone}
                             placeholder="Phone Number"
                             onChange={(e) => setTelephone(e.target.value)}
                         />
@@ -246,6 +315,8 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="email"
                             type="text"
+                            value={email}
+                            disabled={true}
                             placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -261,6 +332,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="school"
                             type="text"
+                            value={school}
                             placeholder="School"
                             onChange={(e) => setSchool(e.target.value)}
                         />
@@ -276,6 +348,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="grade"
                             type="text"
+                            value={grade}
                             placeholder="Grade"
                             onChange={(e) => setGrade(e.target.value)}
                         />
@@ -291,6 +364,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="medium"
                             type="text"
+                            value={medium}
                             placeholder="Medium"
                             onChange={(e) => setMedium(e.target.value)}
                         />
@@ -306,6 +380,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="parentname"
                             type="text"
+                            value={parentName}
                             placeholder="Parent Name"
                             onChange={(e) => setParentName(e.target.value)}
                         />
@@ -321,6 +396,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="parentPhoneNumber"
                             type="text"
+                            value={parentTelephone}
                             placeholder="Parent Phone Number"
                             onChange={(e) =>
                                 setParentTelephone(e.target.value)
@@ -338,6 +414,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="parentemail"
                             type="text"
+                            value={parentEmail}
                             placeholder="Parent Email"
                             onChange={(e) =>
                                 setParentEmail(e.target.value)
@@ -355,6 +432,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="parentaddress"
                             type="text"
+                            value={parentAddress}
                             placeholder="Parent Address"
                             onChange={(e) =>
                                 setParentAddress(e.target.value)
@@ -372,6 +450,7 @@ function AddStudent() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="parentoccupation"
                             type="text"
+                            value={parentOccupation}
                             placeholder="Parent Occupation"
                             onChange={(e) =>
                                 setParentOccupation(e.target.value)
@@ -406,9 +485,7 @@ function AddStudent() {
                                 onChange={(e) =>
                                     setSubject(e.target.value)
                                 }>
-                                <option selected>
-                                    Select Your Subject
-                                </option>
+                                <option selected>{subject}</option>
                                 <option value="Maths">Maths</option>
                                 <option value="Science">Science</option>
                                 <option value="Sinhala">Sinhala</option>
@@ -443,9 +520,7 @@ function AddStudent() {
                                 onChange={(e) =>
                                     setTeacher(e.target.value)
                                 }>
-                                <option selected>
-                                    Select Your Teacher
-                                </option>
+                                <option selected>{teacher}</option>
                                 <option value="U.D.P. Madawa">
                                     U.D.P. Madawa
                                 </option>
@@ -457,50 +532,6 @@ function AddStudent() {
                                 </option>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="username">
-                            Username
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="username"
-                            type="text"
-                            placeholder="Username"
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="passowrd">
-                            Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="passowrd"
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="confirmpassowrd">
-                            Confirm Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="confirmpassowrd"
-                            type="password"
-                            placeholder="Confirm Password"
-                        />
                     </div>
 
                     <div class="flex w-full items-center justify-center bg-grey-lighter">
@@ -516,4 +547,4 @@ function AddStudent() {
     );
 }
 
-export default AddStudent;
+export default UpdateStudent;

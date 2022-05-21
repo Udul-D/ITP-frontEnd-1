@@ -28,7 +28,9 @@ const Footer = () => {
                     © BrainTEch Institute 2022. All rights reserved.
                 </span>
             </div>
-            <div className="mx-96 px-52 pb-3" style={{paddingLeft:"128px", paddingRight:"96px"}}>
+            <div
+                className="mx-96 pb-3"
+                style={{ paddingLeft: "250px", paddingRight: "250px" }}>
                 <SocialIcons />
             </div>
         </footer>
