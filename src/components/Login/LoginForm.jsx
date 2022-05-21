@@ -54,7 +54,8 @@ export default function LoginForm() {
                     message: "Login Successful",
                     type: "success",
                 });
-                localStorage.setItem("authToken", result.data.authToken);        localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("authToken", result.data.authToken);
+                localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
                 if (result.data.role === "teacher") {
@@ -205,7 +206,6 @@ export default function LoginForm() {
                 </div>
             </div>
             <Notification notify={notify} setNotify={setNotify} />
-            <Footer />
         </>
     );
 }

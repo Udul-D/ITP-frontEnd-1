@@ -58,7 +58,7 @@ const DeletePopup = () => {
                                         <div className="mt-2">
                                             <p className="text-sm text-gray-500">
                                                 Are you sure you want to
-                                                delete your account? All of
+                                                delete your details? All of
                                                 your data will be
                                                 permanently removed.
                                             </p>
