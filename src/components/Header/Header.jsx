@@ -161,7 +161,10 @@ const Header = ({ toggle }) => {
                         </NavItem>
                         {login ? (
                             <NavItem>
-                                <NavLinks to={logout}> Logout</NavLinks>
+                                <NavLinks onClick={logout}>
+                                    {" "}
+                                    Logout
+                                </NavLinks>
                             </NavItem>
                         ) : (
                             <NavItem>
