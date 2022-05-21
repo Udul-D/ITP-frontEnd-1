@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import TutorialCard from "../../../components/Tutorial-Card/index";
 import Header from "../../../components/Header/Header";
@@ -6,6 +7,9 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import axios from "axios";
 import Notification from "../../../components/Notification/index";
 import { useLocation, useNavigate } from "react-router-dom";
+import {DownloadOutlined} from "@ant-design/icons";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const TutorialList = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +39,27 @@ const TutorialList = () => {
         navigate("/tutorial/add");
     };
 
+    const columns = [
+        {title: "Tutorial Name", field: "tutorialName" },
+        {title: "Subject", field: "subject"},
+        {title: "Grade", field: "grade"},
+        {title: "Teacher Name", field: "teacherName"},
+        {title: "Lesson Name", field: "lessonName"},
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text("Tutorial Report", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: tutorials,
+        });
+        doc.save("Tutorial Report");
+    };
+
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
@@ -46,13 +71,36 @@ const TutorialList = () => {
                 {localStorage.getItem("role") === "teacher" ? (
                         <button
                             class="
-                            bg-green-600 hover:bg-green-800 text-white font-bold py-3 px-8 flex sm rounded-full mb-3 mr-10 mt-5"
+                            bg-green-600 hover:bg-green-800 text-white font-bold py-3 px-8 flex sm rounded-full mb-3 mt-5"
                             onClick={AddTutorial}>
                             Add New Tutorial
                         </button>
                     ) : (
                         <div></div>
                 )}
+                <button
+                    className="bg-green-600
+                    hover:bg-green-800
+                    text-white
+                    py-1
+                    px-5
+                    flex
+                    sm
+                    ml-8
+                    mr-5
+                    mt-9
+                    outline-none
+                    font-bold
+                    rounded-full mb-3"
+                    onClick={() => downLoadPdf()}>
+                    <span>
+                        <span>
+                            <DownloadOutlined className="font-bold" />{" "}
+                        </span>
+                        Download Tutorial Report
+                    </span>
+                </button>
+                                            
             </div>
             <div className="w-full p-10 gap-4 flex-wrap flex justify-start">
                 {tutorials.map((tutorial) => (
