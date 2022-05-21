@@ -271,7 +271,7 @@ function AddTeacher() {
                         />
                     </div>
 
-                    <div class="mb-6">
+                    {/* <div class="mb-6">
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="subject">
@@ -303,11 +303,11 @@ function AddTeacher() {
                             setGrade(e.target.value);
                             }}
                         />
-                    </div>
+                    </div> */}
 
 
 
-                    {/* <div>
+                    <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="parentoccupation">
@@ -353,9 +353,9 @@ function AddTeacher() {
                             </select>
                             
                         </div>
-                    </div> */}
+                    </div>
 
-                    {/* <div>
+                    <div>
                         <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="parentoccupation">
@@ -394,7 +394,7 @@ function AddTeacher() {
                                 <option value="4">Advanced Level  (A/L)</option>
                             </select>
                         </div>
-                    </div> */}
+                    </div>
 
                     <div>
                         <label
