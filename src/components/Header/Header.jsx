@@ -139,7 +139,7 @@ const Header = ({ toggle }) => {
     const profileClicked = () => {
 
         navigate("/teacher/profile");
-        navigate("/student/profile/" + id);
+        // navigate("/student/profile/" + id);
     };
 
     const navigateToDashboard = () => {
@@ -149,6 +149,10 @@ const Header = ({ toggle }) => {
             navigate("/student/dashboard/");
         }
     };
+
+    const homeToDashbar = () =>{
+        navigate("/dashboard");
+    }
 
     const registerPage = () => {
         navigate("/student/add/");
@@ -172,7 +176,7 @@ const Header = ({ toggle }) => {
                     <NavMenu>
                         {login ? (
                             <NavItem>
-                                <NavLinks onClick={navigateToDashboard}>
+                                <NavLinks onClick={homeToDashbar}>
                                     Dashboard
                                 </NavLinks>
                             </NavItem>
