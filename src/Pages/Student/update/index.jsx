@@ -158,7 +158,7 @@ function UpdateStudent() {
                 {/* <div className="bg-gray-100 shadow-md rounded p-5 mb-10 mt-5"> */}
                 <div className="text-center py-5 bg-green-600 mt-8">
                     <h1 className="font-bold text-3xl text-white">
-                        Student Registration
+                        Update Student Details
                     </h1>
                 </div>
                 <form
