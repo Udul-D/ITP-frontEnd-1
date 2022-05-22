@@ -35,6 +35,9 @@ import {
     ExamStart,
     UpdateRequest,
     Dashboard,
+    TeacherProfile,
+    TeacherProfileUpdate,
+    
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -181,6 +184,14 @@ export const PageRoute = () => {
                         <Route
                             path="/student/profile/:id"
                             element={<StudentProfile />}
+                        />
+                        <Route
+                            path="/teacher/profile"
+                            element={<TeacherProfile />}
+                        />
+                        <Route
+                            path="/teacher/update/:id"
+                            element={<TeacherProfileUpdate />}
                         />
                     </Routes>
                 </div>
