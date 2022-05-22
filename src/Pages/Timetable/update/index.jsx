@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-function AddTimetable() {
+import { useLocation, useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Notification from "../../../components/Notification/index";
+
+
+function UpdateTimetable() {
     const [isOpen, setIsOpen] = useState(false);
+    const[notify, setNotify] =useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
+
+    const id = window.location.pathname.split("/")[4];
+    let navigate = useNavigate();
+
 
     const [selectDate, setSelectDate] = useState(null);
     const [subject, setSubject] = useState("");
@@ -22,7 +35,23 @@ function AddTimetable() {
     const [medium, setMedium] = useState("");
     const [floorNumber, setFloorNumber] = useState("");
 
-    //const timeValue = new Date("2020-01-01 00:00:00 AM");
+    const location = useLocation();
+
+    useEffect(() => {
+        const getData = async () => {
+                    setSelectDate(location.state.date);
+                    setSubject(location.state.subject);
+                    setGrade(location.state.grade);
+                    setTeacherName(location.state.teacherName);
+                    setHallNumber(location.state.hallNumber);
+                    setTime(location.state.time);
+                    setClassType(location.state.classType);
+                    setMedium(location.state.medium);
+                    setFloorNumber(location.state.floorNumber);
+                };
+                getData();
+    }, [location]);
+    console.log(teacherName);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -37,20 +66,36 @@ function AddTimetable() {
             medium: medium,
             floorNumber: floorNumber,
         };
-        console.log(data);
+
+        console.log(id);
+
         try {
             await axios
-                .post("/api/timetable/add", {
+                .put("/api/timetable/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
                     data,
                 })
                 .then((res) => {
-                    console.log(res);
-                    window.location.href = "/timetable";
-
-
+                    console.log("updated"+res.data);
+                    setNotify({
+                        isOpen: true,
+                        message: "Timetable updated successfully.",
+                    type: "success",                  
+                  })
+                  setSelectDate("");
+                  setSubject("");
+                  setGrade("");
+                  setTeacherName("");
+                  setHallNumber("");
+                  setTime("");
+                  setClassType("");
+                  setMedium("");
+                  setFloorNumber("");
+                  setInterval(() =>{
+                    navigate("/timetable");
+                  },2500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -66,79 +111,80 @@ function AddTimetable() {
             <Header toggle={toggle} />
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">
-                    Create Timetable
+                    Update Timetable
                 </h1>
             </div>
-            <div className="mx-96">
+            <div className="mx-96 w-1/2">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
-                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4" onSubmit={onSubmit}>
+                    <form className="bg-white rounded px-8 pt-6 pb-8 mb-4" autoComplete="off" onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="subject">
                                 Subject
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="subject"
                                 type="text"
                                 placeholder="Subject"
-                                required
                                 onChange={(e) =>
-                                    setSubject(e.target.value)
-                                }
+                                    setSubject(e.target.value)}
+                                    value={subject}
                             />
                         </div>
+                       
+         
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="grade">
                                 Grade
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="grade"
                                 type="text"
                                 placeholder="Grade"
-                                required
                                 onChange={(e) =>
-                                    setGrade(e.target.value)
-                                }
+                                    setGrade(e.target.value)}
+                                    value={grade}
+                            
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="name">
                                 Teacher Name
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="name"
                                 type="text"
+                                name="teacherName"
                                 placeholder="Teacher Name"
-                                required
                                 onChange={(e) =>
-                                    setTeacherName(e.target.value)
-                                }
+                                    setTeacherName(e.target.value) }
+                                    value={teacherName}
                             />
                         </div>
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
+                                for="hall">
                                 Hall Number
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
+                                id="hall"
                                 type="text"
                                 placeholder="Hall Number"
-                                required
                                 onChange={(e) =>
-                                    setHallNumber(e.target.value)
-                                }
+                                    setHallNumber(e.target.value)}
+                                    value={hallNumber}
                             />
+                            
                         </div>
                         <div class="mb-4">
                             <label
@@ -162,16 +208,25 @@ function AddTimetable() {
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
-                                    dateFormat="dd/MM/yyyy"
                                     required
+                                    dateFormat="dd/MM/yyyy"
+
                                     onChange={(date) =>
-                                        setSelectDate(date)
-                                    }
+                                        setSelectDate(date)}
+                                        value={selectDate}
                                     
-                                    minDate={new Date()}                                
+                                        
+                                    
+                                    // minDate={new Date()}                                
                                 />
                             </div>
                         </div>
+                        
+           
+                        
+                                                 
+          
+                       
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -185,8 +240,8 @@ function AddTimetable() {
                                 placeholder="Time"
                                 required
                                 onChange={(e) =>
-                                    setTime(e.target.value)
-                                }
+                                    setTime(e.target.value)}
+                                    value={time}
                             />
                         </div>
                         <div class="mb-6">
@@ -200,10 +255,9 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Class Type"
-                                required
                                 onChange={(e) =>
-                                    setClassType(e.target.value)
-                                }
+                                    setClassType(e.target.value)}
+                                    value={classType}
                             />
                         </div>
                         <div class="mb-6">
@@ -217,10 +271,9 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Medium"
-                                required
                                 onChange={(e) =>
-                                    setMedium(e.target.value)
-                                }
+                                    setMedium(e.target.value)}
+                                    value={medium}
                             />
                         </div>
                         <div class="mb-6">
@@ -234,22 +287,25 @@ function AddTimetable() {
                                 id="username"
                                 type="text"
                                 placeholder="Floor Number"
-                                required
                                 onChange={(e) =>
-                                    setFloorNumber(e.target.value)
-                                }
+                                    setFloorNumber(e.target.value)}
+                                    value={floorNumber}
                             />
                         </div>
                         
-                        <button class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
-                            Submit
+                        <button 
+                        type="submit"
+                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
+                            Update
                         </button>
                     </form>
                 </div>
             </div>
+            
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
 }
 
-export default AddTimetable;
+export default UpdateTimetable;

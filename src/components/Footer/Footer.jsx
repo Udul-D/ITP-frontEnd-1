@@ -1,11 +1,10 @@
 import React from "react";
 import ItemsContainer from "./ItemsContainer";
 import SocialIcons from "./SocialIcons";
-import { MdSend } from "react-icons/md";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white w-screen content-center">
+        <footer className="bg-gray-900 text-white w-full content-center">
             <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 bg-green-800 py-7">
                 <h1 className="lg:text-4xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold md:w-2/5">
                     <span className="text-teal-400 ">Send</span> Your
@@ -29,7 +28,9 @@ const Footer = () => {
                     © BrainTEch Institute 2022. All rights reserved.
                 </span>
             </div>
-            <div className="mx-96 px-52 pb-3" style={{paddingLeft:"128px", paddingRight:"96px"}}>
+            <div
+                className="mx-96 pb-3"
+                style={{ paddingLeft: "250px", paddingRight: "250px" }}>
                 <SocialIcons />
             </div>
         </footer>
