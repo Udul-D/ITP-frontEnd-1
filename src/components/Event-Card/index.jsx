@@ -26,18 +26,18 @@ export default function EventCard({ event }) {
 
     let navigate = useNavigate();
 
-    // const callEvent = (id) => {
-    //     console.log("clicked");
-    //     navigate("/events/start/" + id, {
-    //         state: {
-    //             eventName: event.eventName,
-    //             description: event.description,
-    //             eventDate: event.eventDate,
-    //             time: event.time,
-    //             Venue: event.Venue,
-    //         },
-    //     });
-    // };
+    const callEvent = (id) => {
+        console.log("clicked");
+        navigate("/events/start/" + id, {
+            state: {
+                eventName: event.eventName,
+                description: event.description,
+                eventDate: event.eventDate,
+                time: event.time,
+                Venue: event.Venue,
+            },
+        });
+    };
 
     const handleDelete = (id) => {
         setConfirmDialog({
@@ -63,7 +63,7 @@ export default function EventCard({ event }) {
                 console.log("delete error" + err);
             });
     };
-    const callEvent = () => {};
+    // const callEvent = () => {};
 
     return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
@@ -72,7 +72,7 @@ export default function EventCard({ event }) {
                     <div>
                         <EditOutlined
                             className="text-green-800 text-lg ml-52 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
-                            onClick={handleUpdate}
+                            // onClick={handleUpdate}
                         />
                         <DeleteOutlined
                             className="text-red-800 text-lg pl-5 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110"
@@ -128,19 +128,6 @@ export default function EventCard({ event }) {
                     </div>
                 </div>
             </div>
-
-            <a href="#">
-                <button
-                    className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
-                    onClick={callEvent}>
-                    View
-                </button>
-            </a>
-            <Notification notify={notify} setNotify={setNotify} />
-            {/* <ConfirmDialog
-                confirmDialog={confirmDialog}
-                setConfirmDialog={setConfirmDialog}
-            /> */}
             <a>
                 <button
                     className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
