@@ -566,6 +566,7 @@ function UpdateStudentSide() {
                 </form>
                 {/* </div> */}
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
