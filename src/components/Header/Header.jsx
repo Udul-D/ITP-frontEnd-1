@@ -114,6 +114,10 @@ const Header = ({ toggle }) => {
     const login = localStorage.getItem("loggedIn");
     console.log(login);
 
+    const id = localStorage.getItem("roleID");
+
+    // console.log("id" + id);
+
     const logout = () => {
         localStorage.clear();
         navigate("/login");
@@ -132,7 +136,7 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
-        navigate("/login");
+        navigate("/student/profile/" + id);
     };
 
     return (
