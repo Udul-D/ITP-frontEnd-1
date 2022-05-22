@@ -58,6 +58,7 @@ export default function LoginForm() {
                 localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+                localStorage.setItem("id", result.data.roleData._id);
                 console.log("role - " + localStorage.getItem("role"));
                 if (result.data.role === "teacher") {
                     localStorage.setItem(
@@ -73,7 +74,7 @@ export default function LoginForm() {
                 setPassword("");
                 setIsLoggedIn(true);
                 setInterval(() => {
-                    navigate("/exams");
+                    navigate("/dashboard");
                 }, 2500);
             })
             .catch((err) => {
