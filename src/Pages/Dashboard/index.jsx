@@ -1,51 +1,56 @@
 import React, { useState } from "react";
+import TimeTableImg from "../../Assets/Images/pngegg.png";
+import ExamImg from "../../Assets/Images/Exam-Vector-Transparent-File.png";
+import TutorialImg from "../../Assets/Images/—Pngtree—laptop player screen tutorial video_4898419.png";
+import ExmResultsImg from "../../Assets/Images/result-g5ebf724bf_1280.png";
+import EventsImg from "../../Assets/Images/kindpng_7529367.png";
+import ProfileImg from "../../Assets/Images/profile.png";
+import myRequest from "../../Assets/Images/myRequest.png"
+import request from "../../Assets/Images/request.png"
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import Requests from "../Teachers/Request/List";
 
 const Dashboard = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     let navigate = useNavigate();
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const id = localStorage.getItem("roleID");
     console.log("RoleID: " + id);
 
-    const ProfileNav = () => {
-        navigate("/student/profile/" + id);
-    };
+    const AddRequest=()=>{
+        navigate("/teacher/request/add")
+    }
 
-    let navigate = useNavigate();
+    const Request=()=>{
+        navigate("/requests")
+    }
 
-    const AddRequest = () => {
-        navigate("/teacher/request/add");
-    };
-
-    const TimetableList = () => {
-        navigate("/timetable");
-    };
-
-    const AddExam = () => {
+    const ExamsNav = () => {
         navigate("/teacher/exam/add");
     };
 
-    const Requests = () => {
-        navigate("/requests");
-    };
-
-    const EventList = () => {
+    const EventsNav = () => {
         navigate("/events");
     };
 
-    const AddTutorial = () => {
-        navigate("/tutorial/add");
+    const TimetableNav = () => {
+        navigate("/timetable");
+    };
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
     };
 
     return (
         <div>
+            <Sidebar isOpen={isOpen} toggle={toggle} />
+            <Header toggle={toggle} />
+
             <div className="my-10 flex flex-row">
                 <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                     <img
@@ -60,51 +65,87 @@ const Dashboard = () => {
                     </button>
                 </div>
 
-            <div className="text-center py-5">
-                <h1 className="font-bold text-5xl text-black">Home</h1>
-            </div>
-
-            <div className=" my-10">
-                <div>
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={TimeTableImg}
+                        className="mt-4 h-28 w-36"
+                        alt="timetable"
+                    />
                     <button
-                        class="bg-green-600 mx-40 mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
-                        onClick={TimetableList}>
+                        onClick={TimetableNav}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
                         Time Table
                     </button>
+                </div>
 
-                    <button
-                        class="bg-green-600 mx- mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
-                        onClick={AddExam}>
-                        Exams
-                    </button>
-                    <button
-                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
-                        onClick={AddTutorial}>
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={TutorialImg}
+                        className="mt-4 h-28 w-36"
+                        alt="tute"
+                    />
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
                         Tutorial
                     </button>
                 </div>
-                <div>
-                    <button
-                        class="bg-green-600 mx-40 mt-4 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
-                        onClick={EventList}>
-                        Events
-                    </button>
-
-                    <button
-                        class="bg-green-600 mx- mt-2 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
-                        onClick={AddRequest}>
-                        Request
-                    </button>
-                    <button
-                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
-                        onClick={Requests}>
-                        My Request
-                    </button>
-                </div>
             </div>
 
+            <div className="my-10 mt-16 flex flex-row ">
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={EventsImg}
+                        className="mt-4 h-28 w-36"
+                        alt="eevnts"
+                    />
+                    <button
+                        onClick={EventsNav}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-[75px] rounded">
+                        Events
+                    </button>
+                </div>
+
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={request}
+                        className="mt-4 h-28 w-36"
+                        alt="exams"
+                    />
+                    <button
+                        onClick={AddRequest}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        Request
+                    </button>
+                </div>
+
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={myRequest}
+                        className="mt-4 h-28 w-36"
+                        alt="profile"
+                    />
+                    <button
+                        onClick={myRequest}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        My Requests
+                    </button>
+                </div>
+
+                {/* <div className="flex flex-row bg-gray-300 w-80 mx-10 rounded">
+                    <img src={TutorialImg} className="mt-4 h-28 w-36" />
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        Tutorial
+                    </button>
+                </div>
+
+                <div className="flex flex-row bg-gray-300 w-80 mx-10 rounded">
+                    <img src={ExmResultsImg} className="mt-4 h-28 w-36" />
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        Exam Results
+                    </button>
+                </div> */}
+            </div>
             <Footer />
-        </>
+        </div>
     );
 };
 
