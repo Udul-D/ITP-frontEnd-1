@@ -27,7 +27,7 @@ const dashboard = () => {
     };
 
     const TimetableNav = () => {
-        navigate("/student/Timetable/");
+        navigate("/studentTimetable/");
     };
 
     return (

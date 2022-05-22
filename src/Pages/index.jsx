@@ -33,9 +33,9 @@ import UpdateExam from "./Exams/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
-import Dashboard from "./Dashboard";
+// import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
-import StudentDashboard from "./Dashboard/index";
+import StudentDashboard from "./Student/StudentDashboard/index";
 import EventStart from "./Events/Event-start/index";
 import StudentTimetableList from "./StudentTimetable/List";
 
@@ -74,7 +74,7 @@ export {
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
-    Dashboard,
+    // Dashboard,
     UpdateInventory,
     StudentDashboard,
     EventStart,

@@ -35,7 +35,7 @@ import {
     ExamStart,
     UpdateRequest,
     EventStart,
-    Dashboard,
+    // Dashboard,
     StudentTimetableList,
 } from "../Pages";
 
@@ -53,7 +53,7 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
@@ -181,8 +181,8 @@ export const PageRoute = () => {
                         <Route
                             path="/events/start/:id"
                             element={<EventStart />}
-                            />
-                            <Route
+                        />
+                        <Route
                             path="/student/update/:id"
                             element={<UpdateStudent />}
                         />
@@ -193,7 +193,7 @@ export const PageRoute = () => {
                         <Route
                             path="/studentTimetable"
                             element={<StudentTimetableList />}
-                            />
+                        />
                         <Route
                             path="/student/updatestudent/:id"
                             element={<UpdateStudentSide />}
