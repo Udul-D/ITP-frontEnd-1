@@ -34,16 +34,10 @@ import {
     UpdateExam,
     ExamStart,
     UpdateRequest,
-<<<<<<< HEAD
     Dashboard,
     TeacherProfile,
     TeacherProfileUpdate,
     
-=======
-    EventStart,
-    // Dashboard,
-    StudentTimetableList,
->>>>>>> 641dab0a25d6ec3e0b0d709d7527844905e33a6f
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -60,7 +54,7 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
@@ -185,10 +179,10 @@ export const PageRoute = () => {
                             path="/admin/event/update/:id"
                             element={<UpdateEvent />}
                         />
-                        <Route
+                        {/* <Route
                             path="/events/start/:id"
                             element={<EventStart />}
-                        />
+                        /> */}
                         <Route
                             path="/student/update/:id"
                             element={<UpdateStudent />}
