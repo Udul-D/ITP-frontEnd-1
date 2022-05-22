@@ -38,6 +38,8 @@ import UpdateInventory from "./Inventory/Update/index";
 import StudentDashboard from "./Student/StudentDashboard/index";
 import EventStart from "./Events/Event-start/index";
 import StudentTimetableList from "./StudentTimetable/List";
+import AboutUsPage from "./AboutUs/index";
+import ContactUs from "./ContactUs/index";
 
 export {
     ExamList,
@@ -79,4 +81,6 @@ export {
     StudentDashboard,
     EventStart,
     StudentTimetableList,
+    AboutUsPage,
+    ContactUs,
 };
