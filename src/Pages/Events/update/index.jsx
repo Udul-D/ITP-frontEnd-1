@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
+import DatePicker from "react-datepicker";
 import axios from "axios";
+//import { data } from "autoprefixer";
+import { useLocation, useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import Notification from "../../../components/Notification/index";
 
-function AddEvent() {
+function UpdateEvent() {
     const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
     const toggle = () => {
         setIsOpen(!isOpen);
     };
+
+    const id = window.location.pathname.split("/")[4];
+    let navigate = useNavigate();
 
     const [eventName, setEventName] = useState("");
     const [selectDate, setSelectDate] = useState(null);
@@ -22,10 +33,24 @@ function AddEvent() {
     const [tags, setTags] = useState("");
     const [reglink, setReglink] = useState("");
 
+    const location = useLocation();
+
+    useEffect(() => {
+        const getData = async () => {
+            setEventName(location.state.eventName);
+           // setSelectDate(location.state.eventDate.toString());
+            setTime(location.state.time);
+            setVenue(location.state.Venue);
+            setDescription(location.state.description);
+            setImage(location.state.imageUrl);
+            setTags(location.state.tags);
+            setReglink(location.state.registrationLink);
+        };
+        getData();
+    }, [location]);
+
     const onSubmit = async (e) => {
         e.preventDefault();
-
-    
         const data = {
             eventName: eventName,
             eventDate: selectDate,
@@ -35,23 +60,37 @@ function AddEvent() {
             imageUrl: image,
             tags: tags,
             registrationLink: reglink,
-            
         };
-
+        console.log(id);
         try {
             await axios
-                .post("/api/event/add", {
+                .put("/api/event/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
                     data,
                 })
                 .then((res) => {
-                    console.log("add event res", res);
-                    window.location.href = "/admin/events"
+                    console.log("updated" + res.data);
+                    setNotify({
+                        isOpen: true,
+                        message: "Event updated successfully",
+                        type: "success",
+                    });
+                    setEventName("");
+                    setSelectDate(null);
+                    setTime("");
+                    setVenue("");
+                    setDescription("");
+                    setImage("");
+                    setTags("");
+                    setReglink();
+                    setInterval(() => {
+                        navigate("/events");
+                    }, 2500);
                 })
                 .catch((err) => {
-                    console.log(err);                   
+                    console.log(err);
                 });
         } catch (error) {
             console.log(error);
@@ -64,13 +103,14 @@ function AddEvent() {
             <Header toggle={toggle} />
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">
-                    Create Your Event
+                    Update Events
                 </h1>
             </div>
-            <div className="mx-96">
+            <div className="mx-96 w-1/2 ">
                 <div className="bg-gray-100 shadow-md rounded p-5 mb-10">
                     <form
                         className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                        autoComplete="off"
                         onSubmit={onSubmit}>
                         <div class="mb-6">
                             <label
@@ -82,11 +122,11 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Event Name"
                                 onChange={(e) =>
                                     setEventName(e.target.value)
                                 }
-                                required
+                                value={eventName}
+                                placeholder="Event Name"
                             />
                         </div>
                         <div class="mb-4">
@@ -111,12 +151,12 @@ function AddEvent() {
                                 <DatePicker
                                     className="shadow appearance-none border rounded w-full py-2 pr-3 pl-10 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                     selected={selectDate}
+                                    required
                                     onChange={(date) =>
                                         setSelectDate(date)
                                     }
                                     dateFormat="dd/MM/yyyy"
                                     minDate={new Date()}
-                                    required
                                 />
                             </div>
                         </div>
@@ -130,9 +170,9 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Time"
                                 onChange={(e) => setTime(e.target.value)}
-                                required
+                                value={time}
+                                placeholder="Time"
                             />
                         </div>
                         <div class="mb-6">
@@ -145,9 +185,9 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Venue"
                                 onChange={(e) => setVenue(e.target.value)}
-                                required
+                                value={venue}
+                                placeholder="Venue"
                             />
                         </div>
                         <div class="mb-6">
@@ -156,6 +196,16 @@ function AddEvent() {
                                 for="username">
                                 Description
                             </label>
+                            {/* <input
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
+                                id="username"
+                                type="text"                              
+                                onChange={(e) =>
+                                    setDescription(e.target.value)
+                                }
+                                value={description}
+                                placeholder="Description"
+                            /> */}
                             <textarea
                                 class="
                                     form-control
@@ -176,10 +226,11 @@ function AddEvent() {
                                 "
                                 id="exampleFormControlTextarea1"
                                 required
-                                rows="3"
-                                onChange={(e) =>{
+                                rows="5"
+                                onChange={(e) => {
                                     setDescription(e.target.value);
-                                }}          
+                                }}
+                                value={description}
                                 placeholder="Description"></textarea>
                         </div>
                         <div class="mb-6">
@@ -192,9 +243,9 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Image Url"
                                 onChange={(e) => setImage(e.target.value)}
-                                required
+                                value={image}
+                                placeholder="Image Url"
                             />
                         </div>
                         <div class="mb-6">
@@ -207,9 +258,9 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Tags"
                                 onChange={(e) => setTags(e.target.value)}
-                                required
+                                value={tags}
+                                placeholder="Tags"
                             />
                         </div>
                         <div class="mb-6">
@@ -222,25 +273,25 @@ function AddEvent() {
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                                 id="username"
                                 type="text"
-                                placeholder="Registration Link"
                                 onChange={(e) =>
                                     setReglink(e.target.value)
                                 }
-                                required
+                                value={reglink}
+                                placeholder="Registration Link"
                             />
                         </div>
-
                         <button
-                            class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded"
-                            type="submit">
-                            Submit
+                            type="submit"
+                            class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
+                            Update
                         </button>
                     </form>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
 }
 
-export default AddEvent;
+export default UpdateEvent;

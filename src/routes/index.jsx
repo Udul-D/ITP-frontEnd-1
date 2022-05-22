@@ -27,12 +27,18 @@ import {
     AddTeacher,
     AddTutorial,
     AddResult,
+    UpdateTimetable,
+    UpdateInventory,
+    UpdateEvent,
     UpdateResult,
     UpdateExam,
     UpdateAdmin,
+    ExamStart,
+    UpdateRequest,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
+import UpdateTutorial from "../Pages/Tutorial/Update";
 
 export const PageRoute = () => {
     return (
@@ -110,18 +116,12 @@ export const PageRoute = () => {
                             path="/admin/inventory/add"
                             element={<AddInventory />}
                         />
-                        <Route
-                            path="/admin"
-                            element={<AdminList/>}
-                        />
+                        <Route path="/admin" element={<AdminList />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
-                        />  
-                        <Route
-                            path="/admin/add"
-                            element={<AddAdmin/>}
-                        /> 
+                        />
+                        <Route path="/admin/add" element={<AddAdmin />} />
                         <Route
                             path="/student/add"
                             element={<AddStudent />}
@@ -130,16 +130,25 @@ export const PageRoute = () => {
                             path="/teachers/add"
                             element={<AddTeacher />}
 
+
                             />
                         <Route path="/tutorial/add"
                             element={<AddTutorial />}
                             />
                             
                         <Route
-                            path="/teacher/result/add"
+                            path="/tutorial/add"
+                            element={<AddTutorial />}
+                        />
+                        <Route
+                            path="/teacher/result/add/:id"
                             element={<AddResult />}
                         />
 
+                        <Route
+                            path="/admin/timetable/update/:id"
+                            element={<UpdateTimetable />}
+                        />
                         <Route
                             path="/teacher/result/update/:id"
                             element={<UpdateResult />}
@@ -152,6 +161,27 @@ export const PageRoute = () => {
                             path="/admin/update/:id"
                             element={<UpdateAdmin />}
                         />
+                        <Route
+                            path="/teacher/request/update/:id"
+                            element={<UpdateRequest />}
+                        />
+                        <Route
+                            path="exam/start/:id"
+                            element={<ExamStart />}
+                        />
+                        <Route
+                            path="/tutorial/update/:id"
+                            element={<UpdateTutorial />}
+                        />
+                        <Route
+
+                            path="/admin/inventory/update/:id"
+                            element={<UpdateInventory />}
+                        />
+                        <Route
+                            path="/admin/event/update/:id"
+                            element={<UpdateEvent />}
+                            />
                     </Routes>
                 </div>
             </BrowserRouter>

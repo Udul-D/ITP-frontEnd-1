@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import {
     EyeOutlined,
     EditOutlined,
@@ -6,6 +8,22 @@ import {
 } from "@ant-design/icons";
 
 export default function StudentList() {
+    const [students, setStudents] = useState([]);
+
+    useEffect(() => {
+        const fetchStudent = async () => {
+            const res = await axios.get("api/student/all");
+            setStudents(res.data);
+            console.log(res.data);
+        };
+        fetchStudent();
+    }, []);
+
+    const deleteStudent = async (id) => {
+        await axios.delete(`api/student/delete/${id}`);
+        alert("deleted");
+    };
+
     return (
         <div className="p-26">
             <div className=" items-center justify-center bg-white">
@@ -37,110 +55,51 @@ export default function StudentList() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="bg-green-100 lg:text-black">
-                                            <td className="p-3">
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-round text-base">
-                                                        <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                    </i>
-                                                </a>
-                                            </td>
-                                            <td className="p-3 font-medium capitalize">
-                                                Poorna Sankalana
-                                            </td>
-                                            <td className="p-3">
-                                                2000/03/30
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                P.R. Kanthi
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                070 243 1416
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                22
-                                            </td>
-                                        </tr>
-
-                                        <tr className="bg-green-100 lg:text-black">
-                                            <td className="p-3">
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-round text-base">
-                                                        <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                    </i>
-                                                </a>
-                                            </td>
-                                            <td className="p-3 font-medium capitalize">
-                                                Poorna Sankalana
-                                            </td>
-                                            <td className="p-3">
-                                                2000/03/30
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                P.R. Kanthi
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                070 243 1416
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                22
-                                            </td>
-                                        </tr>
-
-                                        <tr className="bg-green-100 lg:text-black">
-                                            <td className="p-3">
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-outlined text-base">
-                                                        <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
-                                                    </i>
-                                                </a>
-                                                <a href="/">
-                                                    <i className="material-icons-round text-base">
-                                                        <DeleteOutlined className="text-red-400 ml-2 hover:text-red-500" />
-                                                    </i>
-                                                </a>
-                                            </td>
-                                            <td className="p-3 font-medium capitalize">
-                                                Poorna Sankalana
-                                            </td>
-                                            <td className="p-3">
-                                                2000/03/30
-                                            </td>
-                                            <td className="p-3 upper">
-                                                P.R. Kanthi
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                070 243 1416
-                                            </td>
-                                            <td className="p-3 uppercase">
-                                                22
-                                            </td>
-                                        </tr>
+                                        {students.map((s) => (
+                                            <tr className="bg-green-100 lg:text-black">
+                                                <td className="p-3">
+                                                    <a href="#">
+                                                        <i className="material-icons-outlined text-base">
+                                                            <EyeOutlined className="text-gray-500 mr-2 hover:text-gray-800" />
+                                                        </i>
+                                                    </a>
+                                                    <a href="/">
+                                                        <i className="material-icons-outlined text-base">
+                                                            <EditOutlined className="text-yellow-400 mx-2 hover:text-yellow-500" />
+                                                        </i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i className="material-icons-round text-base">
+                                                            <DeleteOutlined
+                                                                className="text-red-400 ml-2 hover:text-red-500"
+                                                                onClick={() =>
+                                                                    deleteStudent(
+                                                                        s._id,
+                                                                    )
+                                                                }
+                                                            />
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                                <td className="p-3 font-medium capitalize">
+                                                    {s.firstName +
+                                                        " " +
+                                                        s.lastName}
+                                                </td>
+                                                <td className="p-3">
+                                                    {s.birthday}
+                                                </td>
+                                                <td className="p-3 uppercase">
+                                                    {s.parentName}
+                                                </td>
+                                                <td className="p-3 uppercase">
+                                                    {s.parentPhoneNumber}
+                                                </td>
+                                                <td className="p-3 uppercase">
+                                                    20
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

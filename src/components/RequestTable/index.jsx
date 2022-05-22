@@ -2,9 +2,30 @@ import {EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons"
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Routes, Route } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import ConfirmDialog from "../ConfirmDialog";
+import Notification from "../Notification";
 export default function RequestList() {
     const [request, setRequest] = useState([]);
+    const [updateClicked,setUpdateClicked]=useState(false);
+    const [teacherName,setTeacherName]=useState("");
+    const [requestTitle,setRequestTitle]=useState("");
+    const [date,setDate]=useState("");
+    const [time,setTime]=useState("");
+    const [description,setDesc]=useState("");
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
 
     useEffect(() => {
         const fetchRequest = async () => {
@@ -14,6 +35,55 @@ export default function RequestList() {
         };
         fetchRequest();
     }, []);
+
+    const addRequest = () =>{
+       navigate ("/api/Request/add");
+
+    }
+    
+    let navigate = useNavigate();
+
+    const handleDelete = async (id, e) => {
+        e.preventDefault();
+        axios
+            .delete(`/api/Request/delete/${id}`, {
+                headers: { authToken: localStorage.getItem("authToken") },
+            })
+            .then((res) => {
+                console.log("deleted");
+                window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Request deleted successfully",
+                    type: "error",
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const handleUpdate = async(
+        id,
+        e,
+        teacherName,
+        requestTitle,
+        date,
+        time,
+        description,
+    )=> {
+       navigate(`/teacher/Request/update/${id}`,{
+         state: {
+             teacherName : teacherName,
+             requestTitle : requestTitle,
+             date : date,
+             time : time,
+             description : description,
+         },
+
+       });
+
+    };
     
 return (
     <div className="p-26">
@@ -27,7 +97,7 @@ return (
         <div class="overflow-auto rounded-lg shadow">
         
         <div>
-        <a href="#">
+        <a href="/teacher/request/add">
             <button
             class="
                 bg-green-600
@@ -39,8 +109,9 @@ return (
                 sm
                 rounded-full mb-3
             "
+            onClick={addRequest}
             >
-            ADD
+            Add
             </button>
         </a>
         
@@ -65,17 +136,48 @@ return (
     
         <tr class="bg-green-100 lg:text-black">
         <td class="p-3">
-            <a href="#" class="text-gray-500 hover:text-gray-100 mr-2">
+            <a  class="text-gray-500 hover:text-gray-100 mr-2">
                 <i class="material-icons-outlined text-base"><EyeOutlined /></i>
             </a>
-            <a href="#" class="text-yellow-400 hover:text-gray-100 mx-2">
-                <i class="material-icons-outlined text-base"><EditOutlined /></i>
+            <a  class="text-yellow-400 hover:text-gray-100 mx-2">
+                <i class="material-icons-outlined text-base"><EditOutlined 
+                                                onClick={(e)=>
+                                                       handleUpdate(
+                                                           r._id,
+                                                           e,
+                                                           r.teacherName,
+                                                           r.requestTitle,
+                                                           r.date,
+                                                           r.time,
+                                                           r.description,
+                                                       )
+                                                     
+                                                }
+                /></i>
             </a>
             <a
-                href="#"
+                
                 class="text-red-400 hover:text-gray-100 ml-2"
             >
-                <i class="material-icons-round text-base"><DeleteOutlined /></i>
+                <i class="material-icons-round text-base"><DeleteOutlined onClick={(e) =>
+                                                                setConfirmDialog(
+                                                                    {
+                                                                        isOpen: true,
+                                                                        title: "Delete Result",
+                                                                        subTitle:
+                                                                            "Are you sure you want to delete this Result?",
+                                                                        onConfirm:
+                                                                            () => {
+                                                                                {
+                                                                                    handleDelete(
+                                                                                        r._id,
+                                                                                        e,
+                                                                                    );
+                                                                                }
+                                                                            },
+                                                                    },
+                                                                )
+                                                            }/></i>
             </a>
             </td>
             <td class="p-3 font-medium capitalize">{r.teacherName}</td>
@@ -94,7 +196,12 @@ return (
         </div>
         </div>
         </div>
-                </div>
+              <Notification notify={notify} setNotify={setNotify}/>
+              <ConfirmDialog 
+                     confirmDialog={confirmDialog}
+                     setConfirmDialog={setConfirmDialog} />
+         <Footer/>
+    </div>
         
         
         
