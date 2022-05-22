@@ -12,8 +12,7 @@ import {
     DeleteOutlined,
 } from "@ant-design/icons";
 
-
-export default function EventCard({event}) {
+export default function EventCard({ event }) {
     const [notify, setNotify] = useState({
         isOpen: false,
         message: "",
@@ -69,10 +68,9 @@ export default function EventCard({event}) {
     };
     const callEvent = () => {};
 
-    
-    return ( 
+    return (
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                <div  className=" pt-2 px-2 bg-gray-100 p-10"> 
+            <div className=" pt-2 px-2 bg-gray-100 p-10 h-[465px]">
                 {localStorage.getItem("role") === "admin" ? (
                     <div>
                         <EditOutlined
@@ -103,53 +101,45 @@ export default function EventCard({event}) {
                     src="https://21mbu63kam0h2kj3iy24qk18-wpengine.netdna-ssl.com/wp-content/uploads/2017/02/Lecture-Hall.jpg"
                     alt=""
                 />
-                
+
                 <div className="p-2">
-                
                     <h2 className="font-bold text-lg mb-2">
-                    {event.eventName}
+                        {event.eventName}
                     </h2>
                     <p className="text-sm text-justify text-gray-600">
-                    {event.description}
-                        </p>
-                
+                        {event.description}
+                    </p>
                 </div>
                 <div>
                     <div>
-                    
                         <span className="text-gray-800 font-bold pl-2">
-                        {event.eventDate}
+                            {event.eventDate}
                         </span>
-                        
                     </div>
                     <div>
-                    
                         <span className="text-gray-800 font-bold pl-2">
-                        {event.time}
-                        </span>                      
+                            {event.time}
+                        </span>
                     </div>
                     <div>
-                    
                         <span className="text-gray-800 font-bold pl-2">
-                        {event.Venue}
+                            {event.Venue}
                         </span>
-
-                    </div>
                     </div>
                 </div>
-                <a href="#">
-            <button className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
-            onClick={callEvent}>
-                View
-            </button>
-        </a>
-        <Notification notify={notify} setNotify={setNotify} />
-            <ConfirmDialog
+            </div>
+            <a href="#">
+                <button
+                    className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
+                    onClick={callEvent}>
+                    View
+                </button>
+            </a>
+            <Notification notify={notify} setNotify={setNotify} />
+            {/* <ConfirmDialog
                 confirmDialog={confirmDialog}
                 setConfirmDialog={setConfirmDialog}
-            />
-            </div>
-            );
-            
-            
+            /> */}
+        </div>
+    );
 }
