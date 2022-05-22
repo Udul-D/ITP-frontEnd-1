@@ -54,6 +54,11 @@ const ExamList = () => {
                     <div></div>
                 )}
             </div>
+            {localStorage.getItem("role") === "student" ? (
+                console.log("student login")
+            ) : (
+                <div></div>
+            )}
             <div className="w-full py-10 pl-28 gap-4 flex-wrap flex justify-start">
                 {exams.map((exam) => (
                     <ExamCard exam={exam} />

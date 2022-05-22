@@ -114,10 +114,15 @@ const Header = ({ toggle }) => {
     const login = localStorage.getItem("loggedIn");
     console.log(login);
 
+    const id = localStorage.getItem("roleID");
+
+    // console.log("id" + id);
+
     const logout = () => {
         localStorage.clear();
         navigate("/login");
         console.log("logout");
+        window.location.reload();
         // axios
         //     .post("/api/logout", {
         //         headers: {
@@ -132,7 +137,22 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
+
         navigate("/teacher/profile");
+        navigate("/student/profile/" + id);
+    };
+
+    const navigateToDashboard = () => {
+        const UserRole = localStorage.getItem("role");
+
+        if (UserRole === "student") {
+            navigate("/student/dashboard/");
+        }
+    };
+
+    const registerPage = () => {
+        navigate("/student/add/");
+
     };
 
     return (
@@ -150,6 +170,15 @@ const Header = ({ toggle }) => {
                     </MobileIcon>
 
                     <NavMenu>
+                        {login ? (
+                            <NavItem>
+                                <NavLinks onClick={navigateToDashboard}>
+                                    Dashboard
+                                </NavLinks>
+                            </NavItem>
+                        ) : (
+                            <NavLinks></NavLinks>
+                        )}
                         <NavItem>
                             <NavLinks to="about">About</NavLinks>
                         </NavItem>
@@ -168,16 +197,20 @@ const Header = ({ toggle }) => {
                             </NavItem>
                         ) : (
                             <NavItem>
-                                <NavLinks to="/login">Sign Up</NavLinks>
+                                <NavLinks onClick={registerPage}>
+                                    Sign Up
+                                </NavLinks>
                             </NavItem>
                         )}
                     </NavMenu>
                     {login ? (
-                        <img
-                            src="https://icon-library.com/images/profile-icon-white/profile-icon-white-7.jpg"
-                            className="w-12 cursor-pointer mx-4 my-4 h-12"
-                            onClick={profileClicked}
-                        />
+                        <div>
+                            <img
+                                src="https://icon-library.com/images/profile-icon-white/profile-icon-white-7.jpg"
+                                className="w-12 cursor-pointer mx-4 my-4 mb-1 h-12"
+                                onClick={profileClicked}
+                            />
+                        </div>
                     ) : (
                         <NavButton>
                             <NavBtnLink to="/login">Login</NavBtnLink>

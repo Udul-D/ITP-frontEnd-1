@@ -1,11 +1,11 @@
-import React from "react";
-import TimeTableImg from "../../Assets/Images/pngegg.png";
-import ExamImg from "../../Assets/Images/Exam-Vector-Transparent-File.png";
-import TutorialImg from "../../Assets/Images/—Pngtree—laptop player screen tutorial video_4898419.png";
-import ExmResultsImg from "../../Assets/Images/result-g5ebf724bf_1280.png";
-import EventsImg from "../../Assets/Images/kindpng_7529367.png";
-import ProfileImg from "../../Assets/Images";
+import React, { useState } from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import Requests from "../Teachers/Request/List";
 
 const Dashboard = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -18,16 +18,30 @@ const Dashboard = () => {
         navigate("/student/profile/" + id);
     };
 
-    const ExamsNav = () => {
-        navigate("/exams/");
+    let navigate = useNavigate();
+
+    const AddRequest = () => {
+        navigate("/teacher/request/add");
     };
 
-    const EventsNav = () => {
-        navigate("/events/");
+    const TimetableList = () => {
+        navigate("/timetable");
     };
 
-    const TimetableNav = () => {
-        navigate("/studentTimetable/");
+    const AddExam = () => {
+        navigate("/teacher/exam/add");
+    };
+
+    const Requests = () => {
+        navigate("/requests");
+    };
+
+    const EventList = () => {
+        navigate("/events");
+    };
+
+    const AddTutorial = () => {
+        navigate("/tutorial/add");
     };
 
     return (
@@ -46,72 +60,51 @@ const Dashboard = () => {
                     </button>
                 </div>
 
-                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                    <img
-                        src={TimeTableImg}
-                        className="mt-4 h-28 w-36"
-                        alt="timetable"
-                    />
+            <div className="text-center py-5">
+                <h1 className="font-bold text-5xl text-black">Home</h1>
+            </div>
+
+            <div className=" my-10">
+                <div>
                     <button
-                        onClick={TimetableNav}
-                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        class="bg-green-600 mx-40 mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
+                        onClick={TimetableList}>
                         Time Table
                     </button>
-                </div>
 
-                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                    <img
-                        src={TutorialImg}
-                        className="mt-4 h-28 w-36"
-                        alt="tute"
-                    />
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                    <button
+                        class="bg-green-600 mx- mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
+                        onClick={AddExam}>
+                        Exams
+                    </button>
+                    <button
+                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
+                        onClick={AddTutorial}>
                         Tutorial
                     </button>
                 </div>
-            </div>
-
-            <div className="my-10 mt-16 flex flex-row mx-[400px]">
-                <div className="flex flex-row bg-gray-300 w-80 mx-0 mr-24 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                    <img
-                        src={EventsImg}
-                        className="mt-4 h-28 w-36"
-                        alt="eevnts"
-                    />
+                <div>
                     <button
-                        onClick={EventsNav}
-                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-[75px] rounded">
+                        class="bg-green-600 mx-40 mt-4 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
+                        onClick={EventList}>
                         Events
                     </button>
-                </div>
 
-                <div className="flex flex-row bg-gray-300 w-80 mx-0 ml-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                    <img
-                        src={ProfileImg}
-                        className="mt-4 h-28 w-36"
-                        alt="profile"
-                    />
                     <button
-                        onClick={ProfileNav}
-                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
-                        Student Profile
+                        class="bg-green-600 mx- mt-2 hover:bg-green-700 text-white font-bold py-10 px-24 rounded"
+                        onClick={AddRequest}>
+                        Request
+                    </button>
+                    <button
+                        class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-10 px-20 rounded"
+                        onClick={Requests}>
+                        My Request
                     </button>
                 </div>
-
-                {/* <div className="flex flex-row bg-gray-300 w-80 mx-10 rounded">
-                    <img src={TutorialImg} className="mt-4 h-28 w-36" />
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
-                        Tutorial
-                    </button>
-                </div>
-                <div className="flex flex-row bg-gray-300 w-80 mx-10 rounded">
-                    <img src={ExmResultsImg} className="mt-4 h-28 w-36" />
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
-                        Exam Results
-                    </button>
-                </div> */}
             </div>
-        </div>
+
+            <Footer />
+        </>
     );
 };
 

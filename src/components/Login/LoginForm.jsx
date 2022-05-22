@@ -7,6 +7,7 @@ import "./LoginForm.css";
 import Notification from "../Notification/index";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { id } from "date-fns/locale";
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
@@ -58,8 +59,29 @@ export default function LoginForm() {
                 localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+
                 localStorage.setItem("id", result.data.roleData._id);
+
+                localStorage.setItem("roleID", result.data.roleData._id);
+
+                console.log("RoleData" + localStorage.getItem("roleData"));
+                console.log("id" + localStorage.getItem("roleID"));
+
                 console.log("role - " + localStorage.getItem("role"));
+
+                const UserRole = localStorage.getItem("role");
+
+                if (UserRole === "student") {
+                    localStorage.setItem(
+                        "roleFname",
+                        result.data.roleData.firstName,
+                    );
+                    localStorage.setItem(
+                        "roleLname",
+                        result.data.roleData.lastName,
+                    );
+                }
+
                 if (result.data.role === "teacher") {
                     localStorage.setItem(
                         "teacherName",
