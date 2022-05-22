@@ -13,9 +13,6 @@ import "jspdf-autotable";
 import Notification from "../Notification/index";
 import ConfirmDialog from "../ConfirmDialog/index";
 
-
-
-
 export default function Inventory() {
 
     const [notify, setNotify] = useState({
@@ -66,12 +63,12 @@ export default function Inventory() {
                 window.location.reload();
                 setNotify({
                     isOpen: true,
-                    message: "Event deleted successfully",
+                    message: "Inventory deleted successfully",
                     type: "error",
                 });
             })
             .catch((err) => {
-                console.log("Delete Error"+err);
+                console.log("delete Error"+err);
             });
     };
     const handleUpdate = async (
@@ -223,7 +220,7 @@ export default function Inventory() {
                                                                     subTitle:
                                                                         "Are you sure you want to delete this inventory?",
                                                                     onConfirm: () => {
-                                                                        handleDelete(inventory._id);
+                                                                        handleDelete(r._id);
                                                                     },                           
                                                             });
                                                         }}

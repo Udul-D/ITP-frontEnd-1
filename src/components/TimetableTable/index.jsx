@@ -62,7 +62,7 @@ export default function Timetable() {
                 window.location.reload();
                 setNotify({
                     isOpen: true,
-                    message: "Event deleted successfully",
+                    message: "Timetable deleted successfully",
                     type: "error",
                 });
             })
@@ -198,7 +198,7 @@ export default function Timetable() {
                                                                     subTitle:
                                                                         "Are you sure you want to delete this timetable?",
                                                                     onConfirm: () => {
-                                                                        handleDelete(timetable._id);
+                                                                        handleDelete(r._id);
                                                                     },                           
                                                             });
                                                         }}
