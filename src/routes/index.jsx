@@ -37,6 +37,8 @@ import {
     EventStart,
     // Dashboard,
     StudentTimetableList,
+    AboutUsPage,
+    ContactUs,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -202,6 +204,8 @@ export const PageRoute = () => {
                             path="/student/dashboard/"
                             element={<StudentDashboard />}
                         />
+                        <Route path="/aboutus" element={<AboutUsPage />} />
+                        <Route path="/contactus" element={<ContactUs />} />
                     </Routes>
                 </div>
             </BrowserRouter>
