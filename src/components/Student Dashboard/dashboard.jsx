@@ -30,6 +30,10 @@ const dashboard = () => {
         navigate("/studentTimetable/");
     };
 
+    const TutorialNav = () => {
+        navigate("/tutorials/");
+    };
+
     return (
         <div>
             <div className="my-10 flex flex-row">
@@ -65,7 +69,9 @@ const dashboard = () => {
                         className="mt-4 h-28 w-36"
                         alt="tute"
                     />
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                    <button
+                        onClick={TutorialNav}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
                         Tutorial
                     </button>
                 </div>
