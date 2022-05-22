@@ -29,7 +29,7 @@ import AddResult from "./Result/add/index";
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
 import UpdateExam from "./Exams/Update/index";
-
+import UpdateAdmin from "./Admin/Update/index";
 
 export {
     ExamList,
@@ -61,4 +61,5 @@ export {
     AddTutorial,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
 };
