@@ -42,6 +42,7 @@ import UpdateTutorial from "../Pages/Tutorial/Update";
 import UpdateStudent from "../Pages/Student/update";
 import StudentProfile from "../Pages/Student/Profile/profile";
 import UpdateStudentSide from "../Pages/Student/update/studentUpdate";
+import StudentDashboard from "../Pages/Student/StudentDashboard/index";
 
 export const PageRoute = () => {
     return (
@@ -186,6 +187,10 @@ export const PageRoute = () => {
                         <Route
                             path="/student/updatestudent/:id"
                             element={<UpdateStudentSide />}
+                        />
+                        <Route
+                            path="/student/dashboard/"
+                            element={<StudentDashboard />}
                         />
                     </Routes>
                 </div>
