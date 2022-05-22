@@ -8,7 +8,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import Notification from "../../../components/Notification/index";
 
-function UpdateStudent() {
+function UpdateStudentSide() {
     const [isOpen, setIsOpen] = useState(false);
     const [notify, setNotify] = useState({
         isOpen: false,
@@ -45,27 +45,51 @@ function UpdateStudent() {
     const [teacher, setTeacher] = useState("");
 
     useEffect(() => {
-        const getData = async () => {
-            setFirstname(location.state.firstName);
-            setLastname(location.state.lastName);
-            setbirthDay(location.state.birthday);
-            setNIC(location.state.NIC);
-            setGender(location.state.studentGender);
-            setTelephone(location.state.phoneNumber);
-            setEmail(location.state.email);
-            setSchool(location.state.school);
-            setGrade(location.state.grade);
-            setMedium(location.state.medium);
-            setParentName(location.state.parentName);
-            setParentTelephone(location.state.parentPhoneNumber);
-            setParentOccupation(location.state.parentOccupation);
-            setParentEmail(location.state.parentEmail);
-            setParentAddress(location.state.parentAddress);
-            setSubject(location.state.subject);
-            setTeacher(location.state.teacher);
+        const fetchStudent = async () => {
+            const res = await axios.get("api/student/" + id);
+            setFirstname(res.data.firstName);
+            setLastname(res.data.lastName);
+            setbirthDay(res.data.birthday);
+            setNIC(res.data.NIC);
+            setGender(res.data.studentGender);
+            setTelephone(res.data.phoneNumber);
+            setEmail(res.data.email);
+            setSchool(res.data.school);
+            setGrade(res.data.grade);
+            setMedium(res.data.medium);
+            setParentName(res.data.parentName);
+            setParentTelephone(res.data.parentPhoneNumber);
+            setParentEmail(res.data.parentEmail);
+            setParentAddress(res.data.parentAddress);
+            setParentOccupation(res.data.parentOccupation);
+            setSubject(res.data.subject);
+            setTeacher(res.data.teacher);
         };
-        getData();
-    }, [location]);
+        fetchStudent();
+    }, []);
+
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         setFirstname(location.state.firstName);
+    //         setLastname(location.state.lastName);
+    //         setbirthDay(location.state.birthday);
+    //         setNIC(location.state.NIC);
+    //         setGender(location.state.studentGender);
+    //         setTelephone(location.state.phoneNumber);
+    //         setEmail(location.state.email);
+    //         setSchool(location.state.school);
+    //         setGrade(location.state.grade);
+    //         setMedium(location.state.medium);
+    //         setParentName(location.state.parentName);
+    //         setParentTelephone(location.state.parentPhoneNumber);
+    //         setParentOccupation(location.state.parentOccupation);
+    //         setParentEmail(location.state.parentEmail);
+    //         setParentAddress(location.state.parentAddress);
+    //         setSubject(location.state.subject);
+    //         setTeacher(location.state.teacher);
+    //     };
+    //     getData();
+    // }, [location]);
 
     // setting radio buttons
     const malebtn = document.getElementById("male");
@@ -138,7 +162,7 @@ function UpdateStudent() {
                     setTeacher("");
 
                     setInterval(() => {
-                        navigate(`/students`);
+                        navigate("/student/profile/" + id);
                     }, 2500);
                 })
                 .catch((err) => {
@@ -547,4 +571,4 @@ function UpdateStudent() {
     );
 }
 
-export default UpdateStudent;
+export default UpdateStudentSide;

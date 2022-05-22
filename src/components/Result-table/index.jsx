@@ -228,47 +228,63 @@ export default function Result() {
                                     {results.map((r) => (
                                         <tr class="bg-green-100 lg:text-black">
                                             <td class="p-3">
-                                                <a class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
-                                                    <i class="material-icons-outlined text-base">
-                                                        <EditOutlined
-                                                            onClick={(e) =>
-                                                                handleUpdate(
-                                                                    r._id,
+                                                {localStorage.getItem(
+                                                    "role",
+                                                ) === "teacher" ? (
+                                                    <a class="text-yellow-400 hover:text-gray-100 mx-2 px-2">
+                                                        <i class="material-icons-outlined text-base">
+                                                            <EditOutlined
+                                                                onClick={(
                                                                     e,
-                                                                    r.studentId,
-                                                                    r.studentName,
-                                                                    r.marks,
-                                                                    r.examName,
-                                                                )
-                                                            }
-                                                        />
-                                                    </i>
-                                                </a>
-                                                <a class="text-red-400 hover:text-gray-100 ml-2 px-2">
-                                                    <i class="material-icons-round text-base">
-                                                        <DeleteOutlined
-                                                            onClick={(e) =>
-                                                                setConfirmDialog(
-                                                                    {
-                                                                        isOpen: true,
-                                                                        title: "Delete Result",
-                                                                        subTitle:
-                                                                            "Are you sure you want to delete this Result?",
-                                                                        onConfirm:
-                                                                            () => {
-                                                                                {
-                                                                                    handleDelete(
-                                                                                        r._id,
-                                                                                        e,
-                                                                                    );
-                                                                                }
-                                                                            },
-                                                                    },
-                                                                )
-                                                            }
-                                                        />
-                                                    </i>
-                                                </a>
+                                                                ) =>
+                                                                    handleUpdate(
+                                                                        r._id,
+                                                                        e,
+                                                                        r.studentId,
+                                                                        r.studentName,
+                                                                        r.marks,
+                                                                        r.examName,
+                                                                    )
+                                                                }
+                                                            />
+                                                        </i>
+                                                    </a>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                {localStorage.getItem(
+                                                    "role",
+                                                ) === "teacher" ? (
+                                                    <a class="text-red-400 hover:text-gray-100 ml-2 px-2">
+                                                        <i class="material-icons-round text-base">
+                                                            <DeleteOutlined
+                                                                onClick={(
+                                                                    e,
+                                                                ) =>
+                                                                    setConfirmDialog(
+                                                                        {
+                                                                            isOpen: true,
+                                                                            title: "Delete Result",
+                                                                            subTitle:
+                                                                                "Are you sure you want to delete this Result?",
+                                                                            onConfirm:
+                                                                                () => {
+                                                                                    {
+                                                                                        handleDelete(
+                                                                                            r._id,
+                                                                                            e,
+                                                                                        );
+                                                                                    }
+                                                                                },
+                                                                        },
+                                                                    )
+                                                                }
+                                                            />
+                                                        </i>
+                                                    </a>
+                                                ) : (
+                                                    <></>
+                                                )}
                                                 {updateClicked && (
                                                     <button
                                                         onClick={
