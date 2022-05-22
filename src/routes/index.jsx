@@ -34,6 +34,7 @@ import {
     UpdateExam,
     ExamStart,
     UpdateRequest,
+    Dashboard,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -49,6 +50,7 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"

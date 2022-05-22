@@ -79,9 +79,9 @@ export default function TutorialCard({ tutorial }) {
                             onClick={() => {
                                 setConfirmDialog({
                                     isOpen: true,
-                                    title: "Delete Exam",
+                                    title: "Delete Tutorial",
                                     subTitle:
-                                        "Are you sure you want to delete this exam?",
+                                        "Are you sure you want to delete this tutorial?",
                                     onConfirm: () => {
                                         handleDelete(tutorial._id);
                                     },

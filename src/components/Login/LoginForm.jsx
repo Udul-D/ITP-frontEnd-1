@@ -61,8 +61,9 @@ export default function LoginForm() {
                 localStorage.setItem("roleID", result.data.roleData._id);
 
                 console.log("RoleData" + localStorage.getItem("roleData"));
-
                 console.log("id" + localStorage.getItem("roleID"));
+                console.log("role - " + localStorage.getItem("role"));
+
                 if (result.data.role === "teacher") {
                     localStorage.setItem(
                         "teacherName",
