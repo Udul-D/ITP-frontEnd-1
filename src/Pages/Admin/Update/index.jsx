@@ -36,8 +36,8 @@ function UpdateAdmin() {
         const getData = async () => {
             setFirstName(location.state.firstName);
             setLastName(location.state.lastName);
-            setNIC(location.state.nic);
-            setUserName(location.state.userName);
+            setNIC(location.state.NIC);
+            setUserName(location.state.username);
             setPhoneNumber(location.state.phoneNumber);
             setEmail(location.state.email);
             setAddress(location.state.address);
@@ -53,7 +53,7 @@ function UpdateAdmin() {
             firstName: firstName,
             lastName: lastName,
             NIC: nic,
-            username: userName,
+            userName: userName,
             phoneNumber: phoneNumber,
             email: email, 
             address: address,
@@ -84,8 +84,12 @@ function UpdateAdmin() {
                     setEmail("");
                     setAddress("");
                     setPassword("");
-        
+
+                    setInterval(() => {
+                        navigate(`/admin`);
+                    }, 2500);
                 })
+        
                 .catch((err) => {
                     console.log(err);
                 });
@@ -103,7 +107,7 @@ function UpdateAdmin() {
                 {/* <div className="bg-gray-100 shadow-md rounded p-5 mb-10 mt-5"> */}
                 <div className="text-center py-5 bg-green-600 mt-8">
                     <h1 className="font-bold text-3xl text-white">
-                        Admin Registration
+                        Admin Profile Update
                     </h1>
                 </div>
                 <form  onSubmit={onSubmit} className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
@@ -118,6 +122,7 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="firstname"
                             type="text"
+                            value={firstName}
                             placeholder="First Name"
                             onChange={(e) =>
                                 setFirstName(e.target.value)
@@ -135,6 +140,7 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="lastname"
                             type="text"
+                            value={lastName}
                             placeholder="Last Name"
                             onChange={(e) =>
                                 setLastName(e.target.value)
@@ -152,26 +158,10 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="nic"
                             type="text"
+                            value={nic}
                             placeholder="NIC"
                             onChange={(e) =>
                                 setNIC(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="username">
-                            User Name
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="username"
-                            type="text"
-                            placeholder="User Name"
-                            onChange={(e) =>
-                                setUserName(e.target.value)
                             }
                         />
                     </div>
@@ -186,6 +176,7 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="phonenumber"
                             type="text"
+                            value={phoneNumber}
                             placeholder="phonenumber"
                             onChange={(e) =>
                                 setPhoneNumber(e.target.value)
@@ -204,10 +195,9 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="email"
                             type="text"
+                            value={email}
                             placeholder="Email"
-                            onChange={(e) =>
-                                setEmail(e.target.value)
-                            }
+                            disabled
                         />
                     </div>
 
@@ -221,40 +211,11 @@ function UpdateAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="address"
                             type="text"
+                            value={address}
                             placeholder="Address"
                             onChange={(e) =>
                                 setAddress(e.target.value)
                             }
-                        />
-                    </div>
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="passowrd">
-                            Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="passowrd"
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) =>
-                                setPassword(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="confirmpassowrd">
-                            Confirm Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="confirmpassowrd"
-                            type="password"
-                            placeholder="Confirm Password"
                         />
                     </div>
 
@@ -266,6 +227,7 @@ function UpdateAdmin() {
                 </form>
                 {/* </div> */}
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
