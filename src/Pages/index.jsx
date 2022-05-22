@@ -30,6 +30,7 @@ import UpdateEvent from "./Events/update/index";
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
 import UpdateExam from "./Exams/Update/index";
+import UpdateAdmin from "./Admin/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
@@ -37,6 +38,9 @@ import UpdateTutorial from "./Tutorial/Update";
 import UpdateInventory from "./Inventory/Update/index";
 import TeacherProfile from "./Teachers/Profile";
 import TeacherProfileUpdate from "./Teachers/Update";
+import studentDashboard from "./Student/StudentDashboard/index";
+import EventStart from "./Events/Event-start/index";
+import StudentTimetableList from "./StudentTimetable/List/index";
 
 
 export {
@@ -71,17 +75,16 @@ export {
     AddTutorial,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
     // Dashboard,
     UpdateInventory,
-<<<<<<< HEAD
     TeacherProfile,
     TeacherProfileUpdate,
-=======
-    StudentDashboard,
+    studentDashboard,
     EventStart,
     StudentTimetableList,
->>>>>>> 641dab0a25d6ec3e0b0d709d7527844905e33a6f
+
 };

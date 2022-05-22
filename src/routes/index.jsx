@@ -32,18 +32,15 @@ import {
     UpdateEvent,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
     ExamStart,
     UpdateRequest,
-<<<<<<< HEAD
     Dashboard,
     TeacherProfile,
     TeacherProfileUpdate,
-    
-=======
     EventStart,
     // Dashboard,
     StudentTimetableList,
->>>>>>> 641dab0a25d6ec3e0b0d709d7527844905e33a6f
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -143,7 +140,13 @@ export const PageRoute = () => {
                         <Route
                             path="/teachers/add"
                             element={<AddTeacher />}
-                        />
+
+
+                            />
+                        <Route path="/tutorial/add"
+                            element={<AddTutorial />}
+                            />
+                            
                         <Route
                             path="/tutorial/add"
                             element={<AddTutorial />}
@@ -164,6 +167,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/update/:id"
                             element={<UpdateExam />}
+                        />
+                        <Route
+                            path="/admin/update/:id"
+                            element={<UpdateAdmin />}
                         />
                         <Route
                             path="/teacher/request/update/:id"

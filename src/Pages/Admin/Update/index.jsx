@@ -1,11 +1,13 @@
-import { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Notification from "../../../components/Notification/index";
 
-function AddAdmin() {
+function UpdateAdmin() {
     const [isOpen, setIsOpen] = useState(false);
     const [notify, setNotify] = useState({
         isOpen: false,
@@ -13,19 +15,37 @@ function AddAdmin() {
         type: "",
     });
 
-    const navigate = useNavigate();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const id = window.location.pathname.split("/")[3];
+    let navigate = useNavigate();
+    const location = useLocation();
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [nic, setNIC] = useState();
+    const [nic, setNIC] = useState("");
     const [userName, setUserName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        const getData = async () => {
+            setFirstName(location.state.firstName);
+            setLastName(location.state.lastName);
+            setNIC(location.state.NIC);
+            setUserName(location.state.username);
+            setPhoneNumber(location.state.phoneNumber);
+            setEmail(location.state.email);
+            setAddress(location.state.address);
+            setPassword(location.state.password);
+        
+        };
+        getData();
+    }, [location]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -33,16 +53,17 @@ function AddAdmin() {
             firstName: firstName,
             lastName: lastName,
             NIC: nic,
-            username: userName,
+            userName: userName,
             phoneNumber: phoneNumber,
             email: email, 
             address: address,
             password: password,
+
         };
 
         try {
             await axios
-                .post("/api/admin/register", {
+                .put("api/admin/update/" + id, {
                     headers: {
                         authToken: localStorage.getItem("authToken"),
                     },
@@ -50,6 +71,11 @@ function AddAdmin() {
                 })
                 .then((res) => {
                     console.log(res);
+                    setNotify({
+                        isOpen: true,
+                        message: "Admin Updated Successfully",
+                        type: "success",
+                    });
                     setFirstName("");
                     setLastName("");
                     setNIC("");
@@ -58,15 +84,12 @@ function AddAdmin() {
                     setEmail("");
                     setAddress("");
                     setPassword("");
-                    setNotify({
-                        isOpen: true,
-                        message: "Admin added successfully",
-                        type: "success",
-                    });
+
                     setInterval(() => {
-                        navigate("/admin");
+                        navigate(`/admin`);
                     }, 2500);
                 })
+        
                 .catch((err) => {
                     console.log(err);
                 });
@@ -74,6 +97,7 @@ function AddAdmin() {
             console.log(error);
         }
     };
+
     return (
         <>
             <Sidebar isOpen={isOpen} toggle={toggle} />
@@ -83,7 +107,7 @@ function AddAdmin() {
                 {/* <div className="bg-gray-100 shadow-md rounded p-5 mb-10 mt-5"> */}
                 <div className="text-center py-5 bg-green-600 mt-8">
                     <h1 className="font-bold text-3xl text-white">
-                        Admin Registration
+                        Admin Profile Update
                     </h1>
                 </div>
                 <form  onSubmit={onSubmit} className="bg-white rounded px-8 pt-6 pb-8 mb-8 shadow-md">
@@ -98,6 +122,7 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="firstname"
                             type="text"
+                            value={firstName}
                             placeholder="First Name"
                             onChange={(e) =>
                                 setFirstName(e.target.value)
@@ -115,6 +140,7 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="lastname"
                             type="text"
+                            value={lastName}
                             placeholder="Last Name"
                             onChange={(e) =>
                                 setLastName(e.target.value)
@@ -132,26 +158,10 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="nic"
                             type="text"
+                            value={nic}
                             placeholder="NIC"
                             onChange={(e) =>
                                 setNIC(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="username">
-                            User Name
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="username"
-                            type="text"
-                            placeholder="User Name"
-                            onChange={(e) =>
-                                setUserName(e.target.value)
                             }
                         />
                     </div>
@@ -166,6 +176,7 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="phonenumber"
                             type="text"
+                            value={phoneNumber}
                             placeholder="phonenumber"
                             onChange={(e) =>
                                 setPhoneNumber(e.target.value)
@@ -184,10 +195,9 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="email"
                             type="text"
+                            value={email}
                             placeholder="Email"
-                            onChange={(e) =>
-                                setEmail(e.target.value)
-                            }
+                            disabled
                         />
                     </div>
 
@@ -201,40 +211,11 @@ function AddAdmin() {
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
                             id="address"
                             type="text"
+                            value={address}
                             placeholder="Address"
                             onChange={(e) =>
                                 setAddress(e.target.value)
                             }
-                        />
-                    </div>
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="passowrd">
-                            Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="passowrd"
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) =>
-                                setPassword(e.target.value)
-                            }
-                        />
-                    </div>
-
-                    <div class="mb-6">
-                        <label
-                            class="block text-gray-700 text-sm font-bold mb-2"
-                            for="confirmpassowrd">
-                            Confirm Password
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                            id="confirmpassowrd"
-                            type="password"
-                            placeholder="Confirm Password"
                         />
                     </div>
 
@@ -246,9 +227,10 @@ function AddAdmin() {
                 </form>
                 {/* </div> */}
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
 }
 
-export default AddAdmin;
+export default UpdateAdmin;
