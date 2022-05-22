@@ -3,7 +3,11 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import axios from "axios";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { Navigate, useNavigate } from "react-router-dom";
+>>>>>>> f5f2fca311b17dfbf4178e4900f682c935cf11c5
 import Requests from "../Teachers/Request/List";
 
 const Dashboard = () => {

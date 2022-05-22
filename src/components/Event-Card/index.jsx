@@ -3,14 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import isFuture from "date-fns/isFuture";
 import getDate from "date-fns/getDate";
-import Notification from "..//Notification/index";
-import ConfirmDialog from "../ConfirmDialog/index";
 import {
     EyeOutlined,
     PlusOutlined,
     EditOutlined,
     DeleteOutlined,
 } from "@ant-design/icons";
+import { id } from "date-fns/locale";
 
 export default function EventCard({ event }) {
     const [notify, setNotify] = useState({
@@ -27,20 +26,18 @@ export default function EventCard({ event }) {
 
     let navigate = useNavigate();
 
-    const handleUpdate = () => {
-        navigate(`/tutorial/update/${event._id}`, {
-            state: {
-                eventName: event.eventName,
-                eventDate: event.selectDate,
-                time: event.time,
-                Venue: event.venue,
-                description: event.description,
-                imageUrl: event.image,
-                tags: event.tags,
-                registrationLink: event.reglink,
-            },
-        });
-    };
+    // const callEvent = (id) => {
+    //     console.log("clicked");
+    //     navigate("/events/start/" + id, {
+    //         state: {
+    //             eventName: event.eventName,
+    //             description: event.description,
+    //             eventDate: event.eventDate,
+    //             time: event.time,
+    //             Venue: event.Venue,
+    //         },
+    //     });
+    // };
 
     const handleDelete = (id) => {
         setConfirmDialog({
@@ -95,6 +92,7 @@ export default function EventCard({ event }) {
                 ) : (
                     <div></div>
                 )}
+
                 <div className=""></div>
                 <img
                     className="h-40 w-full object-cover rounded-lg"
@@ -114,20 +112,23 @@ export default function EventCard({ event }) {
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
                             {event.eventDate}
+                            Date: {event.eventDate.split("T")[0]}
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
                             {event.time}
+                            Time: {event.time}
                         </span>
                     </div>
                     <div>
                         <span className="text-gray-800 font-bold pl-2">
-                            {event.Venue}
+                            Venue: {event.Venue}
                         </span>
                     </div>
                 </div>
             </div>
+
             <a href="#">
                 <button
                     className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
@@ -140,6 +141,13 @@ export default function EventCard({ event }) {
                 confirmDialog={confirmDialog}
                 setConfirmDialog={setConfirmDialog}
             /> */}
+            <a>
+                <button
+                    className="bg-green-600 w-full text-white font-bold py-2 px-4 rounded-b-lg"
+                    onClick={() => callEvent(event._id)}>
+                    View
+                </button>
+            </a>
         </div>
     );
 }

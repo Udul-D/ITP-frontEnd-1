@@ -36,6 +36,8 @@ import UpdateTutorial from "./Tutorial/Update";
 import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
 import StudentDashboard from "./Dashboard/index";
+import EventStart from "./Events/Event-start/index";
+import StudentTimetableList from "./StudentTimetable/List";
 
 export {
     ExamList,
@@ -75,4 +77,6 @@ export {
     Dashboard,
     UpdateInventory,
     StudentDashboard,
+    EventStart,
+    StudentTimetableList,
 };

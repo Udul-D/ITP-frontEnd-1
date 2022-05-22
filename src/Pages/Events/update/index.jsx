@@ -29,9 +29,7 @@ function UpdateEvent() {
     const [time, setTime] = useState("");
     const [venue, setVenue] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
     const [tags, setTags] = useState("");
-    const [reglink, setReglink] = useState("");
 
     const location = useLocation();
 
@@ -42,9 +40,7 @@ function UpdateEvent() {
             setTime(location.state.time);
             setVenue(location.state.Venue);
             setDescription(location.state.description);
-            setImage(location.state.imageUrl);
             setTags(location.state.tags);
-            setReglink(location.state.registrationLink);
         };
         getData();
     }, [location]);
@@ -57,9 +53,7 @@ function UpdateEvent() {
             time: time,
             Venue: venue,
             description: description,
-            imageUrl: image,
             tags: tags,
-            registrationLink: reglink,
         };
         console.log(id);
         try {
@@ -82,11 +76,9 @@ function UpdateEvent() {
                     setTime("");
                     setVenue("");
                     setDescription("");
-                    setImage("");
                     setTags("");
-                    setReglink();
                     setInterval(() => {
-                        navigate("/events");
+                        navigate("/admin/events");
                     }, 2500);
                 })
                 .catch((err) => {
@@ -196,16 +188,7 @@ function UpdateEvent() {
                                 for="username">
                                 Description
                             </label>
-                            {/* <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"                              
-                                onChange={(e) =>
-                                    setDescription(e.target.value)
-                                }
-                                value={description}
-                                placeholder="Description"
-                            /> */}
+                    
                             <textarea
                                 class="
                                     form-control
@@ -233,21 +216,7 @@ function UpdateEvent() {
                                 value={description}
                                 placeholder="Description"></textarea>
                         </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Image
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                onChange={(e) => setImage(e.target.value)}
-                                value={image}
-                                placeholder="Image Url"
-                            />
-                        </div>
+                
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -263,23 +232,7 @@ function UpdateEvent() {
                                 placeholder="Tags"
                             />
                         </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Registration Link
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                onChange={(e) =>
-                                    setReglink(e.target.value)
-                                }
-                                value={reglink}
-                                placeholder="Registration Link"
-                            />
-                        </div>
+                        
                         <button
                             type="submit"
                             class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded">
