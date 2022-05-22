@@ -3,10 +3,17 @@ import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddAdmin() {
     const [isOpen, setIsOpen] = useState(false);
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
 
+    const navigate = useNavigate();
     const toggle = () => {
         setIsOpen(!isOpen);
     };
@@ -43,6 +50,22 @@ function AddAdmin() {
                 })
                 .then((res) => {
                     console.log(res);
+                    setFirstName("");
+                    setLastName("");
+                    setNIC("");
+                    setUserName("");
+                    setPhoneNumber("");
+                    setEmail("");
+                    setAddress("");
+                    setPassword("");
+                    setNotify({
+                        isOpen: true,
+                        message: "Admin added successfully",
+                        type: "success",
+                    });
+                    setInterval(() => {
+                        navigate("/admin");
+                    }, 2500);
                 })
                 .catch((err) => {
                     console.log(err);
