@@ -34,6 +34,7 @@ import {
     UpdateExam,
     ExamStart,
     UpdateRequest,
+    EventStart,
     Dashboard,
 } from "../Pages";
 
@@ -175,6 +176,8 @@ export const PageRoute = () => {
                             element={<UpdateEvent />}
                         />
                         <Route
+                            path="/events/start/:id"
+                            element={<EventStart />}
                             path="/student/update/:id"
                             element={<UpdateStudent />}
                         />
