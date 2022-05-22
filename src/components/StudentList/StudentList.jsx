@@ -9,6 +9,9 @@ import {
 import Notification from "../Notification/index";
 import ConfirmDialog from "../ConfirmDialog/index";
 import Tooltip from "@material-ui/core/Tooltip";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { FaDownload } from "react-icons/fa";
 
 export default function StudentList() {
     const [students, setStudents] = useState([]);
@@ -102,12 +105,42 @@ export default function StudentList() {
         });
     };
 
+    const columns = [
+        { title: "Student Name", field: "firstName" },
+        { title: "Email", field: "email" },
+        { title: "Parent Name", field: "parentName" },
+        { title: "Parent Phone Number", field: "parentPhoneNumber" },
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text("Student List", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: students,
+        });
+        doc.save("Student List");
+    };
+
     return (
         <div className="p-26">
             <div className=" items-center justify-center bg-white">
                 <div className="col-span-12">
                     <div className="overflow-auto lg:overflow-visible">
-                        <div className="p-5 bg-gray-100">
+                        <div className=" bg-gray-100">
+                            <Tooltip
+                                title="Dowload Student Sheet"
+                                placement="top">
+                                <button
+                                    onClick={downLoadPdf}
+                                    className="bg-transparent border-green-600 py-2 px-2 rounded-lg m-4 transition ease-in-out delay-75 hover:scale-95 transform-gpu">
+                                    <FaDownload className="DownloadIcon" />
+                                    {/* <span className="text-green-600">Download</span> */}
+                                </button>
+                            </Tooltip>
                             <div className="overflow-auto rounded-lg shadow">
                                 <table className="w-full">
                                     <thead className="bg-green-200 border-b-2 border-gray-200">
@@ -126,9 +159,6 @@ export default function StudentList() {
                                             </th>
                                             <th className="p-3 text-sm font-semibold tracking-wide text-left">
                                                 Parent Phone Number
-                                            </th>
-                                            <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                                                Age
                                             </th>
                                         </tr>
                                     </thead>
@@ -217,9 +247,6 @@ export default function StudentList() {
                                                 </td>
                                                 <td className="p-3 ">
                                                     {s.parentPhoneNumber}
-                                                </td>
-                                                <td className="p-3 ">
-                                                    20
                                                 </td>
                                             </tr>
                                         ))}
