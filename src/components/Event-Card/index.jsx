@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import isFuture from "date-fns/isFuture";
 import getDate from "date-fns/getDate";
-import Notification from "..//Notification/index";
-import ConfirmDialog from "../ConfirmDialog/index";
 import {
     EyeOutlined,
     PlusOutlined,
@@ -14,17 +12,8 @@ import {
 import { id } from "date-fns/locale";
 
 export default function EventCard({ event }) {
-    const [notify, setNotify] = useState({
-        isOpen: false,
-        message: "",
-        type: "",
-    });
+    
 
-    const [confirmDialog, setConfirmDialog] = useState({
-        isOpen: false,
-        title: "",
-        subTitle: "",
-    });
 
     let navigate = useNavigate();
 
@@ -86,11 +75,7 @@ export default function EventCard({ event }) {
                     View
                 </button>
             </a>
-            <Notification notify={notify} setNotify={setNotify} />
-            <ConfirmDialog
-                confirmDialog={confirmDialog}
-                setConfirmDialog={setConfirmDialog}
-            />
+            
         </div>
     );
 }

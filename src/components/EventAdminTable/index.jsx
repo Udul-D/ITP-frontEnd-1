@@ -11,8 +11,27 @@ import {
 } from "@ant-design/icons";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
+
 
 export default function Event() {
+
+
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
+
+
     //const [eventDetails, setEventDetails] = useState([]);
     const [event, setEvents] = useState([]);
     const [updateClicked, setUpdateClicked] = useState(false);
@@ -46,8 +65,12 @@ export default function Event() {
         navigate(path);
     };
 
-    const handleDelete = async (id, e) => {
-        e.preventDefault();
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
+        
         axios
             .delete(`/api/event/delete/${id}`, {
                 headers: { authToken: localStorage.getItem("authToken") },
@@ -55,9 +78,14 @@ export default function Event() {
             .then((res) => {
                 console.log("deleted");
                 window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Event deleted successfully",
+                    type: "error",
+                });
             })
             .catch((err) => {
-                console.log(err);
+                console.log("delete error" + err);
             });
     };
 
@@ -203,12 +231,17 @@ export default function Event() {
                                         <a className="text-red-400 ml-2 hover:text-red-500">
                                             <i class="material-icons-round text-base">
                                                 <DeleteOutlined
-                                                    onClick={(e) =>
-                                                        handleDelete(
-                                                            event._id,
-                                                            e,
-                                                        )
-                                                    }
+                                                    onClick={() =>{
+                                                        setConfirmDialog({
+                                                            isOpen: true,
+                                                            title: "Delete Event",
+                                                            subTitle:
+                                                                "Are you sure you want to delete this event?",
+                                                            onConfirm: () => {
+                                                                handleDelete(event._id);
+                                                            },                           
+                                                    });
+                                                }}
                                                 />
                                             </i>
                                         </a>
@@ -306,6 +339,11 @@ export default function Event() {
                     </table>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     );
 }

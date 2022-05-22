@@ -178,6 +178,8 @@ export const PageRoute = () => {
                         <Route
                             path="/events/start/:id"
                             element={<EventStart />}
+                            />
+                            <Route
                             path="/student/update/:id"
                             element={<UpdateStudent />}
                         />
