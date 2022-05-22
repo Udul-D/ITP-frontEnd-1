@@ -15,7 +15,7 @@ const Home = () => {
             <Sidebar isOpen={isOpen} toggle={toggle} />
             <Header toggle={toggle} />
 
-            
+        
             <Footer />
 
         </>
