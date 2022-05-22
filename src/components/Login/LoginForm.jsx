@@ -59,10 +59,14 @@ export default function LoginForm() {
                 localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+
+                localStorage.setItem("id", result.data.roleData._id);
+
                 localStorage.setItem("roleID", result.data.roleData._id);
 
                 console.log("RoleData" + localStorage.getItem("roleData"));
                 console.log("id" + localStorage.getItem("roleID"));
+
                 console.log("role - " + localStorage.getItem("role"));
 
                 const UserRole = localStorage.getItem("role");
@@ -91,16 +95,9 @@ export default function LoginForm() {
                 setUsername("");
                 setPassword("");
                 setIsLoggedIn(true);
-
-                if (UserRole === "student") {
-                    setInterval(() => {
-                        navigate("/student/dashboard/");
-                    }, 2500);
-                } else {
-                    setInterval(() => {
-                        navigate("/exams");
-                    }, 2500);
-                }
+                setInterval(() => {
+                    navigate("/dashboard");
+                }, 2500);
             })
             .catch((err) => {
                 console.log(err);

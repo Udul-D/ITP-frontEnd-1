@@ -36,9 +36,9 @@ import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
 // import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
-import StudentDashboard from "./Student/StudentDashboard/index";
-import EventStart from "./Events/Event-start/index";
-import StudentTimetableList from "./StudentTimetable/List";
+import TeacherProfile from "./Teachers/Profile";
+import TeacherProfileUpdate from "./Teachers/Update";
+
 
 export {
     ExamList,
@@ -78,7 +78,12 @@ export {
     UpdateTutorial,
     // Dashboard,
     UpdateInventory,
+<<<<<<< HEAD
+    TeacherProfile,
+    TeacherProfileUpdate,
+=======
     StudentDashboard,
     EventStart,
     StudentTimetableList,
+>>>>>>> 641dab0a25d6ec3e0b0d709d7527844905e33a6f
 };

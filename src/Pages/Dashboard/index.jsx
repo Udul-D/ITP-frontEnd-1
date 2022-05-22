@@ -8,10 +8,14 @@ import { useNavigate } from "react-router-dom";
 import Requests from "../Teachers/Request/List";
 
 const Dashboard = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    let navigate = useNavigate();
 
-    const toggle = () => {
-        setIsOpen(!isOpen);
+    const id = localStorage.getItem("roleID");
+    console.log("RoleID: " + id);
+
+    const ProfileNav = () => {
+        navigate("/student/profile/" + id);
     };
 
     let navigate = useNavigate();
@@ -41,9 +45,20 @@ const Dashboard = () => {
     };
 
     return (
-        <>
-            <Sidebar isOpen={isOpen} toggle={toggle} />
-            <Header toggle={toggle} />
+        <div>
+            <div className="my-10 flex flex-row">
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                    <img
+                        src={ExamImg}
+                        className="mt-4 h-28 w-36"
+                        alt="exams"
+                    />
+                    <button
+                        onClick={ExamsNav}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                        Exams
+                    </button>
+                </div>
 
             <div className="text-center py-5">
                 <h1 className="font-bold text-5xl text-black">Home</h1>
