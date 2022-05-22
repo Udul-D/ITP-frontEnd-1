@@ -1,4 +1,4 @@
-import {EyeOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons"
+import {EyeOutlined, EditOutlined, DeleteOutlined ,DownloadOutlined} from "@ant-design/icons"
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,14 +6,10 @@ import Footer from "../../components/Footer/Footer";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import ConfirmDialog from "../ConfirmDialog";
 import Notification from "../Notification";
+import jsPDF from "jspdf";
 export default function RequestList() {
     const [request, setRequest] = useState([]);
-    const [updateClicked,setUpdateClicked]=useState(false);
-    const [teacherName,setTeacherName]=useState("");
-    const [requestTitle,setRequestTitle]=useState("");
-    const [date,setDate]=useState("");
-    const [time,setTime]=useState("");
-    const [description,setDesc]=useState("");
+    
 
     const [notify, setNotify] = useState({
         isOpen: false,
@@ -80,9 +76,29 @@ export default function RequestList() {
              time : time,
              description : description,
          },
-
        });
 
+    };
+
+    const columns = [
+        { title: "Teacher Name", field: "teacherName" },
+        { title: "Request Title", field: "requestTitle" },
+        { title: "Date", field: "Date"},
+        { title: "Time", field: "time" },
+        { title: "Description", field: "description" },
+
+    ];
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text("Request Sheet",20,10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: request,
+        });
+        doc.save(" Request Sheet");
     };
     
 return (
@@ -136,8 +152,11 @@ return (
     
         <tr class="bg-green-100 lg:text-black">
         <td class="p-3">
-            <a  class="text-gray-500 hover:text-gray-100 mr-2">
-                <i class="material-icons-outlined text-base"><EyeOutlined /></i>
+        <a
+                
+                class="text-red-400 hover:text-gray-100 ml-2"
+            >
+                <i class="material-icons-round text-base " onClick={() => downLoadPdf()}><DownloadOutlined  /></i>
             </a>
             <a  class="text-yellow-400 hover:text-gray-100 mx-2">
                 <i class="material-icons-outlined text-base"><EditOutlined 
@@ -165,7 +184,7 @@ return (
                                                                         isOpen: true,
                                                                         title: "Delete Result",
                                                                         subTitle:
-                                                                            "Are you sure you want to delete this Result?",
+                                                                            "Are you sure you want to delete this Request?",
                                                                         onConfirm:
                                                                             () => {
                                                                                 {
@@ -182,7 +201,7 @@ return (
             </td>
             <td class="p-3 font-medium capitalize">{r.teacherName}</td>
             <td class="p-3 font-medium capitalize">{r.requestTitle}</td>
-            <td class="p-3 font-medium capitalize">{r.Date}</td>
+            <td class="p-3 font-medium capitalize">{r.Date.split("T")[0]}</td>
             <td class="p-3 font-medium capitalize">{r.time}</td>
             <td class="p-3 font-medium capitalizee">{r.description}</td>
         </tr>))}

@@ -137,6 +137,8 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
+
+        navigate("/teacher/profile");
         navigate("/student/profile/" + id);
     };
 
@@ -150,6 +152,7 @@ const Header = ({ toggle }) => {
 
     const registerPage = () => {
         navigate("/student/add/");
+
     };
 
     return (
