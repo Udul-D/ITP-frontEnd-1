@@ -132,7 +132,7 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
-        navigate("/login");
+        navigate("/teacher/profile");
     };
 
     return (
