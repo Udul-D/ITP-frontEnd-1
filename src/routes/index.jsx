@@ -35,10 +35,17 @@ import {
     UpdateAdmin,
     ExamStart,
     UpdateRequest,
+    EventStart,
+    // Dashboard,
+    StudentTimetableList,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
 import UpdateTutorial from "../Pages/Tutorial/Update";
+import UpdateStudent from "../Pages/Student/update";
+import StudentProfile from "../Pages/Student/Profile/profile";
+import UpdateStudentSide from "../Pages/Student/update/studentUpdate";
+import StudentDashboard from "../Pages/Student/StudentDashboard/index";
 
 export const PageRoute = () => {
     return (
@@ -47,13 +54,14 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
                             element={<TeacherList />}
                         />
                         <Route
-                            path="/studentlist"
+                            path="/students"
                             element={<StudentList />}
                         />
                         <Route path="/events" element={<EventList />} />
@@ -174,14 +182,37 @@ export const PageRoute = () => {
                             element={<UpdateTutorial />}
                         />
                         <Route
-
                             path="/admin/inventory/update/:id"
                             element={<UpdateInventory />}
                         />
                         <Route
                             path="/admin/event/update/:id"
                             element={<UpdateEvent />}
-                            />
+                        />
+                        <Route
+                            path="/events/start/:id"
+                            element={<EventStart />}
+                        />
+                        <Route
+                            path="/student/update/:id"
+                            element={<UpdateStudent />}
+                        />
+                        <Route
+                            path="/student/profile/:id"
+                            element={<StudentProfile />}
+                        />
+                        <Route
+                            path="/studentTimetable"
+                            element={<StudentTimetableList />}
+                        />
+                        <Route
+                            path="/student/updatestudent/:id"
+                            element={<UpdateStudentSide />}
+                        />
+                        <Route
+                            path="/student/dashboard/"
+                            element={<StudentDashboard />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>

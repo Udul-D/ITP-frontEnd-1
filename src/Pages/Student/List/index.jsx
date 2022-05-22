@@ -38,11 +38,9 @@ const StudentLists = () => {
                 <button
                     onClick={routeChange}
                     className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-full m-4 transition ease-in-out delay-75 hover:scale-95 transform-gpu">
-                    {/* transition ease-out delay-150 */}
                     <AiOutlineUserAdd className="AddUserIcon" />
                     <span>Add Student</span>
                 </button>
-
                 <StudentList />
                 <Footer />
             </div>

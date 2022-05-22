@@ -7,6 +7,7 @@ import "./LoginForm.css";
 import Notification from "../Notification/index";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { id } from "date-fns/locale";
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
@@ -54,9 +55,29 @@ export default function LoginForm() {
                     message: "Login Successful",
                     type: "success",
                 });
-                localStorage.setItem("authToken", result.data.authToken);        localStorage.setItem("isLoggedIn", true);
+                localStorage.setItem("authToken", result.data.authToken);
+                localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", result.data.role);
                 localStorage.setItem("roleData", result.data.roleData);
+                localStorage.setItem("roleID", result.data.roleData._id);
+
+                console.log("RoleData" + localStorage.getItem("roleData"));
+                console.log("id" + localStorage.getItem("roleID"));
+                console.log("role - " + localStorage.getItem("role"));
+
+                const UserRole = localStorage.getItem("role");
+
+                if (UserRole === "student") {
+                    localStorage.setItem(
+                        "roleFname",
+                        result.data.roleData.firstName,
+                    );
+                    localStorage.setItem(
+                        "roleLname",
+                        result.data.roleData.lastName,
+                    );
+                }
+
                 if (result.data.role === "teacher") {
                     localStorage.setItem(
                         "teacherName",
@@ -70,9 +91,16 @@ export default function LoginForm() {
                 setUsername("");
                 setPassword("");
                 setIsLoggedIn(true);
-                setInterval(() => {
-                    navigate("/exams");
-                }, 2500);
+
+                if (UserRole === "student") {
+                    setInterval(() => {
+                        navigate("/student/dashboard/");
+                    }, 2500);
+                } else {
+                    setInterval(() => {
+                        navigate("/exams");
+                    }, 2500);
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -205,7 +233,6 @@ export default function LoginForm() {
                 </div>
             </div>
             <Notification notify={notify} setNotify={setNotify} />
-            <Footer />
         </>
     );
 }

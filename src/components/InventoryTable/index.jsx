@@ -2,14 +2,30 @@ import {
     EyeOutlined,
     EditOutlined,
     DeleteOutlined,
+    DownloadOutlined,
 } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { format } from 'date-fns';
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
 
 export default function Inventory() {
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
 
     const [inventory, setInventory] = useState([]);
     const [updateClicked, setUpdateClicked] = useState(false);
@@ -33,8 +49,11 @@ export default function Inventory() {
         navigate(path);
     };
 
-    const handleDelete = async (id, e) => {
-        e.preventDefault();
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
         axios
             .delete(`/api/inventory/delete/${id}`, {
                 headers: { authToken: localStorage.getItem("authToken") },
@@ -42,9 +61,14 @@ export default function Inventory() {
             .then((res) => {
                 console.log("deleted");
                 window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Inventory deleted successfully",
+                    type: "error",
+                });
             })
             .catch((err) => {
-                console.log(err);
+                console.log("delete Error"+err);
             });
     };
     const handleUpdate = async (
@@ -66,6 +90,27 @@ export default function Inventory() {
             
             },
         });
+    };
+
+    const columns = [
+        { title: "Item Name", field: "itemName" },
+        { title: "Date", field: "boughtDate" },
+        { title: "Quantity", field: "quantity" },
+        { title: "Price", field: "price" },
+        
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text(itemName + " Inventory Sheet", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: inventory,
+        });
+        doc.save(itemName + " Inventory Sheet");
     };
 
     return (
@@ -91,6 +136,28 @@ export default function Inventory() {
                                         onClick={addInventory}>
                                         ADD INVENTORY
                                     </button>
+                                    <div className="ml-96">
+                                    <button
+                                            className="bg-green-600
+                                            hover:bg-green-800
+                                            text-white
+                                            py-2
+                                            px-5
+                                            flex
+                                            sm
+                                            ml-96
+                                            outline-none
+                                            font-bold
+                                            rounded-full mb-3"
+                                            onClick={() => downLoadPdf()}>
+                                            <span>
+                                                <span>
+                                                    <DownloadOutlined className="font-bold" />{" "}
+                                                </span>
+                                                Download
+                                            </span>
+                                        </button>
+                                        </div>
                                 </div>
                             </div>
 
@@ -146,12 +213,17 @@ export default function Inventory() {
                                                     class="text-red-400 hover:text-gray-100 ml-2 px-2">
                                                     <i class="material-icons-round text-base">
                                                         <DeleteOutlined
-                                                            onClick={(e) =>
-                                                                handleDelete(
-                                                                    r._id,
-                                                                    e,
-                                                                )
-                                                            }
+                                                            onClick={() =>{
+                                                                setConfirmDialog({
+                                                                    isOpen: true,
+                                                                    title: "Delete Inventory",
+                                                                    subTitle:
+                                                                        "Are you sure you want to delete this inventory?",
+                                                                    onConfirm: () => {
+                                                                        handleDelete(r._id);
+                                                                    },                           
+                                                            });
+                                                        }}
                                                         />
                                                     </i>
                                                 </a>
@@ -199,7 +271,7 @@ export default function Inventory() {
                                                     />
                                                 ) : (
                                                     <span>
-                                                        {r.boughtDate}
+                                                        {r.boughtDate.split("T")[0]}
                                                     </span>
                                                 )}
                                             </td>
@@ -250,6 +322,11 @@ export default function Inventory() {
                     </div>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     );
 }

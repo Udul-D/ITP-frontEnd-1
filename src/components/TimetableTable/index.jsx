@@ -6,8 +6,21 @@ import {
     EditOutlined,
     DeleteOutlined,
 } from "@ant-design/icons";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
 
 export default function Timetable() {
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
     const [timetable, setTimetable] = useState([]);
     const [selectDate, setSelectDate] = useState(null);
     const [updateClicked, setUpdateClicked] = useState(false);
@@ -35,8 +48,11 @@ export default function Timetable() {
         navigate(path);
     };
 
-    const handleDelete = async (id, e) => {
-        e.preventDefault();
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
         axios
             .delete(`/api/timetable/delete/${id}`, {
                 headers: { authToken: localStorage.getItem("authToken") },
@@ -44,9 +60,14 @@ export default function Timetable() {
             .then((res) => {
                 console.log("deleted");
                 window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Timetable deleted successfully",
+                    type: "error",
+                });
             })
             .catch((err) => {
-                console.log(err);
+                console.log("delete error" +err);
             });
     };
     const handleUpdate = async (
@@ -170,12 +191,17 @@ export default function Timetable() {
                                                     class="text-red-400 hover:text-gray-100 ml-2 px-2">
                                                     <i class="material-icons-round text-base">
                                                         <DeleteOutlined
-                                                            onClick={(e) =>
-                                                                handleDelete(
-                                                                    r._id,
-                                                                    e,
-                                                                )
-                                                            }
+                                                            onClick={() =>{
+                                                                setConfirmDialog({
+                                                                    isOpen: true,
+                                                                    title: "Delete Timetable",
+                                                                    subTitle:
+                                                                        "Are you sure you want to delete this timetable?",
+                                                                    onConfirm: () => {
+                                                                        handleDelete(r._id);
+                                                                    },                           
+                                                            });
+                                                        }}
                                                         />
                                                     </i>
                                                 </a>
@@ -242,7 +268,7 @@ export default function Timetable() {
                                                     />
                                                 ) : (
                                                     <span>
-                                                        {r.date}
+                                                        {r.date.split("T")[0]}
                                                     </span>
                                                 )}
                                             </td>
@@ -368,6 +394,11 @@ export default function Timetable() {
                     </div>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     );
 }

@@ -6,3 +6,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.DownloadIcon {
+    width: 30px;
+    height: 30px;
+    color: #16a34a;
+    display: inline-flex;
+    margin-right: 5px;
+    justify-content: center;
+    align-items: center;
+}

@@ -6,9 +6,32 @@ import {
     EyeOutlined,
     EditOutlined,
     DeleteOutlined,
+    DownloadOutlined,
+    PlusOutlined,
 } from "@ant-design/icons";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Notification from "../Notification/index";
+import ConfirmDialog from "../ConfirmDialog/index";
+
 
 export default function Event() {
+
+
+
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
+    const [confirmDialog, setConfirmDialog] = useState({
+        isOpen: false,
+        title: "",
+        subTitle: "",
+    });
+
+
     //const [eventDetails, setEventDetails] = useState([]);
     const [event, setEvents] = useState([]);
     const [updateClicked, setUpdateClicked] = useState(false);
@@ -17,9 +40,7 @@ export default function Event() {
     const [time, setTime] = useState("");
     const [venue, setVenue] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
     const [tags, setTags] = useState("");
-    const [reglink, setReglink] = useState("");
 
     //useEffect(() => {
     //const getallEventDetails = async () => {
@@ -44,8 +65,12 @@ export default function Event() {
         navigate(path);
     };
 
-    const handleDelete = async (id, e) => {
-        e.preventDefault();
+    const handleDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false,
+        });
+        
         axios
             .delete(`/api/event/delete/${id}`, {
                 headers: { authToken: localStorage.getItem("authToken") },
@@ -53,9 +78,14 @@ export default function Event() {
             .then((res) => {
                 console.log("deleted");
                 window.location.reload();
+                setNotify({
+                    isOpen: true,
+                    message: "Event deleted successfully",
+                    type: "error",
+                });
             })
             .catch((err) => {
-                console.log(err);
+                console.log("delete error" + err);
             });
     };
 
@@ -67,9 +97,7 @@ export default function Event() {
         time,
         venue,
         description,
-        image,
         tags,
-        reglink,
     ) => {
         navigate(`/admin/event/update/${id}`, {
             state: {
@@ -78,11 +106,30 @@ export default function Event() {
                 time: time,
                 Venue: venue,
                 description: description,
-                imageUrl: image,
                 tags: tags,
-                registrationLink: reglink,
             },
         });
+    };
+
+    const columns = [
+        { title: "Event Name", field: "eventName" },
+        { title: "Date", field: "eventDate" },
+        { title: "Time", field: "time" },
+        { title: "Venue", field: "Venue" },
+        { title: "Description", field: "description" },
+    ];
+
+    const downLoadPdf = () => {
+        const doc = new jsPDF();
+        doc.text(eventName + " Event Sheet", 20, 10);
+        doc.autoTable({
+            columns: columns.map((col) => ({
+                ...col,
+                dataKey: col.field,
+            })),
+            body: event,
+        });
+        doc.save(eventName + " Event Sheet");
     };
 
     return (
@@ -101,75 +148,36 @@ export default function Event() {
                                         py-1
                                         px-3
                                         sm
+                                        font-bold
                                         rounded-full mb-3
                                     "
                                     onClick={addEvent}>
-                                    ADD EVENT
+                                    ADD NEW EVENT
                                 </button>
                             </a>
+                        <button
+                                            className="bg-green-600
+                                            hover:bg-green-800
+                                            text-white
+                                            py-2
+                                            px-5
+                                            flex
+                                            sm                                          
+                                            outline-none
+                                            font-bold
+                                            rounded-full mb-3"
+                                            onClick={() => downLoadPdf()}>
+                                            <span>
+                                                <span>
+                                                    <DownloadOutlined className="font-bold" />{" "}
+                                                </span>
+                                                Download
+                                            </span>
+                                        </button>                    
+                                        </div>
                         </div>
 
-                        <a>
-                            <button
-                                class="
-                                        bg-green-600
-                                        hover:bg-green-800
-                                        text-white
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                        
-                                    ">
-                                All
-                            </button>
-                        </a>
 
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-8
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Upcoming
-                            </button>
-                        </a>
-
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Past
-                            </button>
-                        </a>
-
-                        <a>
-                            <button
-                                class="
-                
-                                        hover:bg-green-800
-                                        text-black
-                                        py-1
-                                        px-5
-                                        sm
-                                        rounded-full mb-3
-                                    ">
-                                Ongoing
-                            </button>
-                        </a>
-                    </div>
 
                     <table class="w-full">
                         <thead class="bg-green-200 border-b-2 border-gray-200">
@@ -214,9 +222,7 @@ export default function Event() {
                                                             event.time,
                                                             event.Venue,
                                                             event.description,
-                                                            event.imageUrl,
                                                             event.tags,
-                                                            event.registrationLink,
                                                         )
                                                     }
                                                 />
@@ -225,12 +231,17 @@ export default function Event() {
                                         <a className="text-red-400 ml-2 hover:text-red-500">
                                             <i class="material-icons-round text-base">
                                                 <DeleteOutlined
-                                                    onClick={(e) =>
-                                                        handleDelete(
-                                                            event._id,
-                                                            e,
-                                                        )
-                                                    }
+                                                    onClick={() =>{
+                                                        setConfirmDialog({
+                                                            isOpen: true,
+                                                            title: "Delete Event",
+                                                            subTitle:
+                                                                "Are you sure you want to delete this event?",
+                                                            onConfirm: () => {
+                                                                handleDelete(event._id);
+                                                            },                           
+                                                    });
+                                                }}
                                                 />
                                             </i>
                                         </a>
@@ -271,7 +282,7 @@ export default function Event() {
                                                 }
                                             />
                                         ) : (
-                                            <span>{event.eventDate}</span>
+                                            <span>{event.eventDate.split("T")[0]}</span>
                                         )}
                                     </td>
                                     <td class="p-3 uppercase pl-8">
@@ -328,6 +339,11 @@ export default function Event() {
                     </table>
                 </div>
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     );
 }

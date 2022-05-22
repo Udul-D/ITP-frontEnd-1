@@ -23,7 +23,6 @@ const EventList = () => {
         type: "",
     });
 
-
     useEffect(() => {
         const fetchEvents = async () => {
             const res = await axios.get("/api/event/all");
@@ -39,31 +38,48 @@ const EventList = () => {
 
     return (
         <>
-        <Sidebar isOpen={isOpen} toggle={toggle} />
-        <Header toggle={toggle} />
-        <div className="flex justify-between">
-            <h1 className="text-black font-bold px-10 pt-5 text-5xl">
-                Your Events
-            </h1>
-            {localStorage.getItem("role") === "admin" ? (
-                <button
-                    class="
+            <Sidebar isOpen={isOpen} toggle={toggle} />
+            <Header toggle={toggle} />
+            <div className="flex justify-between">
+                <h1 className="text-black font-bold px-10 pt-5 text-5xl">
+                    Your Events
+                </h1>
+                {localStorage.getItem("role") === "admin" ? (
+                    <button
+                        class="
                 bg-green-600 hover:bg-green-800 text-white font-bold py-3 px-8 flex sm rounded-full mb-3 mr-10 mt-5"
-                    onClick={addEvent}>
-                    Add New Event
-                </button>
-            ) : (
-                <div></div>
-            )}
-        </div>
-        <div className="w-full py-10 pl-28 gap-4 flex-wrap flex justify-start">
-            {events.map((event) => (
-                <EventCard event={event} />
-            ))}
-        </div>
-        <Notification notify={notify} setNotify={setNotify} />
-        <Footer />
-    </>
+                        onClick={addEvent}>
+                        Add New Event
+                    </button>
+                ) : (
+                    <div></div>
+                )}
+            </div>
+            <div className="w-full py-10 pl-28 gap-4 flex-wrap flex justify-start">
+                {events.map((event) => (
+                    <EventCard event={event} />
+                ))}
+            </div>
+            {/* <Notification notify={notify} setNotify={setNotify} /> */}
+            <Footer />
+        </>
+
+        // <Sidebar isOpen={isOpen} toggle={toggle} />
+        // <Header toggle={toggle} />
+        // <div className="flex justify-between">
+        //     <h1 className="text-black font-bold px-10 pt-5 text-5xl">
+        //         Your Events
+        //     </h1>
+
+        // </div>
+        // <div className="w-full py-10 pl-28 gap-4 flex-wrap flex justify-start">
+        //     {events.map((event) => (
+        //         <EventCard event={event} />
+        //     ))}
+        // </div>
+        // <Notification notify={notify} setNotify={setNotify} />
+        // <Footer />
+        // </>
     );
 };
 

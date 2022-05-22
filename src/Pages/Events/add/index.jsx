@@ -18,9 +18,7 @@ function AddEvent() {
     const [time, setTime] = useState("");
     const [venue, setVenue] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
     const [tags, setTags] = useState("");
-    const [reglink, setReglink] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -32,9 +30,7 @@ function AddEvent() {
             time: time,
             Venue: venue,
             description: description,
-            imageUrl: image,
             tags: tags,
-            registrationLink: reglink,
             
         };
 
@@ -182,21 +178,7 @@ function AddEvent() {
                                 }}          
                                 placeholder="Description"></textarea>
                         </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Image
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                placeholder="Image Url"
-                                onChange={(e) => setImage(e.target.value)}
-                                required
-                            />
-                        </div>
+                        
                         <div class="mb-6">
                             <label
                                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -212,23 +194,7 @@ function AddEvent() {
                                 required
                             />
                         </div>
-                        <div class="mb-6">
-                            <label
-                                class="block text-gray-700 text-sm font-bold mb-2"
-                                for="username">
-                                Registration Link
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:outline-green-300 focus:shadow-outline"
-                                id="username"
-                                type="text"
-                                placeholder="Registration Link"
-                                onChange={(e) =>
-                                    setReglink(e.target.value)
-                                }
-                                required
-                            />
-                        </div>
+                        
 
                         <button
                             class="bg-green-600 mx-48 mt-4 hover:bg-green-700 text-white font-bold py-2 px-24 rounded"
