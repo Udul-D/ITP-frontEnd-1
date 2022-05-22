@@ -42,6 +42,7 @@ import LoginPage from "../Pages/Login";
 import UpdateTutorial from "../Pages/Tutorial/Update";
 import UpdateStudent from "../Pages/Student/update";
 import StudentProfile from "../Pages/Student/Profile/profile";
+import UpdateStudentSide from "../Pages/Student/update/studentUpdate";
 
 export const PageRoute = () => {
     return (
@@ -186,6 +187,10 @@ export const PageRoute = () => {
                         <Route
                             path="/student/profile/:id"
                             element={<StudentProfile />}
+                        />
+                        <Route
+                            path="/student/updatestudent/:id"
+                            element={<UpdateStudentSide />}
                         />
                     </Routes>
                 </div>
