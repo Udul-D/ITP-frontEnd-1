@@ -540,8 +540,8 @@ function UpdateStudent() {
                         </button>
                     </div>
                 </form>
-                {/* </div> */}
             </div>
+            <Notification notify={notify} setNotify={setNotify} />
             <Footer />
         </>
     );
