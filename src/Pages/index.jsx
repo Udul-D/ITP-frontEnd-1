@@ -35,6 +35,9 @@ import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
 import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
+import TeacherProfile from "./Teachers/Profile";
+import TeacherProfileUpdate from "./Teachers/Update";
+
 
 export {
     ExamList,
@@ -73,4 +76,6 @@ export {
     UpdateTutorial,
     Dashboard,
     UpdateInventory,
+    TeacherProfile,
+    TeacherProfileUpdate,
 };
