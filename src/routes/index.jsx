@@ -225,6 +225,10 @@ export const PageRoute = () => {
                             path="/admin/profile/:id"
                             element={<AdminProfile />}
                         />
+                        <Route
+                            path="/student/dashboard"
+                            element={<StudentDashboard />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>
