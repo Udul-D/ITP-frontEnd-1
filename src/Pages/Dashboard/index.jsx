@@ -5,13 +5,12 @@ import TutorialImg from "../../Assets/Images/—Pngtree—laptop player screen t
 import ExmResultsImg from "../../Assets/Images/result-g5ebf724bf_1280.png";
 import EventsImg from "../../Assets/Images/kindpng_7529367.png";
 import ProfileImg from "../../Assets/Images/profile.png";
-import myRequest from "../../Assets/Images/myRequest.png"
-import request from "../../Assets/Images/request.png"
+import myRequest from "../../Assets/Images/myRequest.png";
+import request from "../../Assets/Images/request.png";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
-
 
 const Dashboard = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -22,16 +21,16 @@ const Dashboard = () => {
     const id = localStorage.getItem("roleID");
     console.log("RoleID: " + id);
 
-    const AddRequest=()=>{
-        navigate("/teacher/request/add")
-    }
+    const AddRequest = () => {
+        navigate("/teacher/request/add");
+    };
 
-    const Request=()=>{
-        navigate("/requests")
-    }
+    const Request = () => {
+        navigate("/requests");
+    };
 
     const ExamsNav = () => {
-        navigate("/teacher/exam/add");
+        navigate("/exams");
     };
 
     const EventsNav = () => {

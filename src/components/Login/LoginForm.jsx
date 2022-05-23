@@ -104,14 +104,14 @@ export default function LoginForm() {
                     setInterval(() => {
                         navigate("/admin/dashboard/");
                     }, 2500);
-                } else {
+                } else if (UserRole === "teacher") {
+                    // setInterval(() => {
+                    //     navigate("/exams");
+                    // }, 2500);
                     setInterval(() => {
-                        navigate("/exams");
+                        navigate("/dashboard");
                     }, 2500);
                 }
-                setInterval(() => {
-                    navigate("/dashboard");
-                }, 2500);
             })
             .catch((err) => {
                 console.log(err);
