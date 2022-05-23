@@ -32,6 +32,7 @@ import {
     UpdateEvent,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
     ExamStart,
     UpdateRequest,
     Dashboard,
@@ -40,6 +41,10 @@ import {
     EventStart,
     // Dashboard,
     StudentTimetableList,
+    AboutUsPage,
+    ContactUs,
+    AdminDashboard,
+    AdminProfile,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -56,7 +61,7 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
@@ -144,6 +149,11 @@ export const PageRoute = () => {
                             path="/tutorial/add"
                             element={<AddTutorial />}
                         />
+
+                        <Route
+                            path="/tutorial/add"
+                            element={<AddTutorial />}
+                        />
                         <Route
                             path="/teacher/result/add/:id"
                             element={<AddResult />}
@@ -160,6 +170,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/update/:id"
                             element={<UpdateExam />}
+                        />
+                        <Route
+                            path="/admin/update/:id"
+                            element={<UpdateAdmin />}
                         />
                         <Route
                             path="/teacher/request/update/:id"
@@ -200,6 +214,16 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/update/:id"
                             element={<TeacherProfileUpdate />}
+                        />
+                        <Route path="/aboutus" element={<AboutUsPage />} />
+                        <Route path="/contactus" element={<ContactUs />} />
+                        <Route
+                            path="/admin/dashboard"
+                            element={<AdminDashboard />}
+                        />
+                        <Route
+                            path="/admin/profile/:id"
+                            element={<AdminProfile />}
                         />
                     </Routes>
                 </div>

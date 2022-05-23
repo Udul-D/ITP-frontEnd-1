@@ -78,7 +78,7 @@ const dashboard = () => {
             </div>
 
             <div className="my-10 mt-16 flex flex-row mx-[400px]">
-                <div className="flex flex-row bg-gray-300 w-80 mx-0 mr-24 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                     <img
                         src={EventsImg}
                         className="mt-4 h-28 w-36"
@@ -91,7 +91,7 @@ const dashboard = () => {
                     </button>
                 </div>
 
-                <div className="flex flex-row bg-gray-300 w-80 mx-0 ml-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                     <img
                         src={ProfileImg}
                         className="mt-4 h-28 w-36"

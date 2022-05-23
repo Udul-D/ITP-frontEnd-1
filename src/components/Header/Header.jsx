@@ -8,6 +8,7 @@ import "./header.css";
 import { UserOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AboutUs from "../AboutUs/AboutUs";
 
 export const NavbarContainer = styled.div`
     display: flex;
@@ -115,6 +116,7 @@ const Header = ({ toggle }) => {
     console.log(login);
 
     const id = localStorage.getItem("roleID");
+    const UserRole = localStorage.getItem("role");
 
     // console.log("id" + id);
 
@@ -137,27 +139,55 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
+        if (UserRole === "student") {
+            navigate("/student/profile/" + id);
+        } else if (UserRole === "admin") {
+            navigate("/admin/profile/" + id);
+        }
 
         navigate("/teacher/profile");
-        navigate("/student/profile/" + id);
+        // navigate("/student/profile/" + id);
     };
 
     const navigateToDashboard = () => {
-        const UserRole = localStorage.getItem("role");
-
         if (UserRole === "student") {
             navigate("/student/dashboard/");
+        } else if (UserRole === "admin") {
+            navigate("/admin/dashboard/");
         }
+    };
+
+    const homeToDashbar = () => {
+        navigate("/dashboard");
     };
 
     const registerPage = () => {
         navigate("/student/add/");
+    };
 
+    const AboutNav = () => {
+        navigate("/aboutus/");
+    };
+
+    const ContactNav = () => {
+        navigate("/contactus/");
+    };
+
+    const HomeNav = () => {
+        navigate("/");
+    };
+
+    const TimetableNav = () => {
+        navigate("/studentTimetable");
+    };
+
+    const EventNav = () => {
+        navigate("/events");
     };
 
     return (
         <>
-            <nav className="w-screen bg-black">
+            <nav className="w-full bg-black">
                 <div className="flex w-full justify-between h-20 -z-10 py-0 px-6">
                     <NavLogo to="/">
                         <img src={Onlylogo} className="logo" alt="logo" />
@@ -170,24 +200,41 @@ const Header = ({ toggle }) => {
                     </MobileIcon>
 
                     <NavMenu>
+                        <NavItem>
+                            <NavLinks onClick={HomeNav}>Home</NavLinks>
+                        </NavItem>
                         {login ? (
                             <NavItem>
-                                <NavLinks onClick={navigateToDashboard}>
+                                <NavLinks onClick={homeToDashbar}>
                                     Dashboard
                                 </NavLinks>
                             </NavItem>
                         ) : (
-                            <NavLinks></NavLinks>
+                            <div></div>
                         )}
                         <NavItem>
-                            <NavLinks to="about">About</NavLinks>
+                            <NavLinks onClick={AboutNav}>About</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to="contact">Contact</NavLinks>
+                            <NavLinks onClick={ContactNav}>
+                                Contact
+                            </NavLinks>
                         </NavItem>
-                        <NavItem>
-                            <NavLinks to="services">Events</NavLinks>
-                        </NavItem>
+                        {/* {login ? (
+                            <NavItem>
+                                <NavItem>
+                                    <NavLinks onClick={EventNav}>
+                                        Events
+                                    </NavLinks>
+                                </NavItem>
+                            </NavItem>
+                        ) : (
+                            <NavItem>
+                                <NavLinks onClick={TimetableNav}>
+                                    Timetable
+                                </NavLinks>
+                            </NavItem>
+                        )} */}
                         {login ? (
                             <NavItem>
                                 <NavLinks onClick={logout}>
@@ -207,7 +254,7 @@ const Header = ({ toggle }) => {
                         <div>
                             <img
                                 src="https://icon-library.com/images/profile-icon-white/profile-icon-white-7.jpg"
-                                className="w-12 cursor-pointer mx-4 my-4 mb-1 h-12"
+                                className="w-12 cursor-pointer mx-4 my-3 h-12"
                                 onClick={profileClicked}
                             />
                         </div>
