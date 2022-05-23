@@ -96,6 +96,10 @@ export default function LoginForm() {
                     setInterval(() => {
                         navigate("/student/dashboard/");
                     }, 2500);
+                } else if (UserRole === "admin") {
+                    setInterval(() => {
+                        navigate("/admin/dashboard/");
+                    }, 2500);
                 } else {
                     setInterval(() => {
                         navigate("/exams");
