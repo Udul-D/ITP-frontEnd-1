@@ -71,7 +71,6 @@ export default function AdminList() {
         email,
         address,
         password,
-
     ) => {
         navigate(`/admin/update/${id}`, {
             state: {
@@ -80,7 +79,7 @@ export default function AdminList() {
                 NIC: nic,
                 username: userName,
                 phoneNumber: phoneNumber,
-                email: email, 
+                email: email,
                 address: address,
                 password: password,
             },
@@ -115,8 +114,13 @@ export default function AdminList() {
                     <div className="overflow-auto lg:overflow-visible">
                         <div className="p-5 bg-gray-100">
                             <div className="overflow-auto rounded-lg shadow">
+<<<<<<< HEAD
                             <button
                                             className="bg-green-600
+=======
+                                <button
+                                    className="bg-green-600
+>>>>>>> e204a4ecb04e9ecd0fb5a9e91aebaa1d00832a98
                                             hover:bg-green-800
                                             transition ease-in-out
                                             delay-75
@@ -130,6 +134,7 @@ export default function AdminList() {
                                             outline-none
                                             font-bold
                                             rounded-full mb-3"
+<<<<<<< HEAD
                                             onClick={() => downLoadPdf()}>
                                             <span>
                                                 <span>
@@ -138,6 +143,17 @@ export default function AdminList() {
                                                 Download
                                             </span>
                                         </button> 
+=======
+                                    onClick={() => downLoadPdf()}>
+                                    <span>
+                                        <span>
+                                            <DownloadOutlined className="font-bold" />{" "}
+                                        </span>
+                                        Download
+                                    </span>
+                                </button>
+
+>>>>>>> e204a4ecb04e9ecd0fb5a9e91aebaa1d00832a98
                                 <table className="w-full">
                                     <thead className="bg-green-200 border-b-2 border-gray-200">
                                         <tr>
@@ -158,7 +174,7 @@ export default function AdminList() {
                                             </th>
                                         </tr>
                                     </thead>
-                                <tbody>
+                                    <tbody>
                                         {admins.map((s) => (
                                             <tr className="bg-green-100 lg:text-black">
                                                 <td className="p-3">
@@ -213,14 +229,14 @@ export default function AdminList() {
                                                             />
                                                         </i>
                                                     </Tooltip>
-                                                    </td>
-                                                    <td className="p-3 font-medium capitalize">
+                                                </td>
+                                                <td className="p-3 font-medium capitalize">
                                                     {s.firstName +
                                                         " " +
                                                         s.lastName}
                                                 </td>
-                                                <td className="p-3">   
-                                                    {s.NIC} 
+                                                <td className="p-3">
+                                                    {s.NIC}
                                                 </td>
                                                 <td className="p-3 ">
                                                     {s.phoneNumber}
@@ -242,7 +258,7 @@ export default function AdminList() {
                 confirmDialog={confirmDialog}
                 setConfirmDialog={setConfirmDialog}
             />
-            <Footer/>
+            <Footer />
         </div>
     );
 }

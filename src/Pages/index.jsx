@@ -34,14 +34,17 @@ import UpdateAdmin from "./Admin/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
-// import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
 import TeacherProfile from "./Teachers/Profile";
 import TeacherProfileUpdate from "./Teachers/Update";
+import Dashboard from "./Dashboard";
 import studentDashboard from "./Student/StudentDashboard/index";
 import EventStart from "./Events/Event-start/index";
-import StudentTimetableList from "./StudentTimetable/List/index";
-
+import StudentTimetableList from "./StudentTimetable/List";
+import AboutUsPage from "./AboutUs/index";
+import ContactUs from "./ContactUs/index";
+import AdminDashboard from "./Admin/Dashboard/index";
+import AdminProfile from "./Admin/Profile/profile";
 
 export {
     ExamList,
@@ -79,12 +82,15 @@ export {
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
-    // Dashboard,
+    Dashboard,
     UpdateInventory,
     TeacherProfile,
     TeacherProfileUpdate,
     studentDashboard,
     EventStart,
     StudentTimetableList,
-
+    AboutUsPage,
+    ContactUs,
+    AdminDashboard,
+    AdminProfile,
 };
