@@ -95,6 +95,20 @@ export default function LoginForm() {
                 setUsername("");
                 setPassword("");
                 setIsLoggedIn(true);
+
+                if (UserRole === "student") {
+                    setInterval(() => {
+                        navigate("/student/dashboard/");
+                    }, 2500);
+                } else if (UserRole === "admin") {
+                    setInterval(() => {
+                        navigate("/admin/dashboard/");
+                    }, 2500);
+                } else {
+                    setInterval(() => {
+                        navigate("/exams");
+                    }, 2500);
+                }
                 setInterval(() => {
                     navigate("/dashboard");
                 }, 2500);

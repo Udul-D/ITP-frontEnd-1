@@ -41,6 +41,10 @@ import {
     EventStart,
     // Dashboard,
     StudentTimetableList,
+    AboutUsPage,
+    ContactUs,
+    AdminDashboard,
+    AdminProfile,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -211,6 +215,16 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/update/:id"
                             element={<TeacherProfileUpdate />}
+                        />
+                        <Route path="/aboutus" element={<AboutUsPage />} />
+                        <Route path="/contactus" element={<ContactUs />} />
+                        <Route
+                            path="/admin/dashboard"
+                            element={<AdminDashboard />}
+                        />
+                        <Route
+                            path="/admin/profile/:id"
+                            element={<AdminProfile />}
                         />
                     </Routes>
                 </div>
