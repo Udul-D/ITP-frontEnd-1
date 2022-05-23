@@ -1,15 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import isFuture from "date-fns/isFuture";
-import getDate from "date-fns/getDate";
-import {
-    EyeOutlined,
-    PlusOutlined,
-    EditOutlined,
-    DeleteOutlined,
-} from "@ant-design/icons";
-import { id } from "date-fns/locale";
 
 export default function EventCard({ event }) {
     const [notify, setNotify] = useState({
