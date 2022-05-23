@@ -144,13 +144,12 @@ export const PageRoute = () => {
                         <Route
                             path="/teachers/add"
                             element={<AddTeacher />}
-
-
-                            />
-                        <Route path="/tutorial/add"
+                        />
+                        <Route
+                            path="/tutorial/add"
                             element={<AddTutorial />}
-                            />
-                            
+                        />
+
                         <Route
                             path="/tutorial/add"
                             element={<AddTutorial />}
@@ -225,6 +224,10 @@ export const PageRoute = () => {
                         <Route
                             path="/admin/profile/:id"
                             element={<AdminProfile />}
+                        />
+                        <Route
+                            path="/student/dashboard"
+                            element={<StudentDashboard />}
                         />
                     </Routes>
                 </div>
