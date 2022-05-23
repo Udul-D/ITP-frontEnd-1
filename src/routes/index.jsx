@@ -45,6 +45,7 @@ import {
     ContactUs,
     AdminDashboard,
     AdminProfile,
+    TutorialStudentList,
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
@@ -214,6 +215,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/update/:id"
                             element={<TeacherProfileUpdate />}
+                        />
+                        <Route 
+                            path="/tutorials/student"
+                            element={<TutorialStudentList />}
                         />
                         <Route path="/aboutus" element={<AboutUsPage />} />
                         <Route path="/contactus" element={<ContactUs />} />
