@@ -34,16 +34,12 @@ import {
     UpdateExam,
     ExamStart,
     UpdateRequest,
-<<<<<<< HEAD
     Dashboard,
     TeacherProfile,
     TeacherProfileUpdate,
-    
-=======
     EventStart,
     // Dashboard,
     StudentTimetableList,
->>>>>>> 641dab0a25d6ec3e0b0d709d7527844905e33a6f
 } from "../Pages";
 
 import LoginPage from "../Pages/Login";
