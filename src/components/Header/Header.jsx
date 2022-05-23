@@ -116,6 +116,7 @@ const Header = ({ toggle }) => {
     console.log(login);
 
     const id = localStorage.getItem("roleID");
+    const UserRole = localStorage.getItem("role");
 
     // console.log("id" + id);
 
@@ -138,14 +139,18 @@ const Header = ({ toggle }) => {
     };
 
     const profileClicked = () => {
-        navigate("/student/profile/" + id);
+        if (UserRole === "student") {
+            navigate("/student/profile/" + id);
+        } else if (UserRole === "admin") {
+            navigate("/admin/profile/" + id);
+        }
     };
 
     const navigateToDashboard = () => {
-        const UserRole = localStorage.getItem("role");
-
         if (UserRole === "student") {
             navigate("/student/dashboard/");
+        } else if (UserRole === "admin") {
+            navigate("/admin/dashboard/");
         }
     };
 
