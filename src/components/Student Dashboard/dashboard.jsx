@@ -1,7 +1,7 @@
 import React from "react";
 import TimeTableImg from "../../Assets/Images/pngegg.png";
 import ExamImg from "../../Assets/Images/Exam-Vector-Transparent-File.png";
-import TutorialImg from "../../Assets/Images/—Pngtree—laptop player screen tutorial video_4898419.png";
+import TutorialStudentImg from "../../Assets/Images/—Pngtree—laptop player screen tutorial video_4898419.png";
 import ExmResultsImg from "../../Assets/Images/result-g5ebf724bf_1280.png";
 import EventsImg from "../../Assets/Images/kindpng_7529367.png";
 import ProfileImg from "../../Assets/Images/profile.png";
@@ -31,7 +31,7 @@ const dashboard = () => {
     };
 
     const TutorialNav = () => {
-        navigate("/tutorials/");
+        navigate("/tutorials/student/");
     };
 
     return (
@@ -65,9 +65,9 @@ const dashboard = () => {
 
                 <div className="flex flex-row bg-gray-300 w-80 mx-28 rounded transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                     <img
-                        src={TutorialImg}
+                        src={TutorialStudentImg}
                         className="mt-4 h-28 w-36"
-                        alt="tute"
+                        alt="tutorials"
                     />
                     <button
                         onClick={TutorialNav}
@@ -75,6 +75,7 @@ const dashboard = () => {
                         Tutorial
                     </button>
                 </div>
+                
             </div>
 
             <div className="my-10 mt-16 flex flex-row mx-[400px]">
