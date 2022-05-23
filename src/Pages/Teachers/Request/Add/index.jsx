@@ -6,13 +6,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 import Footer from "../../../../components/Footer/Footer";
 import axios from "axios";
+import Notification from "../../../../components/Notification/index";
+import { Navigate,useNavigate } from "react-router-dom";
 
 function AddRequest() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const [notify, setNotify] = useState({
+        isOpen: false,
+        message: "",
+        type: "",
+    });
+
     const toggle = () => {
         setIsOpen(!isOpen);
     };
+    let navigate = useNavigate();
      
     const [requestTitle,setRequestTitle] = useState("");
     const [teacherName, setTeacherName] =useState("");
@@ -41,9 +50,17 @@ function AddRequest() {
                         authToken: localStorage.getItem("authToken"),
                     },
                     data,
+                    
                 })
                 .then((res) => {
                     console.log(res);
+                    setNotify({
+                        isOpen: true,
+                        message: "Request Send Successfully",
+                        type: "success",
+                    });
+                        navigate("/dashboard");
+                    
                 })
                 .catch((err) => {
                     console.log(err);
@@ -181,7 +198,9 @@ function AddRequest() {
                     </form>
                 </div>
             </div>
+            
             <Footer />
+            <Notification notify={notify} setNotify={setNotify}/>
         </>
     );
 }

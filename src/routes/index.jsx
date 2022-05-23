@@ -32,8 +32,12 @@ import {
     UpdateEvent,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
     ExamStart,
     UpdateRequest,
+    Dashboard,
+    TeacherProfile,
+    TeacherProfileUpdate,
     EventStart,
     // Dashboard,
     StudentTimetableList,
@@ -57,7 +61,7 @@ export const PageRoute = () => {
                 <div className="">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/exams" element={<ExamList />} />
                         <Route
                             path="/teachers"
@@ -140,7 +144,13 @@ export const PageRoute = () => {
                         <Route
                             path="/teachers/add"
                             element={<AddTeacher />}
-                        />
+
+
+                            />
+                        <Route path="/tutorial/add"
+                            element={<AddTutorial />}
+                            />
+                            
                         <Route
                             path="/tutorial/add"
                             element={<AddTutorial />}
@@ -161,6 +171,10 @@ export const PageRoute = () => {
                         <Route
                             path="/teacher/exam/update/:id"
                             element={<UpdateExam />}
+                        />
+                        <Route
+                            path="/admin/update/:id"
+                            element={<UpdateAdmin />}
                         />
                         <Route
                             path="/teacher/request/update/:id"
@@ -195,16 +209,12 @@ export const PageRoute = () => {
                             element={<StudentProfile />}
                         />
                         <Route
-                            path="/studentTimetable"
-                            element={<StudentTimetableList />}
+                            path="/teacher/profile"
+                            element={<TeacherProfile />}
                         />
                         <Route
-                            path="/student/updatestudent/:id"
-                            element={<UpdateStudentSide />}
-                        />
-                        <Route
-                            path="/student/dashboard/"
-                            element={<StudentDashboard />}
+                            path="/teacher/update/:id"
+                            element={<TeacherProfileUpdate />}
                         />
                         <Route path="/aboutus" element={<AboutUsPage />} />
                         <Route path="/contactus" element={<ContactUs />} />

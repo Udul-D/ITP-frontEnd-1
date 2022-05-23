@@ -144,6 +144,9 @@ const Header = ({ toggle }) => {
         } else if (UserRole === "admin") {
             navigate("/admin/profile/" + id);
         }
+
+        navigate("/teacher/profile");
+        // navigate("/student/profile/" + id);
     };
 
     const navigateToDashboard = () => {
@@ -152,6 +155,10 @@ const Header = ({ toggle }) => {
         } else if (UserRole === "admin") {
             navigate("/admin/dashboard/");
         }
+    };
+
+    const homeToDashbar = () => {
+        navigate("/dashboard");
     };
 
     const registerPage = () => {
@@ -198,7 +205,7 @@ const Header = ({ toggle }) => {
                         </NavItem>
                         {login ? (
                             <NavItem>
-                                <NavLinks onClick={navigateToDashboard}>
+                                <NavLinks onClick={homeToDashbar}>
                                     Dashboard
                                 </NavLinks>
                             </NavItem>

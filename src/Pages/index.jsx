@@ -30,18 +30,22 @@ import UpdateEvent from "./Events/update/index";
 import AddTutorial from "./Tutorial/add";
 import UpdateResult from "./Result/Update/index";
 import UpdateExam from "./Exams/Update/index";
+import UpdateAdmin from "./Admin/Update/index";
 import ExamStart from "./Exams/Exam-start/index";
 import UpdateRequest from "./Teachers/Request/Update";
 import UpdateTutorial from "./Tutorial/Update";
-// import Dashboard from "./Dashboard";
 import UpdateInventory from "./Inventory/Update/index";
-import StudentDashboard from "./Student/StudentDashboard/index";
+import TeacherProfile from "./Teachers/Profile";
+import TeacherProfileUpdate from "./Teachers/Update";
+import Dashboard from "./Dashboard";
+import studentDashboard from "./Student/StudentDashboard/index";
 import EventStart from "./Events/Event-start/index";
 import StudentTimetableList from "./StudentTimetable/List";
 import AboutUsPage from "./AboutUs/index";
 import ContactUs from "./ContactUs/index";
 import AdminDashboard from "./Admin/Dashboard/index";
 import AdminProfile from "./Admin/Profile/profile";
+import StudentTimetableList from "./StudentTimetable/List/index";
 
 export {
     ExamList,
@@ -75,12 +79,15 @@ export {
     AddTutorial,
     UpdateResult,
     UpdateExam,
+    UpdateAdmin,
     ExamStart,
     UpdateRequest,
     UpdateTutorial,
-    // Dashboard,
+    Dashboard,
     UpdateInventory,
-    StudentDashboard,
+    TeacherProfile,
+    TeacherProfileUpdate,
+    studentDashboard,
     EventStart,
     StudentTimetableList,
     AboutUsPage,
