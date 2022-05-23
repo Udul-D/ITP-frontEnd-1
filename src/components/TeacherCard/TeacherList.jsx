@@ -3,6 +3,8 @@ import ConfirmDialog from "../ConfirmDialog";
 import Notification from "../Notification";
 import { useState } from "react";
 import axios from "axios";
+import { TeacherProfile } from "../../Pages";
+import teacherprofile  from "../../Assets/Images/teacherprofile.jpg";
 export default function TeacherList({teacher}) {
 
     const [confirmDialog, setConfirmDialog] = useState({
@@ -40,13 +42,13 @@ export default function TeacherList({teacher}) {
         <div className="w-1/5 rounded-lg transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
             <div className=" pt-2 px-2 bg-gray-100">
                 <img
-                    className="h-40 w-full object-cover rounded-lg"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8wk4x2MS5IwwYFijpcXzrSnwZI-eYc07CiA&usqp=CAU"
+                    className="h-50 w-full object-cover rounded-lg"
+                    src={teacherprofile}
                     alt=""
                 />
                 <div className="p-2">
                     <h2 className="font-bold text-xl mb-2">
-                        {teacher.firstName}
+                        Mr {teacher.firstName}
                     </h2>
                     <p className="text-sm text-justify text-gray-600">
                         {teacher.higerQulification}
@@ -75,9 +77,9 @@ export default function TeacherList({teacher}) {
                             onClick={(e) =>
                                 setConfirmDialog({
                                     isOpen: true,
-                                    title: "Delete Result",
+                                    title: "Delete Profile",
                                     subTitle:
-                                        "Are you sure you want to delete this Result?",
+                                        "Are you sure you want to delete this Profile?",
                                     onConfirm: () => {
                                         {
                                             handleDelete(e);

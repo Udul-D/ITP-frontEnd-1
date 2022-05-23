@@ -52,7 +52,7 @@ export default function TeacherProfileUpdate() {
                 type: "success",
 
             });
-            navigate(`/dashboard`)
+            navigate(`/teacher/profile`)
             
         } catch (error) {
             console.log(error)            
