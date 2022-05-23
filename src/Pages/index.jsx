@@ -40,6 +40,8 @@ import EventStart from "./Events/Event-start/index";
 import StudentTimetableList from "./StudentTimetable/List";
 import AboutUsPage from "./AboutUs/index";
 import ContactUs from "./ContactUs/index";
+import AdminDashboard from "./Admin/Dashboard/index";
+import AdminProfile from "./Admin/Profile/profile";
 
 export {
     ExamList,
@@ -83,4 +85,6 @@ export {
     StudentTimetableList,
     AboutUsPage,
     ContactUs,
+    AdminDashboard,
+    AdminProfile,
 };
