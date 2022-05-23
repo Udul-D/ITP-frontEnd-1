@@ -45,7 +45,6 @@ import AboutUsPage from "./AboutUs/index";
 import ContactUs from "./ContactUs/index";
 import AdminDashboard from "./Admin/Dashboard/index";
 import AdminProfile from "./Admin/Profile/profile";
-import StudentTimetableList from "./StudentTimetable/List/index";
 
 export {
     ExamList,
