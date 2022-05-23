@@ -340,15 +340,15 @@ function AddTeacher() {
                                 <option value="Maths">Maths</option>
                                 <option value="Science">Science</option>
                                 <option value="Sinhala">Sinhala</option>
-                                <option value="Sinhala">History</option>
-                                <option value="Sinhala">Combined Maths</option>
-                                <option value="Sinhala">Chemistry</option>
-                                <option value="Sinhala">Physics</option>
-                                <option value="Sinhala">Science For Technology (SFT)</option>
-                                <option value="Sinhala">Engineering Technology (ET)</option>
-                                <option value="Sinhala">Business Management (BM)</option>
-                                <option value="Sinhala">Economic</option>
-                                <option value="Sinhala">Information Technology (ICT)</option>
+                                <option value="History">History</option>
+                                <option value="Combined Maths">Combined Maths</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Science For Technology (SFT)">Science For Technology (SFT)</option>
+                                <option value="Engineering Technology (ET)">Engineering Technology (ET)</option>
+                                <option value="Business Management (BM)">Business Management (BM)</option>
+                                <option value="Economic">Economic</option>
+                                <option value="Information Technology (ICT)">Information Technology (ICT)</option>
                                 
                             </select>
                             
@@ -386,12 +386,12 @@ function AddTeacher() {
                                 <option selected>
                                     Select Your Grade
                                 </option>
-                                <option value="1">Grade 9</option>
-                                <option value="2">Grade 10</option>
-                                <option value="3">
+                                <option value="Grade 9">Grade 9</option>
+                                <option value="Grade 10">Grade 10</option>
+                                <option value="Ordinary Level  (O/L)">
                                     Ordinary Level  (O/L)
                                 </option>
-                                <option value="4">Advanced Level  (A/L)</option>
+                                <option value="Advanced Level  (A/L)">Advanced Level  (A/L)</option>
                             </select>
                         </div>
                     </div>
