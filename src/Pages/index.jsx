@@ -45,6 +45,7 @@ import AboutUsPage from "./AboutUs/index";
 import ContactUs from "./ContactUs/index";
 import AdminDashboard from "./Admin/Dashboard/index";
 import AdminProfile from "./Admin/Profile/profile";
+import TutorialStudentList from "./TutorialStudent/List";
 export {
     ExamList,
     Home,
@@ -92,4 +93,5 @@ export {
     ContactUs,
     AdminDashboard,
     AdminProfile,
+    TutorialStudentList,
 };
