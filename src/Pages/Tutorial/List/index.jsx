@@ -86,9 +86,9 @@ const TutorialList = () => {
                     px-5
                     flex
                     sm
-                    ml-8
-                    mr-5
-                    mt-9
+                    ml-10
+                    mr-4
+                    mt-5
                     outline-none
                     font-bold
                     rounded-full mb-3"

@@ -41,6 +41,10 @@ const Dashboard = () => {
         navigate("/timetable");
     };
 
+    const TutorialNav = () => {
+        navigate("/tutorials");
+    }
+
     const toggle = () => {
         setIsOpen(!isOpen);
     };
@@ -81,9 +85,11 @@ const Dashboard = () => {
                     <img
                         src={TutorialImg}
                         className="mt-4 h-28 w-36"
-                        alt="tute"
+                        alt="tutorial"
                     />
-                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
+                    <button 
+                        onClick={TutorialNav}
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-10 px-20 rounded">
                         Tutorial
                     </button>
                 </div>
@@ -94,7 +100,7 @@ const Dashboard = () => {
                     <img
                         src={EventsImg}
                         className="mt-4 h-28 w-36"
-                        alt="eevnts"
+                        alt="evnts"
                     />
                     <button
                         onClick={EventsNav}
